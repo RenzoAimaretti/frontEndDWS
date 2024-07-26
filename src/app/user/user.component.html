@@ -1,8 +1,8 @@
+<p>user works!</p>
+
+<h2>Usuarios</h2>
 <ul>
-    @for(user of users; track users.id){
-        <li>
-            <h1>{{user.name}}</h1>
-            
-        </li>
-    }
+    <li *ngFor="let user of users">
+        {{ user.id }} -- {{ user.name }} -- {{ user.email }}
+    </li>
 </ul>
