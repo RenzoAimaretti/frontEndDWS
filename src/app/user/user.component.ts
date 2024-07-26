@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrl: './user.component.css'
 })
 export class UserComponent implements OnInit {
-  users: any[] = []; // Asegúrate de que users sea un array de User
+  users: User[] = []; // Asegúrate de que users sea un array de User
 
   constructor(private userService: UserService) {}
 
