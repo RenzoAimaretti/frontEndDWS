@@ -19,8 +19,18 @@ export class UserService {
         .pipe(
           map((result: any) => result.data),
           catchError(this.handleError<User[]>('getUsers', []))
-        );
+        );    
     }
+
+
+    getUser(id: number): Observable<User> {
+      return this.http.get<{message: string, data: User}>(this.usersUrl + id)
+      .pipe(
+        map((result: any) => result.data),
+        catchError(this.handleError<User>('getUser'))
+      )
+    }
+    
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
     

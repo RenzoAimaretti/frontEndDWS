@@ -1,0 +1,31 @@
+<p>El id del usuario seleccionado es: {{userId}}</p>
+
+<h2>Detalles del usuario</h2>
+
+<div class="details" *ngIf="user; else noUser">
+    <ul>
+        <li>
+            <strong>Id:</strong> {{user.id}}
+        </li>
+        <li>
+            <strong>Nombre:</strong> {{user.name}}
+        </li>
+        <li>
+            <strong>Email:</strong> {{user.email}}
+        </li>
+        <li>
+            <strong>Contraseña:</strong> {{user.password}}
+        </li>
+        <li>
+            <strong>Rango Cinefilo</strong> {{user.rangoCinefilo.nameRango}}
+        </li>
+        <li>
+            <strong>Id subscripcion</strong>{{user.subscription.name}}
+        </li>
+    </ul>
+</div>
+
+
+<ng-template #noUser>
+    <p>Usuario no encontrado</p>
+</ng-template>

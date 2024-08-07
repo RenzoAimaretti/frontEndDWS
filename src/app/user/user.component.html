@@ -1,8 +1,16 @@
 <p>user works!</p>
 
 <h2>Usuarios</h2>
-<ul>
-    <li *ngFor="let user of users">
-        {{ user.id }} -- {{ user.name }} -- {{ user.email }} -- {{ user.password }}
-    </li>
-</ul>
+
+
+<div *ngIf="users;else noUsers">
+    <ul>
+        <li *ngFor="let user of users">
+            {{ user.id }} -- {{ user.name }} -- {{ user.email }} -- {{ user.password }}
+            <a [routerLink]="['/users',user.id]">Detalles del usuario</a>
+        </li>
+    </ul>
+</div>
+
+<ng-template #noUsers>
+    <p>No se encontraron Usuarios</p>

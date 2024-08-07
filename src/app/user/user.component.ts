@@ -3,10 +3,11 @@ import { User } from '../user';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../user.service';
 import { Observable } from 'rxjs';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
@@ -15,12 +16,12 @@ export class UserComponent implements OnInit {
 
   constructor(private userService: UserService) {}
 
-  ngOnInit(): void {
-    this.getUsers();
+  async ngOnInit(): Promise<void> {
+    await this.getUsers();
     
   }
 
-  getUsers(): void {
+  async getUsers(): Promise<void> {
     this.userService.getUsers().subscribe({
       next: (result) => {console.log(result), this.users = result},
       error: (error) => console.log(error)
