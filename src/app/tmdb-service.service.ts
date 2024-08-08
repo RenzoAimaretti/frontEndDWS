@@ -19,11 +19,36 @@ export class TmdbService {
   getMovie(id: number): Observable<Movie>{
     return this.http.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${this.API_KEY}`)
     .pipe(
-      map((result: any) => result.data),
+      map((result: any) => result),
       catchError(this.handleError<Movie>('getUser')
-      
     ));
   }
+
+  getPopularMovies(): Observable<Movie[]> {
+    return this.http.get(`https://api.themoviedb.org/3/movie/popular?api_key=${this.API_KEY}`)
+    .pipe(
+      map((result: any) => result.results),
+      catchError(this.handleError<Movie[]>('getPopularMovies', [])
+    ));
+  }
+
+  getTopRatedMovies(): Observable<Movie[]> {
+    return this.http.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${this.API_KEY}`)
+    .pipe(
+      map((result: any) => result.results),
+      catchError(this.handleError<Movie[]>('getTopRatedMovies', [])
+    ));
+  }
+
+  getUpcomingMovies(): Observable<Movie[]> {
+    return this.http.get(`https://api.themoviedb.org/3/movie/upcoming?api_key=${this.API_KEY}`)
+    .pipe(
+      map((result: any) => result.results),
+      catchError(this.handleError<Movie[]>('getUpcomingMovies', [])
+    ));
+  }
+
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

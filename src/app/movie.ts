@@ -1,8 +1,10 @@
+import { Genre } from './genre';
+
 export interface Movie {
     id: number;
     title: string;
     overview: string;
-    genres: Object;
+    genres: Genre[];
     poster_path: string;
     release_date: string;
     /*

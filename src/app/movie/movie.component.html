@@ -1,1 +1,35 @@
-<p>movie works!</p>
+<h2>Datos de la Pelicula</h2>
+
+<div *ngIf="movie; else noMovie">
+    <ul>
+        <li>
+            <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="Imagen de la pelicula" />
+        <li>
+            <strong>Id: </strong> {{movie.id}}
+        </li>
+        <li>
+            <strong>Titulo: </strong> {{movie.title}}
+        </li>
+        <li >
+            <strong>Genero: </strong> {{genreString}}
+        </li>
+        <li>
+            <strong>Pais de origen: </strong> {{movie.origin_country}}
+        </li>
+        <li>
+            <strong>Fecha de lanzamiento: </strong> {{movie.release_date}}
+        </li>
+        <li>
+            <strong>Idioma original: </strong> {{movie.original_language}}
+        </li>
+        <li>
+            <strong>Sinopsis: </strong> {{movie.overview}}
+        </li>
+    </ul>
+</div>
+
+
+
+<ng-template #noMovie>
+    <p>Pelicula no encontrada</p>
+</ng-template>

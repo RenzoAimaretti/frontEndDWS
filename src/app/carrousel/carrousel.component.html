@@ -1,0 +1,10 @@
+<div class="carousel-container">
+    <h2>{{ title }}</h2>
+    <div class="carousel">
+      <div *ngFor="let movie of movies" class="carousel-item">
+        <img [src]="getImageUrl(movie.poster_path)" alt="{{ movie.title }} poster">
+        <p>{{ movie.title }}</p>
+      </div>
+    </div>
+  </div>
+  
