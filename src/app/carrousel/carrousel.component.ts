@@ -13,6 +13,8 @@ export class CarrouselComponent implements OnInit, OnDestroy {
   @Input() movies: Movie[] = [];
   @Input() title: string = '';
   private intervalId: any;
+  private itemWidth = 160; // Ancho del ítem del carrusel, incluyendo margen
+  private scrollAmount = 0;
 
   constructor() { }
 
@@ -36,14 +38,15 @@ export class CarrouselComponent implements OnInit, OnDestroy {
     let scrollAmount = 0;
 
     this.intervalId = setInterval(() => {
-      scrollAmount += 150; // Desplazar la cantidad de un ítem
+      scrollAmount += 150; 
 
       if (scrollAmount >= carousel.scrollWidth) {
-        scrollAmount = 0; // Reiniciar al principio
-        carousel.scrollLeft = 0; // Reiniciar la posición de desplazamiento
+        scrollAmount = 0; 
+        carousel.scrollLeft = 0; 
       }
 
       carousel.scrollLeft = scrollAmount;
+    
     }, scrollSpeed);
   }
 }
