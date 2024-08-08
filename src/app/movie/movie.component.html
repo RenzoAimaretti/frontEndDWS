@@ -2,7 +2,7 @@
 
 <div *ngIf="movie; else noMovie">
     <ul>
-        <li>
+        <li routerLink="['/users',user.id]">
             <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="Imagen de la pelicula" />
         <li>
             <strong>Id: </strong> {{movie.id}}

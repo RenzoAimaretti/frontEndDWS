@@ -1,9 +1,11 @@
 <div class="carousel-container">
     <h2>{{ title }}</h2>
     <div class="carousel">
-      <div *ngFor="let movie of movies" class="carousel-item">
+      <div *ngFor="let movie of movies" class="carousel-item" >
+        <a [routerLink]="['/movie',movie.id]" >
         <img [src]="getImageUrl(movie.poster_path)" alt="{{ movie.title }} poster">
         <p>{{ movie.title }}</p>
+      </a>
       </div>
     </div>
   </div>
