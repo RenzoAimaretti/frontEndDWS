@@ -1,15 +1,23 @@
 .carousel-container {
     margin: 20px 0;
+    position: relative;
+    overflow: hidden; /* Oculta la barra de desplazamiento */
   }
   
   .carousel {
     display: flex;
-    overflow-x: scroll;
+    overflow: hidden; /* Oculta la barra de desplazamiento */
+    white-space: nowrap; /* Asegura que los ítems no se envuelvan */
+    transition: transform 0.5s ease-in-out; /* Transición suave */
   }
   
   .carousel-item {
     margin-right: 10px;
     flex: 0 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los ítems */
   }
   
   .carousel-item img {
@@ -21,5 +29,11 @@
   .carousel-item p {
     text-align: center;
     font-size: 14px;
+    white-space: nowrap; /* Asegura que el texto no se envuelva */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Recorta el texto largo */
+    margin: 0; /* Elimina el margen por defecto */
+    padding: 5px; /* Ajusta el relleno para un mejor aspecto */
+    width: 150px; /* Asegura que el ancho del texto esté limitado */
   }
   
