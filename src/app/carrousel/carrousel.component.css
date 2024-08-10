@@ -1,23 +1,22 @@
 .carousel-container {
   margin: 20px 0;
   position: relative;
-  overflow: hidden; /* Oculta la barra de desplazamiento */
+  overflow: hidden;
 }
 
 .carousel {
   display: flex;
-  overflow: hidden; /* Oculta la barra de desplazamiento */
-  white-space: nowrap; /* Asegura que los ítems no se envuelvan */
-  transition: transform 0.5s ease-in-out; /* Transición suave */
+  overflow: hidden;
+  white-space: nowrap;
+  transition: transform 0.5s ease-in-out;
 }
 
 .carousel-item {
   margin-right: 10px;
   flex: 0 0 auto;
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra los ítems */
+  align-items: center;
 }
 
 .carousel-item img {
@@ -29,10 +28,34 @@
 .carousel-item p {
   text-align: center;
   font-size: 14px;
-  white-space: nowrap; /* Asegura que el texto no se envuelva */
+  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; /* Recorta el texto largo */
-  margin: 0; 
-  padding: 5px; 
-  width: 150px; /* Asegura que el ancho del texto esté limitado */
+  text-overflow: ellipsis;
+  margin: 0;
+  padding: 5px;
+  width: 150px;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+.carousel-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
 }
