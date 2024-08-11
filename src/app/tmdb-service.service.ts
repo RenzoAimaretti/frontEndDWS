@@ -47,6 +47,9 @@ export class TmdbService {
       catchError(this.handleError<Movie[]>('getUpcomingMovies', [])
     ));
   }
+  getBackdropUrl(path: string): string {
+    return `https://image.tmdb.org/t/p/w1280${path}`;
+  }
 
 
   private handleError<T>(operation = 'operation', result?: T) {
