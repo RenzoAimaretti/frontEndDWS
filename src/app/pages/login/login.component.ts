@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { LoginService } from '../../services/login.service';
+import { LoginRequest } from '../../interface/loginRequest';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private formBuilder:FormBuilder, private router:Router) { }
+  constructor(private formBuilder:FormBuilder, private router:Router, private loginService:LoginService) { }
 
   loginForm = this.formBuilder.group({
     email: ['',[Validators.required, Validators.email]],
@@ -30,10 +31,14 @@ export class LoginComponent {
   }
 
   login(){
-    if(this.loginForm.valid){
-      console.log(this.loginForm.value);
-      this.router.navigate(['/dashboard']);
-      this.loginForm.reset();
+    if(this.loginForm.valid){;
+      if (this.loginForm.valid) {
+        this.loginService.login(this.loginForm.value as LoginRequest);
+        this.router.navigate(['/dashboard']);
+        this.loginForm.reset();
+      } else {
+        console.log('Email or password is null');
+      }
     }else{
       this.loginForm.markAllAsTouched();
       console.log('Formulario no valido');
