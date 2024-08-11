@@ -15,6 +15,7 @@ export class UserDetailsComponent {
   route:ActivatedRoute=inject(ActivatedRoute);
   userId=-1;
   user: User|null= null;
+  
   constructor(private userService: UserService) {
     this.route.params.subscribe(params => {
       this.userId = params['id'];
