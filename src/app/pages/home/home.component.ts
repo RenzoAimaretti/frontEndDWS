@@ -1,8 +1,8 @@
 import { Component,inject } from '@angular/core';
-import { CarrouselComponent } from '../carrousel/carrousel.component';
-import { Movie } from '../movie';
-import { TmdbService} from '../tmdb-service.service.js';
-import { CarrouselSpotlightComponent } from '../carrousel-spotlight/carrousel-spotlight.component';
+import { CarrouselComponent } from '../../shared/carrousel/carrousel.component';
+import { Movie } from '../../interface/movie';
+import { TmdbService} from '../../services/tmdb-service.service.js';
+import { CarrouselSpotlightComponent } from '../../shared/carrousel-spotlight/carrousel-spotlight.component';
 @Component({
   selector: 'app-home',
   standalone: true,

@@ -1,9 +1,9 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
-import { Movie } from '../movie';
+import { Movie } from '../../interface/movie';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import * as bootstrap from 'bootstrap';
-import { TmdbService } from '../tmdb-service.service';
+import { TmdbService } from '../../services/tmdb-service.service';
 @Component({
   selector: 'app-carrousel-spotlight',
   standalone: true,

@@ -1,7 +1,7 @@
 import { Component,inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Movie } from '../movie.js';
-import { TmdbService} from '../tmdb-service.service.js';
+import { Movie } from '../../interface/movie.js';
+import { TmdbService} from '../../services/tmdb-service.service.js';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-movie',

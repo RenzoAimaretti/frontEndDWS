@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { UserService } from '../user.service';
+import { UserService } from '../../services/user.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { User } from '../user';
+import { User } from '../../interface/user';
 
 @Component({
   selector: 'app-user-details',

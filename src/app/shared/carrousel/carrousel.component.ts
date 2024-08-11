@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit, OnDestroy, AfterViewInit, Input, ElementRef } from '@angular/core';
-import { Movie } from '../movie';
+import { Movie } from '../../interface/movie';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 

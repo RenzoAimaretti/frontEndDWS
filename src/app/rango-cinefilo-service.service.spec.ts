@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RangoCinefiloServiceService } from './rango-cinefilo-service.service';
+import { RangoCinefiloServiceService } from './services/rango-cinefilo-service.service';
 
 describe('RangoCinefiloServiceService', () => {
   let service: RangoCinefiloServiceService;
