@@ -1,0 +1,23 @@
+<nav class="navbar sticky-top bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="assets/logo.png" alt="Bootstrap" height="60px">
+        Cinemateca
+      </a>
+      <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Buscar Peliculas/Listas" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" [routerLink]="'/dashboard'">Perfil</a>
+            <a class="nav-link" [routerLink]="'/login'" *ngIf="!userLoginOn">Iniciar sesion</a>
+            <a class="nav-link" href="#" *ngIf="userLoginOn">Cerrar sesion</a>
+          </div>
+      </div>
+    </div>
+</nav>
