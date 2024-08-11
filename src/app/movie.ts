@@ -6,6 +6,7 @@ export interface Movie {
     overview: string;
     genres: Genre[];
     poster_path: string;
+    backdrop_path: string;
     release_date: string;
     /*
     dejamos el tema de los votos para lo ultimo

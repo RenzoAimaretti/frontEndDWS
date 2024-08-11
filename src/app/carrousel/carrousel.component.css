@@ -1,17 +1,17 @@
-.carousel-container {
+.my-carousel-container {
   margin: 20px 0;
   position: relative;
   overflow: hidden;
 }
 
-.carousel {
+.my-carousel {
   display: flex;
   overflow: hidden;
   white-space: nowrap;
   transition: transform 0.5s ease-in-out;
 }
 
-.carousel-item {
+.my-carousel-item {
   margin-right: 10px;
   flex: 0 0 auto;
   display: flex;
@@ -19,13 +19,13 @@
   align-items: center;
 }
 
-.carousel-item img {
+.my-carousel-item img {
   width: 150px;
   height: auto;
   border-radius: 8px;
 }
 
-.carousel-item p {
+.my-carousel-item p {
   text-align: center;
   font-size: 14px;
   white-space: nowrap;
@@ -36,7 +36,7 @@
   width: 150px;
 }
 
-.carousel-button {
+.my-carousel-button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -48,14 +48,14 @@
   z-index: 10;
 }
 
-.carousel-button.prev {
+.my-carousel-button.prev {
   left: 10px;
 }
 
-.carousel-button.next {
+.my-carousel-button.next {
   right: 10px;
 }
 
-.carousel-button:hover {
+.my-carousel-button:hover {
   background-color: rgba(0, 0, 0, 0.7);
 }
