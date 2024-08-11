@@ -23,9 +23,7 @@ export class HomeComponent {
 
   async loadMovies(): Promise<void> {
     this.tmdbService.getPopularMovies().subscribe({
-      next: (movies) => {this.popularMovies = movies;
-      console.log(this.popularMovies);
-      },
+      next: (movies) => this.popularMovies = movies,
       error: (error) => console.error(error)
     });
     this.tmdbService.getTopRatedMovies().subscribe({

@@ -32,11 +32,9 @@ export class MovieComponent {
           next: (result) => {console.log(result), 
             this.movie = result, 
             this.genreString = this.movie.genres.map((genre) => genre.name).join(", "),
-            this.imageUrl = `https://image.tmdb.org/t/p/w500${result.poster_path}`},
-            error: (error) => console.log(error)
+            this.imageUrl = this.tmdbService.getBackdropUrl(this.movie.backdrop_path);
+          },
+          error: (error) => console.log(error)
         });
-
-        
-
-  }
+    }
 }
