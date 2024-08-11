@@ -51,6 +51,14 @@ export class TmdbService {
     return `https://image.tmdb.org/t/p/w1280${path}`;
   }
 
+  searchByTitle(title:string): Observable<Movie[]> {
+    return this.http.get(`https://api.themoviedb.org/3/search/movie?query=${title}&api_key=${this.API_KEY}`)
+    .pipe(
+      map((result: any) => result.results),
+      catchError(this.handleError<Movie[]>('searchByTitle', [])
+    ));
+  }
+
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
