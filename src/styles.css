@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+
+/*
+PALETA USADA
+#141827         // color primario
+#62455b        // color secundario
+#736681       // para algunos titulos menos importantes
+#c1d9d0      //color de texto de acentuacion
+#fffae3     // color de texto
+*/
+
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+body {
+    color: #fffae3;
+    background-color: #141827;
+}
+
+a {
+    color: #fffae3;
+    font-family: monospace;
+    font: 24px;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #c1d9d0
+}
