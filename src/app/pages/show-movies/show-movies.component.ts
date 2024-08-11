@@ -3,12 +3,14 @@ import { Movie } from '../../interface/movie.js';
 import { TmdbService } from '../../services/tmdb-service.service.js';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { SearchComponent } from '../search/search.component.js';
+
 
 
 @Component({
   selector: 'app-show-movies',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, SearchComponent],
   templateUrl: './show-movies.component.html',
   styleUrl: './show-movies.component.css'
 })
