@@ -6,7 +6,7 @@
       </a>
       <form #searchForm="ngForm" (ngSumbit)="enviar()" class="d-flex" role="search">
         <input id = "input" [(ngModel)]="input" [ngModelOptions]="{standalone:true}" class="form-control me-2" type="search" placeholder="Buscar Peliculas/Listas" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit" [routerLink]="['/movies']" [queryParams]="{title: input}">Buscar</button>
+        <button class="btn btn-outline-success" type="submit" [routerLink]="['/search/movies']" [queryParams]="{title: input}">Buscar</button>
       </form>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

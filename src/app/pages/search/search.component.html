@@ -1,0 +1,13 @@
+<p>search works!</p>
+<ul class="nav nav-pills nav-justified">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" [routerLink]="['/search/movies']" [queryParams]="{title: input}">Peliculas</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/search/lists']" [queryParams]="{title: input}">Listas</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Usuarios</a>
+    </li>
+  </ul>
+
