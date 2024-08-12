@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { LoginRequest } from '../interface/loginRequest';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { User } from '../interface/user';
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
-  login(request:LoginRequest): void {
-
-    console.log(request);
+  login(credentials:LoginRequest): Observable<User>{ {
+    return this.http.get<User>('././assets/data.json')
+    }
   }
 }

@@ -6,7 +6,7 @@
 <div *ngIf="users;else noUsers">
     <ul>
         <li *ngFor="let user of users">
-            {{ user.id }} -- {{ user.name }} -- {{ user.email }} -- {{ user.password }}
+            {{ user.id }} -- {{ user.name }} -- {{ user.email }} -- 
             <a [routerLink]="['/users',user.id]">Detalles del usuario</a>
         </li>
     </ul>

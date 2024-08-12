@@ -30,18 +30,24 @@ export class LoginComponent {
     return this.loginForm.get('password');
   }
 
-  login(){
-    if(this.loginForm.valid){;
-      if (this.loginForm.valid) {
-        this.loginService.login(this.loginForm.value as LoginRequest);
-        this.router.navigate(['/dashboard']);
-        this.loginForm.reset();
-      } else {
-        console.log('Email or password is null');
-      }
-    }else{
+  login() {
+    if (this.loginForm.valid) {
+      this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.router.navigate(['/dashboard']);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+        complete: () => {
+          console.log('Complete');
+        }
+      });
+      this.loginForm.reset();
+    } else {
       this.loginForm.markAllAsTouched();
-      console.log('Formulario no valido');
+      console.log('Formulario no válido');
     }
   }
 }
