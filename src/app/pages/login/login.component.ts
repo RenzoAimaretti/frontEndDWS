@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { LoginRequest } from '../../interface/loginRequest';
@@ -35,16 +35,16 @@ export class LoginComponent {
       this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
         next: (response) => {
           console.log(response);
-          this.router.navigate(['/dashboard']);
         },
         error: (error) => {
           console.log(error);
         },
         complete: () => {
           console.log('Complete');
+          this.router.navigate(['/dashboard']);
+          this.loginForm.reset();
         }
       });
-      this.loginForm.reset();
     } else {
       this.loginForm.markAllAsTouched();
       console.log('Formulario no válido');
