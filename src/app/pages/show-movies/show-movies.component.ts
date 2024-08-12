@@ -12,7 +12,7 @@ import { SearchComponent } from '../search/search.component.js';
   standalone: true,
   imports: [CommonModule, RouterModule, SearchComponent],
   templateUrl: './show-movies.component.html',
-  styleUrl: './show-movies.component.css'
+  styleUrls: ['./show-movies.component.css']
 })
 export class ShowMoviesComponent {
   route:ActivatedRoute=inject(ActivatedRoute);
