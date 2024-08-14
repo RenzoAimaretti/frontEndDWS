@@ -1,23 +1,38 @@
-import { Component, inject, Input} from '@angular/core';
-import { SearchComponent } from '../search/search.component.js';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common'; 
+import { ListService } from '../../services/list.service';
+import { List } from '../../interface/list';
+import { SearchComponent } from '../search/search.component'; 
 
 @Component({
   selector: 'app-show-lists',
-  standalone: true,
-  imports: [SearchComponent,CommonModule],
   templateUrl: './show-lists.component.html',
-  styleUrl: './show-lists.component.css'
+  styleUrls: ['./show-lists.component.css'],
+  standalone: true,
+  imports: [FormsModule, CommonModule, SearchComponent]
 })
-export class ShowListsComponent {
-  route:ActivatedRoute=inject(ActivatedRoute);
-  input=''
-  async ngOnInit():Promise<void>{
-    this.route.queryParams.subscribe(queryParams =>{
-      this.input = queryParams['title']
-      console.log(this.input)
-    })
+export class ShowListsComponent implements OnInit {
+  lists: List[] = [];
+  query: string = '';
 
-}
+  constructor(private listService: ListService, private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      if (params['query']) {
+        this.query = params['query'];
+        this.searchLists();
+      }
+    });
+  }
+
+  searchLists(): void {
+    if (this.query) {
+      this.listService.searchLists(this.query).subscribe(lists => {
+        this.lists = lists;
+      });
+    }
+  }
 }
