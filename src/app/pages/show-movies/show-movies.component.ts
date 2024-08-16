@@ -23,7 +23,7 @@ export class ShowMoviesComponent {
   }
   async ngOnInit():Promise<void>{
     this.route.queryParams.subscribe(queryParams =>{
-      this.title = queryParams['title']
+      this.title = queryParams['query']
       this.search()
     })
     

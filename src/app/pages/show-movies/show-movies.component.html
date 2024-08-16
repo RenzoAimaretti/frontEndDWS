@@ -1,7 +1,7 @@
 
+<app-search></app-search>
+<div *ngIf="movies.length > 0;else noMovies">
 
-<div *ngIf="movies;else noMovies">
-  <app-search></app-search>
     <div  *ngFor="let movie of movies" class="row row-cols-1 row-cols-md-3 g-4">
         <div class="col">
           <div class="card h-100">

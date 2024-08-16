@@ -19,7 +19,7 @@ export class ShowListsComponent implements OnInit {
 
   constructor(private listService: ListService, private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.route.queryParams.subscribe(params => {
       if (params['query']) {
         this.query = params['query'];
@@ -28,7 +28,7 @@ export class ShowListsComponent implements OnInit {
     });
   }
 
-  searchLists(): void {
+  async searchLists(): Promise<void> {
     if (this.query) {
       this.listService.searchLists(this.query).subscribe(lists => {
         this.lists = lists;

@@ -16,21 +16,22 @@ export class SearchComponent {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(queryParams => {
-      this.input = queryParams['title'];
+      this.input = queryParams['query'];
     });
   }
-
+  
   searchLists(): void {
     if (this.input) {
+      console.log('searchLists called with input:', this.input);
       this.router.navigate(['/search/lists'], { queryParams: { query: this.input } });
     }
   }
 
   searchMovies(): void {
     if (this.input) {
-      this.router.navigate(['/search/movies'], { queryParams: { title: this.input } });
+      console.log('searchMovies called with input:', this.input);
+      this.router.navigate(['/search/movies'], { queryParams: { query: this.input } });
     }
   }
 }
-
 
