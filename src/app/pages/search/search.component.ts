@@ -13,6 +13,7 @@ export class SearchComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   router: Router = inject(Router);
   input = '';
+  selected = 'movies';
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(queryParams => {
@@ -24,6 +25,7 @@ export class SearchComponent {
     if (this.input) {
       console.log('searchLists called with input:', this.input);
       this.router.navigate(['/search/lists'], { queryParams: { query: this.input } });
+      this.selected = 'Lists'
     }
   }
 
@@ -31,6 +33,7 @@ export class SearchComponent {
     if (this.input) {
       console.log('searchMovies called with input:', this.input);
       this.router.navigate(['/search/movies'], { queryParams: { query: this.input } });
+      this.selected = 'Movies'
     }
   }
 }
