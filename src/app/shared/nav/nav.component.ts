@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -14,14 +14,14 @@ import { FormsModule } from '@angular/forms';
 export class NavComponent {
   userLoginOn: boolean = false;
   input:string = '';
-  constructor(private loginService:LoginService) { }
+  constructor(private authService:AuthService) { }
 
   enviar(){
     console.log(this.input)
   }
 
   ngOnInit(): void {
-    this.loginService.isUserLoggedIn().subscribe({
+    this.authService.isUserLoggedIn().subscribe({
       next: (response) => {
         this.userLoginOn = response;
       },
@@ -35,11 +35,11 @@ export class NavComponent {
   }
 
   ngOnDestroy(): void {
-    if (this.loginService.currentUserLoginOn) {
-      this.loginService.currentUserLoginOn.unsubscribe();
+    if (this.authService.currentUserLoginOn) {
+      this.authService.currentUserLoginOn.unsubscribe();
     }
-    if (this.loginService.currentUserData) {
-      this.loginService.currentUserData.unsubscribe();
+    if (this.authService.currentUserData) {
+      this.authService.currentUserData.unsubscribe();
     }
   }
 }

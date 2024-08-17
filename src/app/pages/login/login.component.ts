@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../interface/loginRequest';
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ import { LoginRequest } from '../../interface/loginRequest';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private formBuilder:FormBuilder, private router:Router, private loginService:LoginService) { }
+  constructor(private formBuilder:FormBuilder, private router:Router, private authService:AuthService) { }
 
   loginForm = this.formBuilder.group({
     email: ['',[Validators.required, Validators.email]],
@@ -32,7 +32,7 @@ export class LoginComponent {
 
   login() {
     if (this.loginForm.valid) {
-      this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
+      this.authService.login(this.loginForm.value as LoginRequest).subscribe({
         next: (response) => {
           console.log(response);
         },

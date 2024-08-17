@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../services/auth.service';
 import { User } from '../../interface/user';
 @Component({
   selector: 'app-dashboard',
@@ -12,10 +12,10 @@ import { User } from '../../interface/user';
 export class DashboardComponent {
   userLoginOn: boolean = false;
   userData?: User;
-  constructor(private loginService:LoginService) { }
+  constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
-    this.loginService.isUserLoggedIn().subscribe({
+    this.authService.isUserLoggedIn().subscribe({
       next: (response) => {
         this.userLoginOn = response;
       },
@@ -26,7 +26,7 @@ export class DashboardComponent {
         console.log('Complete');
       }
     });
-    this.loginService.getUserData().subscribe({
+    this.authService.getUserData().subscribe({
       next: (userData) => {
         this.userData = userData;
       },
@@ -40,11 +40,11 @@ export class DashboardComponent {
   }
 
   ngOnDestroy(): void {
-    if (this.loginService.currentUserLoginOn) {
-      this.loginService.currentUserLoginOn.unsubscribe();
+    if (this.authService.currentUserLoginOn) {
+      this.authService.currentUserLoginOn.unsubscribe();
     }
-    if (this.loginService.currentUserData) {
-      this.loginService.currentUserData.unsubscribe();
+    if (this.authService.currentUserData) {
+      this.authService.currentUserData.unsubscribe();
     }
   }
 }

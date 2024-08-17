@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { LoginRequest } from '../interface/loginRequest';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, Observable,throwError, BehaviorSubject, tap } from 'rxjs';
+import { catchError, Observable,throwError, BehaviorSubject, tap, map } from 'rxjs';
 import { User } from '../interface/user';
-@Injectable({
-  providedIn: 'root'
-})
-export class LoginService {
+@Injectable({providedIn: 'root'})
+export class AuthService {
+  authUrl = 'http://localhost:3000/api/auth/';
+
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   currentUserData: BehaviorSubject<User> = new BehaviorSubject<User>({id:0,
     name:'',
@@ -22,16 +22,17 @@ export class LoginService {
       
   constructor(private http:HttpClient) { }
 
-  login(credentials:LoginRequest): Observable<User>{ {
-    return this.http.get<User>('././assets/data.json').pipe(
-      tap((userData)=>{
+  login(credentials: LoginRequest): Observable<User> {
+    return this.http.post<User>(`${this.authUrl}login`, credentials).pipe(
+      map((response: any) => response.data),
+      tap((userData) => {
         this.currentUserData.next(userData);
         this.currentUserLoginOn.next(true);
       }),
       catchError(this.handleError)
     );
-    }
   }
+  
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
