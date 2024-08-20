@@ -13,7 +13,7 @@ export class AuthService {
   currentUserId= new BehaviorSubject<string>('')
   constructor(private http:HttpClient,private cookieService: CookieService) { 
     const accessToken = this.cookieService.get('access_token');
-    this.currentUserLoginOn = new BehaviorSubject<boolean>(accessToken!=null);
+    this.currentUserLoginOn = new BehaviorSubject<boolean>(!!accessToken);
     this.currentUserData= new BehaviorSubject<string>(accessToken||'');
     
   }

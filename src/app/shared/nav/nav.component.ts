@@ -20,10 +20,15 @@ export class NavComponent {
     console.log(this.input)
   }
 
+  logOut(){
+    this.authService.logout();
+  }
+
   ngOnInit(): void {
     this.authService.isUserLoggedIn().subscribe({
       next: (response) => {
         this.userLoginOn = response;
+        console.log(this.userLoginOn)
       },
       error: (error) => {
         console.log(error);
