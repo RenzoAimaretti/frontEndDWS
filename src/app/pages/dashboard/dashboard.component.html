@@ -1,8 +1,8 @@
 <p *ngIf="!userLoginOn">Usuario no logueado</p>
 <p *ngIf="userLoginOn">Usuario logueado</p>
 <div *ngIf="userLoginOn">
-    <p>Nombre: {{userData?.name}}</p>
-    <p>Email: {{userData?.email}}</p>
-    <p>Rango Cinefilo: {{userData?.rangoCinefilo?.nameRango}}</p>
-    <p>Id Subscripcion: {{userData?.subscription?.name}}</p>
+    <p>Nombre: {{user?.name}}</p>
+    <p>Email: {{user?.email}}</p>
+    <p>Rango Cinefilo: {{user?.rangoCinefilo?.nameRango}}</p>
+    <p>Id Subscripcion: {{user?.subscription?.name}}</p>
 </div>

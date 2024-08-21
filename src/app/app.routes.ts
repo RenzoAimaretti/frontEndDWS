@@ -8,6 +8,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ShowMoviesComponent } from './pages/show-movies/show-movies.component.js';
 import { ShowListsComponent } from './pages/show-lists/show-lists.component.js';
+import { authGuard } from './custom/auth.guard';
 export const routes: Routes = [
   //Rutas de la aplicacion
   { path: 'users', component: UserComponent },
@@ -15,7 +16,7 @@ export const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'users/:id', component: UserDetailsComponent},
   {path:'movie/:id',component : MovieComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent,canActivate:[authGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'search/movies',component:ShowMoviesComponent},
   {path: 'search/lists',component:ShowListsComponent}
