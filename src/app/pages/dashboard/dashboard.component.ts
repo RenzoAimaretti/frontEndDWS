@@ -17,23 +17,28 @@ export class DashboardComponent {
   constructor(private authService:AuthService, private userService:UserService) { }
 
   ngOnInit(): void {
+    this.authService.getIdFromToken()
     this.authService.isUserLoggedIn().subscribe({
       next: (response) => {
         this.userLoginOn = response;
-        const currentId =  Number(this.authService.currentUserId.value);
-        this.userService.getUser(currentId).subscribe({
-        next: (Response)=>{
-        this.user=Response;
-      }
-    })
+        this.authService.currentUser().subscribe({
+          next:(response)=>{
+            this.id=response;
+            this.userService.getUser(this.id).subscribe({
+              next: (Response)=>{
+                this.user=Response;
+              }
+            });
+          }
+        });
       },
-      error: (error) => {
-        console.log(error);
-      },
-      complete: () => {
-        console.log('Complete');
-      }
-    });
+          error: (error) => {
+            console.log(error);
+          },
+          complete: () => {
+            console.log('Complete');
+          }
+        });
     
   }
   

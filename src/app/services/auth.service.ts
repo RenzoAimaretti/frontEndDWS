@@ -7,15 +7,15 @@ import { CookieService } from 'ngx-cookie-service';
 @Injectable({providedIn: 'root'})
 export class AuthService {
   authUrl = 'http://localhost:3000/api/auth/';
+  dashboardUrl = 'http://localhost:3000/api/dashboard/';
 
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   currentUserData: BehaviorSubject<string> = new BehaviorSubject<string>('')
-  currentUserId= new BehaviorSubject<string>('')
+  currentUserId= new BehaviorSubject<number>(-1)
   constructor(private http:HttpClient,private cookieService: CookieService) { 
     const accessToken = this.cookieService.get('access_token');
     this.currentUserLoginOn = new BehaviorSubject<boolean>(!!accessToken);
-    this.currentUserData= new BehaviorSubject<string>(accessToken||'');
-    
+    this.currentUserData = new BehaviorSubject<string>(accessToken||'');
   }
 
   login(credentials: LoginRequest): Observable<User> {
@@ -34,12 +34,24 @@ export class AuthService {
   logout(): Observable<void> {
     return this.http.post<any>(`${this.authUrl}logout`, {}).pipe(
       tap(() => {
-        this.cookieService.delete('access_token');
         this.currentUserData.next('');
         this.currentUserLoginOn.next(false);
       }),
       catchError(this.handleError)
     );
+  }
+
+  currentUser():Observable<number>{
+    return this.currentUserId.asObservable();
+  }
+
+  getIdFromToken():void{
+    this.http.get<any>(this.dashboardUrl).pipe(
+      map((result: any) => result), // Mapear solo el ID del resultado
+      catchError(this.handleError)
+    ).subscribe((userId: number) => {
+      this.currentUserId.next(userId); // Guardar el ID en el BehaviorSubject
+    });
   }
 
   private handleError(error: HttpErrorResponse) {
