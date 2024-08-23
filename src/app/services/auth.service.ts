@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LoginRequest } from '../interface/loginRequest';
+import { registerRequest } from '../interface/registerRequest';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable,throwError, BehaviorSubject, tap, map } from 'rxjs';
 import { User } from '../interface/user';
@@ -16,6 +17,12 @@ export class AuthService {
     const accessToken = this.cookieService.get('access_token');
     this.currentUserLoginOn = new BehaviorSubject<boolean>(!!accessToken);
     this.currentUserData = new BehaviorSubject<string>(accessToken||'');
+  }
+
+  register(credentials:registerRequest){
+    return this.http.post(`${this.authUrl}register`,credentials).pipe(
+      catchError(this.handleError)
+    )
   }
 
   login(credentials: LoginRequest): Observable<User> {
