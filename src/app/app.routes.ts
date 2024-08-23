@@ -9,6 +9,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ShowMoviesComponent } from './pages/show-movies/show-movies.component.js';
 import { ShowListsComponent } from './pages/show-lists/show-lists.component.js';
 import { authGuard } from './custom/auth.guard';
+import { RegisterComponent } from './pages/register/register.component';
 export const routes: Routes = [
   //Rutas de la aplicacion
   { path: 'users', component: UserComponent },
@@ -19,7 +20,8 @@ export const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent,canActivate:[authGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'search/movies',component:ShowMoviesComponent},
-  {path: 'search/lists',component:ShowListsComponent}
+  {path: 'search/lists',component:ShowListsComponent},
+  {path: 'register', component:RegisterComponent}
 ];
 
 @NgModule({
