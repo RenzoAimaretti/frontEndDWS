@@ -9,7 +9,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class UserService {
     private usersUrl = 'http://localhost:3000/api/users/';
     httpOptions = {
-        Headers: new HttpHeaders({'Content-Type': 'application/json'})
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
 
     constructor(private http: HttpClient) {}
@@ -28,6 +28,22 @@ export class UserService {
       .pipe(
         map((result: any) => result.data),
         catchError(this.handleError<User>('getUser'))
+      )
+    }
+
+    updateUser(user: User): Observable<any> {
+      return this.http.put(this.usersUrl + user.id, user, this.httpOptions)
+      .pipe(
+        tap(_ => console.log(`updated user id=${user.id}`)),
+        catchError(this.handleError<any>('updateUser'))
+      )
+    }
+
+    delateUser(id: number): Observable<User> {
+      console.log(id);
+      return this.http.delete<{message: string, data: User}>(this.usersUrl + id).pipe(
+        map((result: any) => result.data),
+        catchError(this.handleError<User>('deleteUser'))
       )
     }
     
