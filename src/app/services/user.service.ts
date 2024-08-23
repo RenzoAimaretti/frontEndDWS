@@ -32,7 +32,7 @@ export class UserService {
     }
 
     updateUser(user: User): Observable<any> {
-      return this.http.put(this.usersUrl + user.id, user, this.httpOptions)
+      return this.http.patch(this.usersUrl + user.id, user)
       .pipe(
         tap(_ => console.log(`updated user id=${user.id}`)),
         catchError(this.handleError<any>('updateUser'))

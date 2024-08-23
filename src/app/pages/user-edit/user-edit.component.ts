@@ -21,8 +21,8 @@ export class UserEditComponent implements OnInit {
   user?: User;
   id?: number;
   editForm!: FormGroup; // Usamos FormGroup para gestionar el formulario
-email: any;
-name: any;
+  email: any;
+  name: any;
 
   constructor(
     private authService: AuthService,
@@ -34,9 +34,7 @@ name: any;
     // Inicializar el formulario
     this.editForm = this.fb.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      rangoCinefilo: [{} as RangoCinefilo],  // Inicialización válida
-      subscription: [{} as Subscription]  // Inicialización válida
+      email: ['', [Validators.required, Validators.email]]
     });
 
     // Verificar si el usuario está logueado y cargar sus datos
@@ -75,8 +73,9 @@ name: any;
   userUpdate(): void {
       if (this.editForm.valid && this.id !== undefined) {
         // Crear un objeto User con los valores del formulario
-        const updatedUser: User = { ...this.editForm.value, id: this.id };
-  
+        
+        const updatedUser={id:this.id,...this.editForm.value}
+        console.log(updatedUser)
         // Llamar al servicio para actualizar el usuario
         this.userService.updateUser(updatedUser).subscribe({
           next: (response) => {
