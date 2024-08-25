@@ -1,9 +1,11 @@
 <p *ngIf="!userLoginOn">Usuario no logueado</p>
-<p *ngIf="userLoginOn">Usuario logueado</p>
+
 <div *ngIf="userLoginOn">
     <p>Nombre: {{user?.name}}</p>
     <p>Email: {{user?.email}}</p>
     <p>Rango Cinefilo: {{user?.rangoCinefilo?.nameRango}}</p>
+    <p>{{user?.rangoCinefilo?.descriptionRango}}</p>
     <p>Id Subscripcion: {{user?.subscription?.name}}</p>
+    <p>Cantidad de Listas semanales a crear: {{user?.subscription?.cantidadSem}}</p>
+    <button [routerLink]="'/dashboard/edit'">Editar Usuario</button>
 </div>
-<button [routerLink]="'/dashboard/edit'">Editar Usuario</button>

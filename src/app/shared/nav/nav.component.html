@@ -16,7 +16,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
             <a class="nav-link" [routerLink]="'/dashboard'">Perfil</a>
             <a class="nav-link" [routerLink]="'/login'" *ngIf="!userLoginOn">Iniciar sesion</a>
-            <a class="nav-link" href="#" *ngIf="userLoginOn">Cerrar sesion</a>
+            <a class="nav-link" (click)="logOut()" [routerLink]="'/home'" *ngIf="userLoginOn">Cerrar sesion</a>
           </div>
       </div>
     </div>

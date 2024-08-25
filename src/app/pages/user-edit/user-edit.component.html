@@ -1,6 +1,6 @@
-<p>Eidtar usuario {{this.name}}</p>
-<button [routerLink]="'/home'" (click)="userDelete()" >Eliminar cuenta</button>
+
 <form [formGroup]="editForm">
+  <p>Editar usuario {{user?.name}}</p>
     <div class="mb-3">
       <label for="InputText1" class="form-label">Nombre de usuario</label>
       <input formControlName="name" type="text" class="form-control" id="exampleInputText1" placeholder="CineFan23">
@@ -18,7 +18,10 @@
   
     <button type="submit" class="btn btn-primary" [routerLink]="'/dashboard'" (click)="userUpdate()">Guardar Cambios</button>
     <button type="button" class="btn btn-secondary" [routerLink]="'/dashboard'">Cancelar</button>
-  </form>
+    <button type="button" class="btn btn-danger" (click)="userDelete()">Eliminar cuenta</button>
+</form>
+
+
 
 
   

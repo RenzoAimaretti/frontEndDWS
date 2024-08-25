@@ -1,19 +1,26 @@
 
 <app-search></app-search>
-<div *ngIf="movies.length > 0;else noMovies">
-
-    <div  *ngFor="let movie of movies" class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card h-100">
-            <a [routerLink]="['/movie', movie.id]">
-            <img [src]="getImageUrl(movie.poster_path)" alt="{{ movie.title }} poster">
-            <div class="card-body">
-              <h5 class="card-title">{{ movie.title }}</h5>
-            </div>
-            </a>
+<div *ngIf="movies.length > 0; else noMovies">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <div *ngFor="let movie of movies" class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img [src]="getImageUrl(movie.poster_path)" class="card-img-top" alt="{{movie.title}}">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title text-center">{{movie.title}}</h5>
+          <p class="card-text text-center">{{ getShortOverview(movie.overview) }}</p>
+          <div class="mt-auto">
+            <a [routerLink]="['/movie', movie.id]" class="btn btn-primary w-100">Detalles...</a>
           </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+
+
+
+
+
+
 <ng-template #noMovies>
     <p>No se encontraron peliculas con ese titulo</p>

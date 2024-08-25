@@ -38,14 +38,9 @@ export class AuthService {
     );
   }
   
-  logout(): Observable<void> {
-    return this.http.post<any>(`${this.authUrl}logout`, {}).pipe(
-      tap(() => {
-        this.currentUserData.next('');
-        this.currentUserLoginOn.next(false);
-      }),
-      catchError(this.handleError)
-    );
+  logout(): void {
+    this.cookieService.deleteAll()
+    this.http.post<any>(`${this.authUrl}logout`, {})
   }
 
   currentUser():Observable<number>{

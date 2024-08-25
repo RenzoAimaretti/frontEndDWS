@@ -26,9 +26,13 @@ export class ShowMoviesComponent {
       this.title = queryParams['query']
       this.search()
     })
-    
-    
 }
+
+getShortOverview(overview: string): string {
+  const maxLength = 50;
+  return overview.length > maxLength ? overview.substring(0, maxLength) + '...' : overview;
+}
+
 
 getImageUrl(path: string): string {
   return `https://image.tmdb.org/t/p/w500${path}`;

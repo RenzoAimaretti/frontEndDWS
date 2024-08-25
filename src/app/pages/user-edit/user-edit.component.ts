@@ -7,7 +7,7 @@ import { RangoCinefiloServiceService } from '../../services/rango-cinefilo-servi
 import { RangoCinefilo } from '../../interface/RangoCinefilo.js';
 import { Subscription } from '../../interface/Subscription.js';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user-edit',
@@ -27,6 +27,7 @@ export class UserEditComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private userService: UserService,
+    private router:Router,
     private fb: FormBuilder // Inyectamos FormBuilder para construir el formulario reactivo
   ) { }
 
@@ -95,7 +96,10 @@ export class UserEditComponent implements OnInit {
   
     userDelete(): void {
       if(this.user){
-        if(this.user.id !== undefined){
+        const confirmed = window.confirm('¿Estás seguro de que deseas borrar este usuario?');
+
+        if(this.user.id !== undefined && confirmed){
+          
           this.userService.delateUser(this.user.id).subscribe({
             next: (response) => {
               console.log(response);
@@ -105,6 +109,7 @@ export class UserEditComponent implements OnInit {
             },
             complete: () => {
               console.log('Complete');
+              this.router.navigate(['/home']);
             }
           })
         }
