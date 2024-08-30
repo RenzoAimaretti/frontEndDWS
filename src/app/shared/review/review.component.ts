@@ -6,10 +6,11 @@ import { ReviewService } from '../../services/review.service';
 import { TmdbService } from '../../services/tmdb-service.service';
 import { AuthService } from '../../services/auth.service';
 import { map } from 'rxjs';
+import { ReviewCommentFormComponent } from '../review-comment-form/review-comment-form.component';
 @Component({
   selector: 'app-review',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,ReviewCommentFormComponent],
   templateUrl: './review.component.html',
   styleUrl: './review.component.css'
 })
@@ -19,6 +20,7 @@ export class ReviewComponent {
   rating: number=1; // van de 1 a 5 sin un paso del 0.5 por ser entero.
   description: string=''; // descripcion de la reseña, puede ser vacia.
   reviewsToDisplay: Review[]=[]; // array de reseñas a mostrar.
+  comment: string=''; // comentario a realizar.
   constructor(private reviewService:ReviewService, private authService:AuthService) { 
     
   }
@@ -57,7 +59,7 @@ export class ReviewComponent {
       ).subscribe(
         result=>this.reviewsToDisplay=result
       );
-    };
+  };
 
   setRating(stars: number) {
     this.rating = stars;

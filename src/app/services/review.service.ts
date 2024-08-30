@@ -8,7 +8,9 @@ import { AuthService } from './auth.service';
 })
 export class ReviewService {
   private ownerId?:number;
+  private idCommentOwner?:number;
   private reviewUrl = 'http://localhost:3000/api/review/';
+  private commentUrl = 'http://localhost:3000/api/review/comment/';
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
@@ -37,14 +39,30 @@ export class ReviewService {
   };
 
   getReviews(idContent:number): Observable<Review[]>{
-    //falta implementar en el controlador gordo
-
     console.log('idContent:',idContent)
     return this.http.get<Review[]>(`${this.reviewUrl}${idContent}`).pipe(
       map((result:any)=>result.data),
       tap(result=>console.log(result)),
       catchError(this.handleError))
   };
+
+  postComment(idContent:number,idReviewOwner:number,commentToPost:{comment:string}): Observable<any>{
+    this.authService.getIdFromToken();
+    this.authService.currentUser().subscribe({
+      next:(response)=>{
+        this.idCommentOwner=response;
+      }})
+      
+    console.log('hola')
+    
+    console.log('chau')
+
+    return this.http.post(`${this.commentUrl}${idContent}/${idReviewOwner}/${this.idCommentOwner}`, commentToPost, this.httpOptions).pipe(
+      map((result:any)=>result.data),
+      tap(result=>console.log(result)),
+      catchError(this.handleError)
+    );
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
