@@ -17,6 +17,7 @@ export class MovieComponent {
     movie: Movie|null= null;
     genreString: string='';
     imageUrl: string='';
+    posterUrl: string='';
     constructor(private tmdbService: TmdbService) {
       this.route.params.subscribe(params => {
         this.movieId = Number(params['id']);
@@ -34,6 +35,7 @@ export class MovieComponent {
             this.movie = result, 
             this.genreString = this.movie.genres.map((genre) => genre.name).join(", "),
             this.imageUrl = this.tmdbService.getBackdropUrl(this.movie.backdrop_path);
+            this.posterUrl = this.tmdbService.getPosterUrl(this.movie.poster_path)
           },
           error: (error) => console.log(error)
         });

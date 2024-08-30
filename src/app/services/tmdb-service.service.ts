@@ -48,7 +48,11 @@ export class TmdbService {
     ));
   }
   getBackdropUrl(path: string): string {
-    return `https://image.tmdb.org/t/p/w1280${path}`;
+    return `https://image.tmdb.org/t/p/original${path}`;
+  }
+
+  getPosterUrl(path: string): string {
+    return `https://image.tmdb.org/t/p/w500${path}`;
   }
 
   searchByTitle(title:string): Observable<Movie[]> {
