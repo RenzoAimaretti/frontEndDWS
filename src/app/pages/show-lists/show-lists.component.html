@@ -4,7 +4,9 @@
           <div class="col">
             <div class="card h-100">
               <div class="card-body">
+                <a [routerLink]="['/lists', list.id]">
                 <h5 class="card-title">{{ list.nameList }}</h5>
+                </a>
                 <p *ngIf="list.description">{{ list.description }}</p>
                 <ul>
                   <li *ngFor="let item of list.items">{{ item }}</li>

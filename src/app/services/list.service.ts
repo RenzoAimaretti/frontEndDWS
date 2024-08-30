@@ -9,13 +9,14 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class ListService {
 
-  private baseUrl = 'http://localhost:3000/api/lists/search?nameList=';
+  private searchUrl = 'http://localhost:3000/api/lists/search?nameList=';
+  private baseUrl = 'http://localhost:3000/api/lists/'
 
   constructor(private http: HttpClient) { }
 
 
   searchLists(query: string): Observable<List[]> {
-    return this.http.get<{ message: string, data: List[] }>(`${this.baseUrl}${query}`)
+    return this.http.get<{ message: string, data: List[] }>(`${this.searchUrl}${query}`)
       .pipe(
         map(result => result.data),
         catchError(this.handleError<List[]>('searchLists', []))
@@ -28,5 +29,13 @@ export class ListService {
       console.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
+  }
+
+  getList(id:number): Observable<List>{
+    return this.http.get<{ message:String, data:List}>(`${this.baseUrl + id}`)
+    .pipe (map((result: any) => result.data),
+    catchError(this.handleError<List>('getList'))
+    )
+
   }
 }
