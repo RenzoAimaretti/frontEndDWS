@@ -36,5 +36,12 @@ export class SearchComponent {
       this.selected = 'Movies'
     }
   }
+  searchUsers(): void {
+    if (this.input) {
+      console.log('searchUsers called with input:', this.input);
+      this.router.navigate(['/search/users'], { queryParams: { query: this.input } });
+      this.selected = 'users'; // Agregado para usuarios
+    }
+  }
 }
 

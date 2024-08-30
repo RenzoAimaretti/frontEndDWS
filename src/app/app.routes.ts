@@ -11,6 +11,7 @@ import { ShowListsComponent } from './pages/show-lists/show-lists.component.js';
 import { authGuard } from './custom/auth.guard';
 import { RegisterComponent } from './pages/register/register.component';
 import { UserEditComponent } from './pages/user-edit/user-edit.component.js';
+import { ShowUsersComponent } from './pages/show-users/show-users.component';
 export const routes: Routes = [
   //Rutas de la aplicacion
   { path: 'users', component: UserComponent },
@@ -23,7 +24,8 @@ export const routes: Routes = [
   {path: 'search/movies',component:ShowMoviesComponent},
   {path: 'search/lists',component:ShowListsComponent},
   {path: 'register', component:RegisterComponent},
-  {path: 'dashboard/edit', component:UserEditComponent,canActivate:[authGuard]}
+  {path: 'dashboard/edit', component:UserEditComponent,canActivate:[authGuard]},
+  { path: 'search/users', component: ShowUsersComponent }
 ];
 
 @NgModule({
