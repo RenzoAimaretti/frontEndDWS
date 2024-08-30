@@ -3,10 +3,11 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Movie } from '../../interface/movie.js';
 import { TmdbService} from '../../services/tmdb-service.service.js';
 import { CommonModule } from '@angular/common';
+import { ReviewComponent } from '../../shared/review/review.component.js';
 @Component({
   selector: 'app-movie',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ReviewComponent],
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.css'
 })

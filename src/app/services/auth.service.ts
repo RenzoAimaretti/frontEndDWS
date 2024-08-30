@@ -17,6 +17,13 @@ export class AuthService {
     const accessToken = this.cookieService.get('access_token');
     this.currentUserLoginOn = new BehaviorSubject<boolean>(!!accessToken);
     this.currentUserData = new BehaviorSubject<string>(accessToken||'');
+    if (this.currentUserLoginOn.value) {
+      //esto que estamos haciendo aca esta atado con alambre
+      //tendria que hacer un metodo nuevo que en vez de actualizar
+      //el currentUserId, lo devuelva para asignarlo igual que el resto
+      this.getIdFromToken();
+      console.log(this.currentUserId.value)
+    }
   }
 
   register(credentials:registerRequest){
@@ -33,6 +40,8 @@ export class AuthService {
         this.cookieService.set('access_token', token);
         this.currentUserData.next(userData);
         this.currentUserLoginOn.next(true);
+        this.getIdFromToken();
+        console.log(this.currentUserId.value)
       }),
       catchError(this.handleError)
     );
