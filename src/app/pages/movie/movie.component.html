@@ -1,31 +1,22 @@
-<h2>Datos de la Pelicula</h2>
-
 <div *ngIf="movie; else noMovie">
-    <ul>
-        <li routerLink="['/users',user.id]">
-            <img src="{{imageUrl}}" alt="Imagen de la pelicula" />
-        <li>
-            <strong>Id: </strong> {{movie.id}}
-        </li>
-        <li>
-            <strong>Titulo: </strong> {{movie.title}}
-        </li>
-        <li >
-            <strong>Genero: </strong> {{genreString}}
-        </li>
-        <li>
-            <strong>Pais de origen: </strong> {{movie.origin_country}}
-        </li>
-        <li>
-            <strong>Fecha de lanzamiento: </strong> {{movie.release_date}}
-        </li>
-        <li>
-            <strong>Idioma original: </strong> {{movie.original_language}}
-        </li>
-        <li>
-            <strong>Sinopsis: </strong> {{movie.overview}}
-        </li>
-    </ul>
+    <div class="banner">
+        <img class="backdrop" src="{{imageUrl}}" alt="Imagen de la pelicula"/>
+        <div class="banner-content">
+            <img class="poster" src="{{posterUrl}}" alt="Poster de la pelicula">
+            <div class="importantInfo">  
+                <h1 class="title">{{movie.title}}</h1>
+                <p class="overview">{{movie.overview}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="details">
+        <strong>Genero: </strong> {{genreString}}
+        <strong>Pais de origen: </strong> {{movie.origin_country}}
+        <strong>Fecha de lanzamiento: </strong> {{movie.release_date}}
+        <strong>Idioma original: </strong> {{movie.original_language}}
+    </div>
+    
+    <app-review [idContent]="movieId" [nameContent]="movie.title"></app-review>
 </div>
 
 
