@@ -5,6 +5,7 @@ import { Review } from '../../interface/review';
 import { ReviewService } from '../../services/review.service';
 import { TmdbService } from '../../services/tmdb-service.service';
 import { AuthService } from '../../services/auth.service';
+import { map } from 'rxjs';
 @Component({
   selector: 'app-review',
   standalone: true,
@@ -19,7 +20,11 @@ export class ReviewComponent {
   description: string=''; // descripcion de la reseña, puede ser vacia.
   reviewsToDisplay: Review[]=[]; // array de reseñas a mostrar.
   constructor(private reviewService:ReviewService, private authService:AuthService) { 
-
+    
+  }
+  ngOnInit(): void {
+    this.getReviews ();
+    this.rating=1
   }
 
   sendReview(){
@@ -34,6 +39,7 @@ export class ReviewComponent {
     this.reviewService.postReview(this.idContent,reviewToPost).subscribe(
       result=>console.log(result)
     )
+    this.getReviews();
   }else{
     window.alert("Tenes que estar logueado para poder comentar")
   }
@@ -46,14 +52,19 @@ export class ReviewComponent {
   };
 
   getReviews(){
-    this.reviewService.getReviews(this.idContent).subscribe(
-      result=>this.reviewsToDisplay=result
-    )
-  };
+      console.log('idContent:',this.idContent)
+      this.reviewService.getReviews(this.idContent).pipe(
+      ).subscribe(
+        result=>this.reviewsToDisplay=result
+      );
+    };
 
   setRating(stars: number) {
     this.rating = stars;
+    console.log(this.rating);
   }
+
+  
 
   //METODOS PARA COMENTAR CUANDO ESTEN DISPONIBLES
   

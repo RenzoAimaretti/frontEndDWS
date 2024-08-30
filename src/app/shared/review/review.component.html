@@ -4,11 +4,18 @@
     <!-- Formulario para enviar una reseña -->
     <form (ngSubmit)="sendReview()" class="mb-4">
       <div class="mb-3">
-        <label for="rating" class="form-label">Calificación:</label>
-        <select [(ngModel)]="rating" name="rating" id="rating" class="form-select" required>
-          <option *ngFor="let r of [1, 2, 3, 4, 5]" [value]="r" aria-placeholder="1 Estrellas">{{ r }} Estrellas</option>
-        </select>
+        <label class="form-label">Calificación:</label>
+        <div class="rating">
+          <span *ngFor="let r of [1, 2, 3, 4, 5]" 
+                class="star" 
+                [ngClass]="{'filled': rating >= r}" 
+                (click)="setRating(r)">
+            ★
+          </span>
+        </div>
       </div>
+      
+      
   
       <div class="mb-3">
         <label for="description" class="form-label">Descripción:</label>

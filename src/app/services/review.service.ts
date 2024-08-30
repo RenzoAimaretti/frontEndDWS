@@ -38,6 +38,8 @@ export class ReviewService {
 
   getReviews(idContent:number): Observable<Review[]>{
     //falta implementar en el controlador gordo
+
+    console.log('idContent:',idContent)
     return this.http.get<Review[]>(`${this.reviewUrl}${idContent}`).pipe(
       map((result:any)=>result.data),
       tap(result=>console.log(result)),
