@@ -43,7 +43,7 @@ export class ReviewComponent {
     )
     this.getReviews();
   }else{
-    window.alert("Tenes que estar logueado para poder comentar")
+    window.alert("Tenes que estar logueado para poder reseñar")
   }
   };
 

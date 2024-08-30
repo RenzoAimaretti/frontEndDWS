@@ -46,23 +46,33 @@ export class ReviewService {
       catchError(this.handleError))
   };
 
-  postComment(idContent:number,idReviewOwner:number,commentToPost:{comment:string}): Observable<any>{
+  postComment(idContent: number, idReviewOwner: number, commentToPost: { comment: string }): void {
     this.authService.getIdFromToken();
     this.authService.currentUser().subscribe({
-      next:(response)=>{
-        this.idCommentOwner=response;
-      }})
-      
-    console.log('hola')
-    
-    console.log('chau')
+      next: (response) => {
+        if (response) {
+          const idCommentOwner = response
+        
+          this.http.post(`${this.commentUrl}${idContent}/${idReviewOwner}/${idCommentOwner}`, commentToPost, this.httpOptions).pipe(
+            tap(result => console.log('Comentario enviado:', result)),
+            catchError(this.handleError)
+          ).subscribe({
+            next: (result) => console.log('Respuesta del servidor:', result),
+            error: (error) => console.error('Error al enviar comentario:', error)
+          });
+        } else {
+          window.alert('Debes estar logueado para comentar');
+        }
+      },
+      error: (error) => {
+        console.error('Error al obtener usuario:', error);
+      }
+  });
 
-    return this.http.post(`${this.commentUrl}${idContent}/${idReviewOwner}/${this.idCommentOwner}`, commentToPost, this.httpOptions).pipe(
-      map((result:any)=>result.data),
-      tap(result=>console.log(result)),
-      catchError(this.handleError)
-    );
-  }
+  console.log('hola');
+  console.log('chau');
+}
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
