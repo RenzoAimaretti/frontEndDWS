@@ -7,7 +7,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule, CommonModule],
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css'] // Corregido a styleUrls
+  styleUrls: ['./search.component.css'] 
 })
 export class SearchComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
@@ -40,7 +40,7 @@ export class SearchComponent {
     if (this.input) {
       console.log('searchUsers called with input:', this.input);
       this.router.navigate(['/search/users'], { queryParams: { query: this.input } });
-      this.selected = 'users'; // Agregado para usuarios
+      this.selected = 'users'; 
     }
   }
 }
