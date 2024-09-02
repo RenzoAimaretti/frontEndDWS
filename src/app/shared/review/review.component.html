@@ -27,11 +27,11 @@
   
     <!-- Lista de reseñas -->
     <div *ngIf="reviewsToDisplay.length > 0; else noReviews" class="list-group">
-      <div *ngFor="let review of reviewsToDisplay" class="list-group-item">
+      <div *ngFor="let review of reviewsToDisplay; let i = index" class="list-group-item">
         <h5 class="mb-1">Calificación: {{ review.rating }}/5</h5>
         <p class="mb-1">{{ review.description || 'Sin descripción' }}</p>
         <small>Reseña por {{ review.reviewOwner.name }}</small>
-  
+      
         <!-- Lista de comentarios para cada reseña -->
         <div *ngIf="review.comments && review.comments.length > 0" class="mt-3">
           <h6>Comentarios:</h6>
@@ -41,8 +41,24 @@
             </li>
           </ul>
         </div>
-        <app-review-comment-form [idContent]="idContent" [review]="review" ></app-review-comment-form>
+      
+        <!-- Formulario para enviar un comentario -->
+        <form (ngSubmit)="sendComment(review.reviewOwner.id, i)" class="commentingArea">
+          <div class="mb-3">
+            <label for="comment" class="form-label">Comentario:</label>
+            <textarea [(ngModel)]="comments[i]" 
+                      name="comment" 
+                      id="comment" 
+                      class="form-control" 
+                      rows="1" 
+                      placeholder="Escribe tu comentario aquí..."
+                      required>
+            </textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Comentar</button>
+        </form>
       </div>
+      
     </div>
   
     <!-- Mensaje en caso de que no haya reseñas -->
