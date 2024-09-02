@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { List } from '../interface/list';
 import { catchError, map } from 'rxjs/operators';
+import { AuthService } from './auth.service.js';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ListService {
   private searchUrl = 'http://localhost:3000/api/lists/search?nameList=';
   private baseUrl = 'http://localhost:3000/api/lists/'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService:AuthService) { }
 
 
   searchLists(query: string): Observable<List[]> {
@@ -36,6 +37,11 @@ export class ListService {
     .pipe (map((result: any) => result.data),
     catchError(this.handleError<List>('getList'))
     )
+  };
 
+  addContent(idContent:number, idList:number, nameContent:string): Observable<List>{
+    return this.http.put<{ message:string, data:List}>(`${this.baseUrl + idContent + '/' + idList + '/addContent'}`,{idContent, nameContent})
+    .pipe (map((result: any) => result.data),
+    catchError(this.handleError<List>('addContent')))
   }
 }

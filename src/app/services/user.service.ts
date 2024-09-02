@@ -49,6 +49,13 @@ export class UserService {
       )
     }
     
+    userLists(id:number): Observable<any>{
+      return this.http.get<{message:string, data:[]}>(this.usersUrl + id + '/lists')
+      .pipe(
+        map((result: any) => result.data),
+        catchError(this.handleError<any>('userLists')))
+    }
+
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
     
