@@ -21,6 +21,7 @@ export class MovieComponent {
     idUser:number = -1;
     userLoginOn:boolean = false;
     lists:any[] = [];
+    selectedListId:number = -1;
     constructor(private tmdbService: TmdbService, private authService:AuthService, private userServices:UserService) {
       this.route.params.subscribe(params => {
         this.movieId = Number(params['id']);
@@ -41,6 +42,14 @@ export class MovieComponent {
           },
           error: (error) => console.log(error)
         });
+    }
+
+    onSelectList(listId:number): void {
+      this.selectedListId = listId;
+    }
+
+    selectList(): void {
+
     }
 
     showList(): void {

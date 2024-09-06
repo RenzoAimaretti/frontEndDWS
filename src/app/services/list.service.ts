@@ -44,4 +44,10 @@ export class ListService {
     .pipe (map((result: any) => result.data),
     catchError(this.handleError<List>('addContent')))
   }
+  
+  createList(list: List): Observable<List> {
+    return this.http.post<{message: string, data:List}>(`${this.baseUrl}`, list).pipe(map((result: any) => result.data),
+    catchError(this.handleError<List>('createList')))
+  }
+
 }

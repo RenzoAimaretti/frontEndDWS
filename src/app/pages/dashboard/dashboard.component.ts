@@ -4,10 +4,11 @@ import { AuthService } from '../../services/auth.service';
 import { User } from '../../interface/user';
 import { UserService } from '../../services/user.service';
 import { RouterModule } from '@angular/router';
+import { ListCreateComponent } from "../list-create/list-create.component";
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ListCreateComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -15,6 +16,7 @@ export class DashboardComponent {
   userLoginOn: boolean = false;
   user?: User
   id?:number
+  showCreateList: boolean = false;
   constructor(private authService:AuthService, private userService:UserService) { }
 
   ngOnInit(): void {
@@ -39,9 +41,10 @@ export class DashboardComponent {
           complete: () => {
             console.log('Complete');
           }
-        });
-    
+    }); 
   }
-  
+showCreateListForm(): void {
+  this.showCreateList = true;
+}
 
 }
