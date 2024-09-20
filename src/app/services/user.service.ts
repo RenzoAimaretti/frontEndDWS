@@ -59,7 +59,10 @@ export class UserService {
     }
     followUser(userToFollowID:number, userFollower:number){
       return this.http.post<{message:string,data:object}>(this.usersUrl + 'follow/' + userFollower+ '/' + userToFollowID, this.httpOptions);
-      
+    }
+
+    unfollowUser(userToUnfollowID:number, userFollower:number){
+      return this.http.post<{message:string,data:object}>(this.usersUrl + 'unfollow/' + userFollower+ '/' + userToUnfollowID, this.httpOptions);
     }
 
 

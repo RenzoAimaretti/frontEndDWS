@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { User } from '../../interface/user';
@@ -18,6 +18,13 @@ export class UserProfileComponent implements OnInit {
   user: User | null = null;
   isUserLogged?:boolean;
   loggedUserId?:number;
+  errorFollowing = false;  // Control de error al seguir
+  errorUnfollowing = false;  // Control de error al dejar de seguir
+  followErrorMessage = 'Ocurrió un error al seguir a este usuario.';
+  unfollowErrorMessage = 'Ocurrió un error al dejar de seguir a este usuario.';
+
+  @ViewChild('followButton', { static: false }) followButton!: ElementRef;
+  @ViewChild('unfollowButton', { static: false }) unfollowButton!: ElementRef;
   constructor(private userService: UserService, private authService:AuthService) {}
 
   ngOnInit(): void {
@@ -72,6 +79,13 @@ export class UserProfileComponent implements OnInit {
   }
 
   unfollowUser():void{
-    console.log('Funcionalidad en desarrollo...')
+    if(this.isUserLogged && this.loggedUserId!=null ){
+      if(this.user){
+        this.userService.unfollowUser(this.user.id,this.loggedUserId).subscribe({
+          next:()=> this.loadUser(),
+          error: (error) => console.error('Error unfollowing user', error)
+        })
+      }
+    }
   }
 }
