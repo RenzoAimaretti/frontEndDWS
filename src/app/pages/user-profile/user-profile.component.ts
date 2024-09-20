@@ -71,7 +71,7 @@ export class UserProfileComponent implements OnInit {
       if(this.user){
         this.userService.followUser(this.user.id,this.loggedUserId).subscribe({
           next:()=> this.loadUser(),
-          error: (error) => console.error('Error following user', error)
+          error: () => window.alert('No puedes seguir a alguien que ya sigues')
         });
         
       }
@@ -83,7 +83,7 @@ export class UserProfileComponent implements OnInit {
       if(this.user){
         this.userService.unfollowUser(this.user.id,this.loggedUserId).subscribe({
           next:()=> this.loadUser(),
-          error: (error) => console.error('Error unfollowing user', error)
+          error: () => window.alert('No puedes dejar de seguir a alguien que ya sigues')
         })
       }
     }
