@@ -2,13 +2,14 @@ import { Component,inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Movie } from '../../interface/movie.js';
 import { TmdbService} from '../../services/tmdb-service.service.js';
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { ReviewComponent } from '../../shared/review/review.component.js';
 import { AuthService } from '../../services/auth.service.js';
 import { UserService } from '../../services/user.service.js';
 @Component({
   selector: 'app-movie',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule,ReviewComponent,RouterModule],
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.css'
 })
@@ -18,6 +19,8 @@ export class MovieComponent {
     movie: Movie|null= null;
     genreString: string='';
     imageUrl: string='';
+    posterUrl: string='';
+    
     idUser:number = -1;
     userLoginOn:boolean = false;
     lists:any[] = [];
@@ -39,6 +42,7 @@ export class MovieComponent {
             this.movie = result, 
             this.genreString = this.movie.genres.map((genre) => genre.name).join(", "),
             this.imageUrl = this.tmdbService.getBackdropUrl(this.movie.backdrop_path);
+            this.posterUrl = this.tmdbService.getPosterUrl(this.movie.poster_path)
           },
           error: (error) => console.log(error)
         });

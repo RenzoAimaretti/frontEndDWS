@@ -38,3 +38,11 @@ a:hover {
     color: #c1d9d0
 }
 
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #fffae3;
+    text-align: center;
+    margin: 20px 0;
+}
+
