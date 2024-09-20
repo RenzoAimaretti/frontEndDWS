@@ -1,0 +1,26 @@
+<!-- Mostrar el ID del usuario seleccionado -->
+<p class="user-id">El id del usuario seleccionado es: {{userId}}</p>
+
+<!-- Sección de detalles del usuario -->
+<h2 class="title">Detalles del usuario</h2>
+
+<div class="details" *ngIf="user;">
+  <ul class="details-list">
+    <li class="details-item">
+      <strong>Id:</strong> {{user.id}}
+    </li>
+    <li class="details-item">
+      <strong>Nombre:</strong> {{user.name}}
+    </li>
+    <li class="details-item">
+      <strong>Email:</strong> {{user.email}}
+    </li>
+    <li class="details-item">
+      <strong>Rango Cinéfilo:</strong> {{user.rangoCinefilo.nameRango}}
+    </li>
+    <li class="details-item">
+      <strong>Suscripción:</strong> {{user.subscription.name}}
+    </li>
+  </ul>
+</div>
+

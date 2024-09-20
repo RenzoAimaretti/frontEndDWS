@@ -9,6 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 @Injectable({providedIn: 'root'})
 export class UserService {
     private usersUrl = 'http://localhost:3000/api/users/';
+    private searchUrl = 'http://localhost:3000/api/users/search?name=';     
     httpOptions = {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
@@ -49,16 +50,25 @@ export class UserService {
       )
     }
     
+    searchUsers(query: string): Observable<User[]> {
+      return this.http.get<{ message: string, data: User[] }>(`${this.searchUrl}${query}`)
+          .pipe(
+              map(result => result.data),
+              catchError(this.handleError<User[]>('searchUsers', []))
+          );
+  }
+
+
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
     
-          // TODO: send the error to remote logging infrastructure
-          console.error(error); // log to console instead
+          
+          console.error(error); 
     
-          // TODO: better job of transforming error for user consumption
+          
           console.log(`${operation} failed: ${error.message}`);
     
-          // Let the app keep running by returning an empty result.
+        
           return of(result as T);
         };
       }
