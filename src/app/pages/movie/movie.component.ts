@@ -63,17 +63,14 @@ export class MovieComponent {
       this.authService.isUserLoggedIn().subscribe({
         next: (response) => {
           this.userLoginOn = response;
-          if (this.userLoginOn) {
             this.authService.currentUser().subscribe({
               next: (response) => {
                 this.idUser = response;
-                console.log(this.idUser);
                 if (this.idUser !== -1) {
                   this.userServices.userLists(this.idUser).subscribe({
                     next: (response) => {
                       this.lists = response;
                       console.log(this.lists);
-    
                       // Mover el chequeo aquí después de que `this.lists` haya sido actualizado.
                       if (this.lists.length !== 0) {
                         this.showModal = true;
@@ -82,22 +79,21 @@ export class MovieComponent {
                       } else {
                         console.log('no hay listas');
                         this.showModal = true;
-                        console.log(this.showModal);                        
+                        console.log(this.showModal);
                       }
                     },
                     error: (err) => {
                       console.error('Error obteniendo las listas', err);
                     }
                   });
-                }
+                  
+                }else {
+                  console.log('no hay usuario logueado')}
               },
               error: (err) => {
                 console.error('Error obteniendo el usuario actual', err);
               }
             });
-          } else {
-            console.log('Usuario no logueado');
-          }
         },
         error: (err) => {
           console.error('Error verificando si el usuario está logueado', err);

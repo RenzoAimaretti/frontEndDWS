@@ -16,7 +16,6 @@ export class DashboardComponent {
   userLoginOn: boolean = false;
   user?: User
   id?:number
-  showCreateList: boolean = false;
   constructor(private authService:AuthService, private userService:UserService) { }
 
   ngOnInit(): void {
@@ -43,8 +42,4 @@ export class DashboardComponent {
           }
     }); 
   }
-showCreateListForm(): void {
-  this.showCreateList = true;
-}
-
 }

@@ -1,20 +1,21 @@
+<div class="modal-background" (click)="closeModal()"></div>
 <div class="modal-content">
-    <span class="close" (click)="closeModal()">&times;</span>
-    <h2>Add {{ movieTitle }} to lists</h2>
+  <span class="close" (click)="closeModal()">&times;</span>
+  <h2>Add '{{ movieTitle }}' to lists</h2>
 
-    <!-- Buscar o crear nueva lista -->
-    <div class="new-list">
-      <input type="text" placeholder="New list..."/>
-    </div>
+  <!-- Botón para crear nueva lista -->
+  <div class="list-actions">
+    <button [routerLink]="'/createList'" class="new-list-btn">+ Nueva lista</button>
+  </div>
 
-    <!-- Listas existentes -->
-    <div class="existing-lists">
-      <label>
-        <input type="checkbox" />
-        <span>prueba</span>
-      </label>
-    </div>
+  <!-- Listas existentes -->
+  <div class="existing-lists" *ngFor="let list of lists">
+    <label>
+      <input type="checkbox" />
+      <span>{{list.nameList}}</span>
+    </label>
+  </div>
 
-    <!-- Botón de agregar -->
-    <button class="add-btn">ADD</button>
+  <!-- Botón de agregar -->
+  <button class="add-btn">AÑADIR</button>
 </div>

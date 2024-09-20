@@ -1,28 +1,27 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-movie-add-list',
   standalone: true,
-  imports: [],
+  imports: [RouterModule, CommonModule],
   templateUrl: './movie-add-list.component.html',
   styleUrl: './movie-add-list.component.css'
 })
 export class MovieAddListComponent {
-constructor(private cdr: ChangeDetectorRef) {}
 @Input() movieId: number = -1;
 
-@Input() movieTitle?: string
+@Input() movieTitle: string = '';
 
 @Input() showModal: boolean = false;
 
+@Input() lists: any[] = [];
+
 @Output() showModalChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-ngOnInit() {
-  console.log('movieTitle en modal:', this.movieTitle);
-  this.cdr.detectChanges();
-}
+
 
   closeModal(): void {
     this.showModal = false;
