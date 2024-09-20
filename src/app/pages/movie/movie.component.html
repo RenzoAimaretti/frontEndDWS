@@ -15,11 +15,15 @@
         <strong>Fecha de lanzamiento: </strong> {{movie.release_date}}
         <strong>Idioma original: </strong> {{movie.original_language}}
         <button (click)="showList()">Agregar a lista</button>
+        <div id="modal" class="modal" *ngIf="showModal">
+            <app-movie-add-list [movieTitle]="movie.title" [movieId]="movieId" (showModalChange)="handleModalChange($event)"></app-movie-add-list>
+        </div>
     </div>
     
     <app-review [idContent]="movieId" [nameContent]="movie.title"></app-review>
         
 </div>
+
 
 
 

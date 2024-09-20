@@ -6,10 +6,11 @@ import { CommonModule } from '@angular/common';
 import { ReviewComponent } from '../../shared/review/review.component.js';
 import { AuthService } from '../../services/auth.service.js';
 import { UserService } from '../../services/user.service.js';
+import { MovieAddListComponent } from '../movie-add-list/movie-add-list.component.js';
 @Component({
   selector: 'app-movie',
   standalone: true,
-  imports: [CommonModule,ReviewComponent,RouterModule],
+  imports: [CommonModule,ReviewComponent,RouterModule,MovieAddListComponent],
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.css'
 })
@@ -21,10 +22,11 @@ export class MovieComponent {
     imageUrl: string='';
     posterUrl: string='';
     
-    idUser:number = -1;
+    showModal = false;
+    idUser?:number
     userLoginOn:boolean = false;
     lists:any[] = [];
-    selectedListId:number = -1;
+    selectedListId?:number
     constructor(private tmdbService: TmdbService, private authService:AuthService, private userServices:UserService) {
       this.route.params.subscribe(params => {
         this.movieId = Number(params['id']);
@@ -51,9 +53,9 @@ export class MovieComponent {
     onSelectList(listId:number): void {
       this.selectedListId = listId;
     }
-
-    selectList(): void {
-
+    handleModalChange(showModal: boolean) {
+      this.showModal = showModal;
+      console.log('Modal visibility changed:', this.showModal);
     }
 
     showList(): void {
@@ -74,9 +76,13 @@ export class MovieComponent {
     
                       // Mover el chequeo aquí después de que `this.lists` haya sido actualizado.
                       if (this.lists.length !== 0) {
+                        this.showModal = true;
                         console.log("hay listas");
+                        console.log(this.showModal)
                       } else {
                         console.log('no hay listas');
+                        this.showModal = true;
+                        console.log(this.showModal);                        
                       }
                     },
                     error: (err) => {
@@ -98,4 +104,7 @@ export class MovieComponent {
         }
       });
     }
-  }
+    closeModal() {
+      this.showModal = false;
+    }
+   }

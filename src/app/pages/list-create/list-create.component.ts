@@ -8,22 +8,26 @@ import { CarrouselComponent } from '../../shared/carrousel/carrousel.component.j
 @Component({
   selector: 'app-list-create',
   standalone: true,
-  imports: [CommonModule, RouterModule, CarrouselComponent],
+  imports: [CommonModule, RouterModule],
   templateUrl: './list-create.component.html',
   styleUrl: './list-create.component.css'
 })
 export class ListCreateComponent {
   showMovies: Movie [] = [];
+  movies: Movie[] = [];
 
   constructor(private tmdbService: TmdbService) {}
 
   async ngOnInit(): Promise<void> {
     await this.loadMovies();
   }
+
   async loadMovies(): Promise<void> {
     this.tmdbService.getPopularMovies().subscribe({
       next: (movies) => this.showMovies = movies,
       error: (error) => console.error(error)
     });
   }
+
+  
 }

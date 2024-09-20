@@ -1,0 +1,20 @@
+<div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>Add {{ movieTitle }} to lists</h2>
+
+    <!-- Buscar o crear nueva lista -->
+    <div class="new-list">
+      <input type="text" placeholder="New list..."/>
+    </div>
+
+    <!-- Listas existentes -->
+    <div class="existing-lists">
+      <label>
+        <input type="checkbox" />
+        <span>prueba</span>
+      </label>
+    </div>
+
+    <!-- Botón de agregar -->
+    <button class="add-btn">ADD</button>
+</div>
