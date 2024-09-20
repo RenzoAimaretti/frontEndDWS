@@ -46,12 +46,12 @@ export class ReviewService {
       catchError(this.handleError))
   };
 
-  postComment(idContent: number, idReviewOwner: number, commentToPost: { comment: string }): void {
+  postComment(idContent: number, idReviewOwner: number, commentToPost: { comment: string }): Observable<any> {
     this.authService.getIdFromToken();
-    this.authService.currentUser().subscribe({
-      next: (response) => {
+    return this.authService.currentUser().pipe(
+      tap((response) => {
         if (response) {
-          const idCommentOwner = response
+          const idCommentOwner = response;
         
           this.http.post(`${this.commentUrl}${idContent}/${idReviewOwner}/${idCommentOwner}`, commentToPost, this.httpOptions).pipe(
             tap(result => console.log('Comentario enviado:', result)),
@@ -63,15 +63,10 @@ export class ReviewService {
         } else {
           window.alert('Debes estar logueado para comentar');
         }
-      },
-      error: (error) => {
-        console.error('Error al obtener usuario:', error);
-      }
-  });
-
-  console.log('hola');
-  console.log('chau');
-}
+      }),
+      catchError(this.handleError)
+    );
+  }
 
 
   private handleError(error: HttpErrorResponse) {
