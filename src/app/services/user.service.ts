@@ -56,7 +56,11 @@ export class UserService {
               map(result => result.data),
               catchError(this.handleError<User[]>('searchUsers', []))
           );
-  }
+    }
+    followUser(userToFollowID:number, userFollower:number){
+      return this.http.post<{message:string,data:object}>(this.usersUrl + 'follow/' + userFollower+ '/' + userToFollowID, this.httpOptions);
+      
+    }
 
 
     private handleError<T>(operation = 'operation', result?: T) {
