@@ -12,7 +12,7 @@
     </div>
   
     <div class="action-buttons">
-      <button class="save-btn" (click)="createList()">GUARDAR</button>
+      <button class="save-btn" [routerLink]="'/home'" (click)="createList()">GUARDAR</button>
       <button class="cancel-btn" [routerLink]="'/home'">CANCELAR</button>
     </div>
 

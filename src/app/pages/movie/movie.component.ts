@@ -88,7 +88,9 @@ export class MovieComponent {
                   });
                   
                 }else {
-                  console.log('no hay usuario logueado')}
+                  console.log('no hay usuario logueado')
+                  window.alert('Debes iniciar sesión para agregar a una lista')}
+                  
               },
               error: (err) => {
                 console.error('Error obteniendo el usuario actual', err);

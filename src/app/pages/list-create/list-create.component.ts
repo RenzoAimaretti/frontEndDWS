@@ -46,7 +46,7 @@ export class ListCreateComponent {
     this.listForm = this.fb.group({
       nameList: ['', Validators.required],
       descriptionList: ['', Validators.required],
-      title: ['', Validators.required],
+      title: [''],
     });
   
 
