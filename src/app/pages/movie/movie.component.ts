@@ -23,7 +23,7 @@ export class MovieComponent {
     posterUrl: string='';
     
     showModal = false;
-    idUser?:number
+    userId?:number
     userLoginOn:boolean = false;
     lists:any[] = [];
     selectedListId?:number
@@ -65,9 +65,9 @@ export class MovieComponent {
           this.userLoginOn = response;
             this.authService.currentUser().subscribe({
               next: (response) => {
-                this.idUser = response;
-                if (this.idUser !== -1) {
-                  this.userServices.userLists(this.idUser).subscribe({
+                this.userId = response;
+                if (this.userId !== -1) {
+                  this.userServices.userLists(this.userId).subscribe({
                     next: (response) => {
                       this.lists = response;
                       console.log(this.lists);

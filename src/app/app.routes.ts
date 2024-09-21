@@ -27,7 +27,8 @@ export const routes: Routes = [
   {path: 'register', component:RegisterComponent},
   {path: 'dashboard/edit', component:UserEditComponent,canActivate:[authGuard]},
   {path: 'lists/:id', component: ListDetailsComponent},
-  {path: 'createList', component: ListCreateComponent}
+  {path: 'createList', component: ListCreateComponent},
+  {path: 'createList/:id', component: ListCreateComponent}
 ];
 
 @NgModule({

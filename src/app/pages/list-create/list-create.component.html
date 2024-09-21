@@ -1,1 +1,45 @@
-<p>funcioanaawdsad</p>
+<form [formGroup]="listForm">
+    <h1>Nueva Lista</h1>
+    
+    <div class="form-control">
+      <label for="nameList">Nombre</label>
+      <input id="nameList" formControlName="nameList" type="text" placeholder="Nombre de la lista..." />
+    </div>
+    
+    <div class="form-control">
+      <label for="description">Descripción</label>
+      <textarea id="descriptionList" formControlName="descriptionList" placeholder="Añade una descripción..."></textarea>
+    </div>
+  
+    <div class="action-buttons">
+      <button class="save-btn" (click)="createList()">GUARDAR</button>
+      <button class="cancel-btn" [routerLink]="'/home'">CANCELAR</button>
+    </div>
+
+    <label for="title">Añadir película</label>
+    <div class="search-controls">
+      <input class="search-movie-input" formControlName="title" type="text" placeholder="Ingresa nombre de película..." />
+      <button class="add-film-btn" (click)="searchMovie()">BUSCAR PELÍCULA</button>
+    </div>
+  
+    <!-- Lista de películas -->
+    <div class="movie-list">
+        <div class="movie-grid">
+      <div *ngFor="let movie of movies" 
+           [ngClass]="{'selected': isMovieSelected(movie)}" 
+           class="movie-item" 
+           (click)="onSelectMovie(movie)">
+        <div class="movie-card">
+          <img [src]="getImageUrl(movie.poster_path)" alt="{{ movie.title }}">
+          <div class="movie-info">
+            <h5 class="movie-title">{{ movie.title }}</h5>
+            <p class="movie-year">{{ movie.release_date | date:'yyyy' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  </form>
+  
+  

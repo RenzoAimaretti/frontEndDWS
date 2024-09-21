@@ -7,9 +7,9 @@
                 <a [routerLink]="['/lists', list.id]">
                 <h5 class="card-title">{{ list.nameList }}</h5>
                 </a>
-                <p *ngIf="list.description">{{ list.description }}</p>
+                <p *ngIf="list.descriptionList">{{ list.descriptionList }}</p>
                 <ul>
-                  <li *ngFor="let item of list.items">{{ item }}</li>
+                  <li *ngFor="let item of list.contents">{{ item }}</li>
                 </ul>
               </div>
             </div>

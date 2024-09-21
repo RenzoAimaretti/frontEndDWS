@@ -1,7 +1,10 @@
+import { Movie } from "./movie.js";
+
 export interface List {
     id: number;
     nameList: string;
-    description: string;
-    items: any[]; 
+    descriptionList: string;
+    contents: Movie[]; 
+    owner: number
   }
   
