@@ -28,7 +28,8 @@ export class ListCreateComponent {
   userId?: number; 
   constructor(private tmdbService: TmdbService, private fb: FormBuilder, private listService: ListService, private authService:AuthService, private userServices:UserService) {
     this.route.params.subscribe(params => {
-      this.id = Number(params['id']);
+      if(params['id'] !== undefined){
+      this.id = Number(params['id'])};
     });
   }
 
