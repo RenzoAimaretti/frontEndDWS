@@ -9,13 +9,17 @@
   </div>
 
   <!-- Listas existentes -->
-  <div class="existing-lists" *ngFor="let list of lists">
-    <label>
-      <input type="checkbox" />
-      <span>{{list.nameList}}</span>
-    </label>
+  <div class="existing-lists">
+    <div 
+      *ngFor="let list of lists"
+      class="list-item"
+      [class.selected]="selectedList === list.id"
+      (click)="selectList(list)"
+    >
+      <span>{{ list.nameList }}</span>
+    </div>
   </div>
 
   <!-- Botón de agregar -->
-  <button class="add-btn">AÑADIR</button>
+  <button class="add-btn" (click)="addContent()">AÑADIR</button>
 </div>

@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { List } from '../interface/list';
 import { catchError, map } from 'rxjs/operators';
 import { AuthService } from './auth.service.js';
+import { Movie } from '../interface/movie.js';
 
 @Injectable({
   providedIn: 'root'
@@ -39,11 +40,16 @@ export class ListService {
     )
   };
 
-  addContent(idContent:number, idList:number, nameContent:string): Observable<List>{
-    return this.http.put<{ message:string, data:List}>(`${this.baseUrl + idContent + '/' + idList + '/addContent'}`,{idContent, nameContent})
-    .pipe (map((result: any) => result.data),
-    catchError(this.handleError<List>('addContent')))
+  addContent(idContent: number, idList: number, nameContent: string): Observable<{ message: string, data?: List }> {
+    return this.http.put<{ message: string, data: List }>(`${this.baseUrl + idContent + '/' + idList + '/addContent'}`, { idContent, nameContent })
+      .pipe(
+        map((result: any) => {
+          return { message: result.message, data: result.data };
+        }),
+        catchError(this.handleError<{ message: string, data?: List }>('addContent'))
+      );
   }
+  
   
   createList(list: List): Observable<List> {
     return this.http.post<{message: string, data:List}>(`${this.baseUrl}`, list).pipe(map((result: any) => result.data),

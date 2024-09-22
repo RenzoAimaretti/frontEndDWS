@@ -14,7 +14,7 @@
         <strong>Pais de origen: </strong> {{movie.origin_country}}
         <strong>Fecha de lanzamiento: </strong> {{movie.release_date}}
         <strong>Idioma original: </strong> {{movie.original_language}}
-        <button (click)="showList()">Agregar a lista</button>
+        <button class="add-to-list-btn" (click)="showList()">Agregar a lista</button>
         <div id="modal" class="modal" *ngIf="showModal">
             <app-movie-add-list [movieTitle]="movie.title" [movieId]="movieId" [lists]="lists" (showModalChange)="handleModalChange($event)"></app-movie-add-list>
         </div>

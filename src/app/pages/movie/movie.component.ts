@@ -26,7 +26,6 @@ export class MovieComponent {
     userId?:number
     userLoginOn:boolean = false;
     lists:any[] = [];
-    selectedListId?:number
     constructor(private tmdbService: TmdbService, private authService:AuthService, private userServices:UserService) {
       this.route.params.subscribe(params => {
         this.movieId = Number(params['id']);
@@ -50,9 +49,6 @@ export class MovieComponent {
         });
     }
 
-    onSelectList(listId:number): void {
-      this.selectedListId = listId;
-    }
     handleModalChange(showModal: boolean) {
       this.showModal = showModal;
       console.log('Modal visibility changed:', this.showModal);
