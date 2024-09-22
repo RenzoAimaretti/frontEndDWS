@@ -18,12 +18,17 @@ export class ReviewComponent {
   description: string=''; // descripcion de la reseña, puede ser vacia.
   reviewsToDisplay: Review[]=[]; // array de reseñas a mostrar.
   comments: string[] = []; // Array para comentarios independientes
+  currentUserId?:number;
   constructor(private reviewService:ReviewService, private authService:AuthService) { 
     
   }
   ngOnInit(): void {
     this.getReviews ();
     this.rating=1
+    if (this.authService.currentUserLoginOn.value){
+      this.currentUserId=this.authService.currentUserId.value;
+      console.log(this.currentUserId)
+    }
   }
 
   sendReview(){
@@ -53,7 +58,7 @@ export class ReviewComponent {
 
   deleteReview(){
     this.reviewService.deleteReview(this.idContent).subscribe(
-      result=>console.log(result)
+      ()=>this.getReviews()
     )
   };
 
@@ -61,7 +66,7 @@ export class ReviewComponent {
       console.log('idContent:',this.idContent)
       this.reviewService.getReviews(this.idContent).pipe(
       ).subscribe(
-        result=>this.reviewsToDisplay=result
+        result=>{this.reviewsToDisplay=result.reverse()}
       );
   };
 
