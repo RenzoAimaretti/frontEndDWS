@@ -18,13 +18,7 @@ export class UserProfileComponent implements OnInit {
   user: User | null = null;
   isUserLogged?:boolean;
   loggedUserId?:number;
-  errorFollowing = false;  // Control de error al seguir
-  errorUnfollowing = false;  // Control de error al dejar de seguir
-  followErrorMessage = 'Ocurrió un error al seguir a este usuario.';
-  unfollowErrorMessage = 'Ocurrió un error al dejar de seguir a este usuario.';
-
-  @ViewChild('followButton', { static: false }) followButton!: ElementRef;
-  @ViewChild('unfollowButton', { static: false }) unfollowButton!: ElementRef;
+  isAlreadyFollowing?:boolean
   constructor(private userService: UserService, private authService:AuthService) {}
 
   ngOnInit(): void {
@@ -57,7 +51,10 @@ export class UserProfileComponent implements OnInit {
   loadUser(): void {
     if (this.userId !== null) {
       this.userService.getUser(this.userId).subscribe({
-        next: (result) => this.user = result,
+        next: (result) => {
+          this.user = result
+          this.updateFollowingStatus();
+        },
         error: (error) => console.error('Error loading user', error)
       });
     }
@@ -70,20 +67,37 @@ export class UserProfileComponent implements OnInit {
     if(this.isUserLogged && this.loggedUserId!=null ){
       if(this.user){
         this.userService.followUser(this.user.id,this.loggedUserId).subscribe({
-          next:()=> this.loadUser(),
+          next:()=> {
+            this.loadUser();
+          },
           error: () => window.alert('No puedes seguir a alguien que ya sigues')
         });
         
       }
     }
   }
-
+  // les quiero clavar un pop over pero no va
   unfollowUser():void{
     if(this.isUserLogged && this.loggedUserId!=null ){
       if(this.user){
         this.userService.unfollowUser(this.user.id,this.loggedUserId).subscribe({
-          next:()=> this.loadUser(),
+          next:()=> {
+            this.loadUser();
+          },
           error: () => window.alert('No puedes dejar de seguir a alguien que ya sigues')
+        })
+      }
+    }
+  }
+
+  updateFollowingStatus():void{
+    if(this.isUserLogged && this.loggedUserId!=null ){
+      if(this.user){
+        this.userService.isFollowing(this.loggedUserId,this.user.id).subscribe({
+          next:(response)=>{
+            this.isAlreadyFollowing=response;
+          },
+          error:()=>console.log('Error al verificar si el usuario ya sigue a otro')
         })
       }
     }

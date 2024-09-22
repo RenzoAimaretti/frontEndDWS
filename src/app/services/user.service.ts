@@ -65,6 +65,13 @@ export class UserService {
       return this.http.post<{message:string,data:object}>(this.usersUrl + 'unfollow/' + userFollower+ '/' + userToUnfollowID, this.httpOptions);
     }
 
+    isFollowing(userId:number,userToCheck:number){
+      return this.http.get<{message:string,data:object}>(this.usersUrl + 'isFollowing/' + userId+ '/' + userToCheck)
+      .pipe(
+        map((result: any) => result.data),
+        catchError(this.handleError<any>('isFollowing'))
+      );
+    }
 
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
