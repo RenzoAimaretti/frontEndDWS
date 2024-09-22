@@ -9,4 +9,5 @@
     <p>Cantidad de Listas semanales a crear: {{user?.subscription?.cantidadSem}}</p>
     <button [routerLink]="'/dashboard/edit'">Editar Usuario</button>
     <button [routerLink]="'/createList'">Crear Lista</button>
+    <button [routerLink]="['/user/lists/', id]">Ver Listas</button>
 </div>
