@@ -1,0 +1,13 @@
+<div *ngIf="users.length > 0">
+  <ul>
+    <li *ngFor="let user of users">
+      <a [routerLink]="['/user-profile', user.id]">
+        <span>{{ user.name }}</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="users.length === 0 && query">
+  <p>No users found for "{{ query }}"</p>
+</div>

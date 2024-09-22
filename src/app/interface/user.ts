@@ -6,4 +6,6 @@ export interface User {
     email: string;
     rangoCinefilo: RangoCinefilo;
     subscription: Subscription;
+    friends: User[];
+    friendsFrom: User[];
 }

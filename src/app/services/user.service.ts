@@ -9,6 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 @Injectable({providedIn: 'root'})
 export class UserService {
     private usersUrl = 'http://localhost:3000/api/users/';
+    private searchUrl = 'http://localhost:3000/api/users/search?name=';     
     httpOptions = {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
@@ -49,16 +50,39 @@ export class UserService {
       )
     }
     
+    searchUsers(query: string): Observable<User[]> {
+      return this.http.get<{ message: string, data: User[] }>(`${this.searchUrl}${query}`)
+          .pipe(
+              map(result => result.data),
+              catchError(this.handleError<User[]>('searchUsers', []))
+          );
+    }
+    followUser(userToFollowID:number, userFollower:number){
+      return this.http.post<{message:string,data:object}>(this.usersUrl + 'follow/' + userFollower+ '/' + userToFollowID, this.httpOptions);
+    }
+
+    unfollowUser(userToUnfollowID:number, userFollower:number){
+      return this.http.post<{message:string,data:object}>(this.usersUrl + 'unfollow/' + userFollower+ '/' + userToUnfollowID, this.httpOptions);
+    }
+
+    isFollowing(userId:number,userToCheck:number){
+      return this.http.get<{message:string,data:object}>(this.usersUrl + 'isFollowing/' + userId+ '/' + userToCheck)
+      .pipe(
+        map((result: any) => result.data),
+        catchError(this.handleError<any>('isFollowing'))
+      );
+    }
+
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
     
-          // TODO: send the error to remote logging infrastructure
-          console.error(error); // log to console instead
+          
+          console.error(error); 
     
-          // TODO: better job of transforming error for user consumption
+          
           console.log(`${operation} failed: ${error.message}`);
     
-          // Let the app keep running by returning an empty result.
+        
           return of(result as T);
         };
       }
