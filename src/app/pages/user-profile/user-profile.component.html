@@ -1,0 +1,47 @@
+<!-- Mostrar el ID del usuario seleccionado -->
+<p class="alert alert-info text-center">El id del usuario seleccionado es: {{userId}}</p>
+
+<!-- Sección de detalles del usuario -->
+<h2 class="text-center my-4">Detalles del usuario</h2>
+
+<div class="card mx-auto" style="max-width: 600px;" *ngIf="user;">
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+
+      <li *ngIf="isAlreadyFollowing" class="list-group-item text-center bg-success text-white">
+        <strong>Estado:</strong> Ya sigues a este usuario
+      </li>
+
+      <li *ngIf="!isAlreadyFollowing" class="list-group-item text-center bg-danger text-white">
+        <strong>Estado:</strong> No sigues a este usuario
+      </li>
+
+      <li class="list-group-item">
+        <strong>Id:</strong> {{user.id}}
+      </li>
+      <li class="list-group-item">
+        <strong>Nombre:</strong> {{user.name}}
+      </li>
+      <li class="list-group-item">
+        <strong>Email:</strong> {{user.email}}
+      </li>
+      <li class="list-group-item">
+        <strong>Rango Cinéfilo:</strong> {{user.rangoCinefilo.nameRango}}
+      </li>
+      <li class="list-group-item">
+        <strong>Suscripción:</strong> {{user.subscription.name}}
+      </li>
+      <li class="list-group-item">
+        <strong>Cantidad de seguidores:</strong> {{user.friends.length}}
+      </li>
+      <li class="list-group-item">
+        <strong>Cantidad de usuarios seguidos:</strong> {{user.friendsFrom.length}}
+      </li>
+    </ul>
+    <div class="d-flex justify-content-center mt-3">
+      <button *ngIf="!isAlreadyFollowing" class="btn btn-success mx-2" (click)="followUser()">Seguir a este usuario</button>
+      <button *ngIf="isAlreadyFollowing" class="btn btn-danger mx-2" (click)="unfollowUser()">Dejar de seguir a este usuario</button>
+    </div>
+  </div>
+</div>
+
