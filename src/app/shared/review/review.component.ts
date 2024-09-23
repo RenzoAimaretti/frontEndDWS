@@ -27,6 +27,7 @@ export class ReviewComponent {
   
   //datos para la edicion de un comentario
   editingCommentIndex: number | null = null;
+  editingCommentReviewIndex: number | null = null;
   editingComment?: Comment;
   constructor(private reviewService: ReviewService, private authService: AuthService) {
 
@@ -71,7 +72,6 @@ export class ReviewComponent {
   };
 
   getReviews() {
-    console.log('idContent:', this.idContent)
     this.reviewService.getReviews(this.idContent).pipe(
     ).subscribe(
       result => { this.reviewsToDisplay = result.reverse() }
@@ -86,8 +86,9 @@ export class ReviewComponent {
     this.editingDescription = this.reviewsToDisplay[index].description;
   }
 
-  startEditingComment(index: number,comment:Comment) {
-    this.editingCommentIndex = index;
+  startEditingComment(indexComment: number,indexReview:number,comment:Comment) {
+    this.editingCommentIndex = indexComment;
+    this.editingCommentReviewIndex = indexReview;
     this.editingComment = comment
   }
 
@@ -95,6 +96,7 @@ export class ReviewComponent {
   cancelEdit() {
     this.editingReviewIndex = null;
     this.editingCommentIndex = null;
+    this.editingCommentReviewIndex = null;
   }
 
   editComment() {
@@ -105,12 +107,7 @@ export class ReviewComponent {
       };
       const commentOwner = this.editingComment?.commentOwner.id;
       const reviewOwner = this.editingComment?.commentReview.reviewOwner;
-      console.log(this.editingComment)
-      console.log('toy afuera')
-      console.log('commentOwner:', commentOwner)
-      console.log('reviewOwner:', reviewOwner)
       if (commentOwner && reviewOwner) {
-        console.log('pase por aca')
         this.reviewService.editComment(this.idContent, reviewOwner.id,commentOwner , commentToEdit).subscribe(
           result => {
             console.log(result)

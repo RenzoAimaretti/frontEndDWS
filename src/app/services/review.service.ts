@@ -39,10 +39,9 @@ export class ReviewService {
   };
 
   getReviews(idContent:number): Observable<Review[]>{
-    console.log('idContent:',idContent)
     return this.http.get<Review[]>(`${this.reviewUrl}${idContent}`).pipe(
       map((result:any)=>result.data),
-      tap(result=>console.log(result)),
+      //tap(result=>console.log(result)),
       catchError(this.handleError))
   };
 
@@ -50,7 +49,7 @@ export class ReviewService {
     const ownerId = this.authService.currentUserId.value;
     return this.http.put(`${this.reviewUrl}${idContent}/${ownerId}`,reviewToEdit,this.httpOptions).pipe(
       map((result:any)=>result.data),
-      tap(result=>console.log(result)),
+      //tap(result=>console.log(result)),
       catchError(this.handleError)
     )
   };
@@ -80,16 +79,15 @@ export class ReviewService {
   deleteComment(idContent: number, idReviewOwner: number, idCommentOwner: number): Observable<any> {
     return this.http.delete(`${this.commentUrl}${idContent}/${idReviewOwner}/${idCommentOwner}`, this.httpOptions).pipe(
       map((result: any) => result.data),
-      tap(result => console.log(result)),
+      //tap(result => console.log(result)),
       catchError(this.handleError)
     );
   }
 
   editComment(idContent: number, idReviewOwner: number, idCommentOwner: number, commentToEdit: { comment: string }): Observable<any> {
-    console.log(commentToEdit)
     return this.http.put(`${this.commentUrl}${idContent}/${idReviewOwner}/${idCommentOwner}`, commentToEdit, this.httpOptions).pipe(
       map((result: any) => result.data),
-      tap(result => console.log(result)),
+      //tap(result => console.log(result)),
       catchError(this.handleError)
     );
   }
