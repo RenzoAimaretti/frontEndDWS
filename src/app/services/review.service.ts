@@ -77,6 +77,23 @@ export class ReviewService {
     );
   }
 
+  deleteComment(idContent: number, idReviewOwner: number, idCommentOwner: number): Observable<any> {
+    return this.http.delete(`${this.commentUrl}${idContent}/${idReviewOwner}/${idCommentOwner}`, this.httpOptions).pipe(
+      map((result: any) => result.data),
+      tap(result => console.log(result)),
+      catchError(this.handleError)
+    );
+  }
+
+  editComment(idContent: number, idReviewOwner: number, idCommentOwner: number, commentToEdit: { comment: string }): Observable<any> {
+    console.log(commentToEdit)
+    return this.http.put(`${this.commentUrl}${idContent}/${idReviewOwner}/${idCommentOwner}`, commentToEdit, this.httpOptions).pipe(
+      map((result: any) => result.data),
+      tap(result => console.log(result)),
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       console.error('Ocurrio un error :', error.error);

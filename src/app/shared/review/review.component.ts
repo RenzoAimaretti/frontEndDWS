@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Review } from '../../interface/review';
 import { ReviewService } from '../../services/review.service';
 import { AuthService } from '../../services/auth.service';
+import{Comment} from '../../interface/comment';
 @Component({
   selector: 'app-review',
   standalone: true,
@@ -23,7 +24,10 @@ export class ReviewComponent {
   editingReviewIndex: number | null = null; // Índice de la reseña que se está editando
   editingRating: number = 1;  // Rating que se está editando
   editingDescription: string = '';  // Descripción que se está editando
-
+  
+  //datos para la edicion de un comentario
+  editingCommentIndex: number | null = null;
+  editingComment?: Comment;
   constructor(private reviewService: ReviewService, private authService: AuthService) {
 
   }
@@ -76,15 +80,54 @@ export class ReviewComponent {
 
 
   // Método para habilitar el modo de edición de una reseña
-  startEditing(index: number) {
+  startEditingReview(index: number) {
     this.editingReviewIndex = index;
     this.editingRating = this.reviewsToDisplay[index].rating;
     this.editingDescription = this.reviewsToDisplay[index].description;
   }
 
+  startEditingComment(index: number,comment:Comment) {
+    this.editingCommentIndex = index;
+    this.editingComment = comment
+  }
+
   // Método para cancelar la edición
   cancelEdit() {
     this.editingReviewIndex = null;
+    this.editingCommentIndex = null;
+  }
+
+  editComment() {
+    if (this.editingCommentIndex !== null) {
+      const commentToEdit = {
+        //provisorio, habria que modificalo para que no este vacio
+        comment: this.editingComment?.comment || ''
+      };
+      const commentOwner = this.editingComment?.commentOwner.id;
+      const reviewOwner = this.editingComment?.commentReview.reviewOwner.id;
+      if (commentOwner && reviewOwner) {
+        this.reviewService.editComment(this.idContent, reviewOwner,commentOwner , commentToEdit).subscribe(
+          result => {
+            console.log(result)
+            //obtener la lista de reseñas actualizada
+            this.getReviews();
+            // Limpiar los campos del formulario
+            this.editingComment = undefined;
+            this.editingCommentIndex = null;
+          }
+        );
+      }
+    }
+  }
+
+  deleteComment(commentOwner: number, reviewOwner: number) {
+    this.reviewService.deleteComment(this.idContent, reviewOwner, commentOwner).subscribe(
+      result => {
+        console.log(result)
+        //obtener la lista de reseñas actualizada
+        this.getReviews();
+      }
+    )
   }
 
   editReview() {
