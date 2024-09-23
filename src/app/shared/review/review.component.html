@@ -1,69 +1,115 @@
 <div class="container mt-4">
-    <h3 class="mb-4">Reseñas para {{ nameContent }}</h3>
-  
-    <!-- Formulario para enviar una reseña -->
-    <form (ngSubmit)="sendReview()" class="mb-4">
-      <div class="mb-3">
-        <label class="form-label">Calificación:</label>
-        <div class="rating">
-          <span *ngFor="let r of [1, 2, 3, 4, 5]" 
-                class="star" 
-                [ngClass]="{'filled': rating >= r}" 
-                (click)="setRating(r)">
-            ★
-          </span>
-        </div>
+  <h3 class="mb-4">Reseñas para {{ nameContent }}</h3>
+
+  <!-- Formulario para enviar una reseña -->
+  <form (ngSubmit)="sendReview()" class="mb-4">
+    <div class="mb-3">
+      <label class="form-label">Calificación:</label>
+      <div class="rating">
+        <span *ngFor="let r of [1, 2, 3, 4, 5]"
+              class="star" 
+              [ngClass]="{'filled': rating >= r}" 
+              (click)="setRating(r)">
+          ★
+        </span>
       </div>
-      
-      
-  
-      <div class="mb-3">
-        <label for="description" class="form-label">Descripción:</label>
-        <textarea [(ngModel)]="description" name="description" id="description" class="form-control" rows="3" placeholder="Escribe tu reseña aquí..."></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Descripción:</label>
+      <textarea [(ngModel)]="description" name="description" id="description" class="form-control" rows="3" placeholder="Escribe tu reseña aquí..."></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar Reseña</button>
+  </form>
+
+  <!-- Lista de reseñas -->
+  <div *ngIf="reviewsToDisplay.length > 0; else noReviews" class="list-group">
+    <div *ngFor="let review of reviewsToDisplay; let i = index" class="list-group-item">
+      <h5 class="mb-1">Calificación: {{ review.rating }}/5</h5>
+      <p class="mb-1">{{ review.description || 'Sin descripción' }}</p>
+      <small>Reseña por {{ review.reviewOwner.name }}</small>
+
+      <div class="mt-3">
+        <button *ngIf="review.reviewOwner.id === currentUserId" (click)="startEditingReview(i)" class="btn btn-warning btn-sm">Editar Reseña</button>
+        <button *ngIf="review.reviewOwner.id === currentUserId" (click)="deleteReview()" class="btn btn-danger btn-sm">Eliminar Reseña</button>
       </div>
-  
-      <button type="submit" class="btn btn-primary">Enviar Reseña</button>
-    </form>
-  
-    <!-- Lista de reseñas -->
-    <div *ngIf="reviewsToDisplay.length > 0; else noReviews" class="list-group">
-      <div *ngFor="let review of reviewsToDisplay; let i = index" class="list-group-item">
-        <h5 class="mb-1">Calificación: {{ review.rating }}/5</h5>
-        <p class="mb-1">{{ review.description || 'Sin descripción' }}</p>
-        <small>Reseña por {{ review.reviewOwner.name }}</small>
-      
-        <!-- Lista de comentarios para cada reseña -->
-        <div *ngIf="review.comments && review.comments.length > 0" class="mt-3">
-          <h6>Comentarios:</h6>
-          <ul class="list-group">
-            <li *ngFor="let comment of review.comments" class="list-group-item">
-              {{ comment.comment }} - <small>{{ comment.commentOwner.name }}</small>
-            </li>
-          </ul>
-        </div>
-      
-        <!-- Formulario para enviar un comentario -->
-        <form (ngSubmit)="sendComment(review.reviewOwner.id, i)" class="commentingArea">
+
+      <div *ngIf="editingReviewIndex===i" class="mt-3">
+        <h5>Editar reseña</h5>
+        <form (ngSubmit)="editReview()">
           <div class="mb-3">
-            <label for="comment" class="form-label">Comentario:</label>
-            <textarea [(ngModel)]="comments[i]" 
-                      name="comment" 
-                      id="comment" 
-                      class="form-control" 
-                      rows="1" 
-                      placeholder="Escribe tu comentario aquí..."
-                      required>
-            </textarea>
+            <label for="rating" class="form-label">Calificación:</label>
+            <div class="rating">
+              <span *ngFor="let r of [1, 2, 3, 4, 5]"
+                    class="star" 
+                    [ngClass]="{'filled': editingRating >= r}" 
+                    (click)="setEditingRating(r)">
+                ★
+              </span>
+            </div>
           </div>
-          <button type="submit" class="btn btn-primary">Comentar</button>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Descripción:</label>
+            <textarea [(ngModel)]="editingDescription" name="description" id="description" class="form-control" rows="3"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-success">Guardar Cambios</button>
+          <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancelar</button>
         </form>
       </div>
-      
+
+      <!-- Lista de comentarios para cada reseña -->
+      <div *ngIf="review.comments && review.comments.length > 0" class="mt-3">
+        <h6>Comentarios:</h6>
+        <ul class="list-group">
+          <li *ngFor="let comment of review.comments; let j = index" class="list-group-item">
+            {{ comment.comment }} - <small>{{ comment.commentOwner.name }}</small>
+
+            <!-- Botones de Editar y Eliminar Comentario -->
+            <div class="mt-2">
+              <button *ngIf="comment.commentOwner.id === currentUserId" (click)="startEditingComment(j,i, comment)" class="btn btn-warning btn-sm">Editar</button>
+              <button *ngIf="comment.commentOwner.id === currentUserId" (click)="deleteComment(comment.commentOwner.id, review.reviewOwner.id)" class="btn btn-danger btn-sm">Eliminar</button>
+            </div>
+
+            <!-- Formulario para editar comentario -->
+            <div *ngIf="editingCommentIndex === j && editingCommentReviewIndex===i" class="mt-3">
+              <h5>Editar comentario</h5>
+              <form (ngSubmit)="editComment()">
+                <div class="mb-3">
+                  <label for="comment" class="form-label">Comentario:</label>
+                  <textarea [(ngModel)]="editingComment!.comment" name="comment" id="comment" class="form-control" rows="2"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancelar</button>
+              </form>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Formulario para enviar un comentario -->
+      <form (ngSubmit)="sendComment(review.reviewOwner.id, i)" class="mt-3 commentingArea">
+        <div class="mb-3">
+          <label for="comment" class="form-label">Comentario:</label>
+          <textarea [(ngModel)]="comments[i]" 
+                    name="comment" 
+                    id="comment" 
+                    class="form-control" 
+                    rows="1" 
+                    placeholder="Escribe tu comentario aquí..."
+                    required>
+          </textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Comentar</button>
+      </form>
     </div>
-  
-    <!-- Mensaje en caso de que no haya reseñas -->
-    <ng-template #noReviews>
-      <p>No hay reseñas publicadas para esta pelicula.</p>
-    </ng-template>
   </div>
-  
+
+  <!-- Mensaje en caso de que no haya reseñas -->
+  <ng-template #noReviews>
+    <p>No hay reseñas publicadas para esta pelicula.</p>
+  </ng-template>
+</div>
