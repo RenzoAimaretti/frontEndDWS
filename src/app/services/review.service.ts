@@ -46,6 +46,15 @@ export class ReviewService {
       catchError(this.handleError))
   };
 
+  editReview(idContent:number,reviewToEdit:{rating:number,description:string}): Observable<any>{
+    const ownerId = this.authService.currentUserId.value;
+    return this.http.put(`${this.reviewUrl}${idContent}/${ownerId}`,reviewToEdit,this.httpOptions).pipe(
+      map((result:any)=>result.data),
+      tap(result=>console.log(result)),
+      catchError(this.handleError)
+    )
+  };
+
   postComment(idContent: number, idReviewOwner: number, commentToPost: { comment: string }): Observable<any> {
     this.authService.getIdFromToken();
     return this.authService.currentUser().pipe(
@@ -67,7 +76,6 @@ export class ReviewService {
       catchError(this.handleError)
     );
   }
-
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

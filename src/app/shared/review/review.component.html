@@ -32,6 +32,7 @@
         <p class="mb-1">{{ review.description || 'Sin descripción' }}</p>
         <small>Reseña por {{ review.reviewOwner.name }}</small>
         <div class="mt-3">
+          <button *ngIf="review.reviewOwner.id === currentUserId" (click)="editReview()" class="btn btn-warning btn-sm">Editar Reseña</button>
           <button *ngIf="review.reviewOwner.id === currentUserId" (click)="deleteReview()" class="btn btn-danger btn-sm">Eliminar Reseña</button>
         </div>
       

@@ -70,6 +70,23 @@ export class ReviewComponent {
       );
   };
 
+  editReview(){
+    let reviewToEdit = {
+      rating: this.rating,
+      description: this.description
+    }
+    this.reviewService.editReview(this.idContent,reviewToEdit).subscribe(
+      result=>{
+        console.log(result)
+        //obtener la lista de reseñas actualizada
+        this.getReviews();
+        // Limpiar los campos del formulario
+        this.rating = 1;
+        this.description = '';
+      }
+    )
+  }
+
   setRating(stars: number) {
     this.rating = stars;
     console.log(this.rating);
