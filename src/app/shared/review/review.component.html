@@ -91,7 +91,7 @@
       </div>
 
       <!-- Formulario para enviar un comentario -->
-      <form (ngSubmit)="sendComment(review.reviewOwner.id, i)" class="mt-3">
+      <form (ngSubmit)="sendComment(review.reviewOwner.id, i)" class="mt-3 commentingArea">
         <div class="mb-3">
           <label for="comment" class="form-label">Comentario:</label>
           <textarea [(ngModel)]="comments[i]" 
