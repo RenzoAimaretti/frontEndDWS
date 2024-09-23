@@ -104,9 +104,14 @@ export class ReviewComponent {
         comment: this.editingComment?.comment || ''
       };
       const commentOwner = this.editingComment?.commentOwner.id;
-      const reviewOwner = this.editingComment?.commentReview.reviewOwner.id;
+      const reviewOwner = this.editingComment?.commentReview.reviewOwner;
+      console.log(this.editingComment)
+      console.log('toy afuera')
+      console.log('commentOwner:', commentOwner)
+      console.log('reviewOwner:', reviewOwner)
       if (commentOwner && reviewOwner) {
-        this.reviewService.editComment(this.idContent, reviewOwner,commentOwner , commentToEdit).subscribe(
+        console.log('pase por aca')
+        this.reviewService.editComment(this.idContent, reviewOwner.id,commentOwner , commentToEdit).subscribe(
           result => {
             console.log(result)
             //obtener la lista de reseñas actualizada
