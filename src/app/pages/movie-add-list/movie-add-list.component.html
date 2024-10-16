@@ -13,7 +13,7 @@
     <div 
       *ngFor="let list of lists"
       class="list-item"
-      [class.selected]="selectedList === list.id"
+      [class.selected]="selectedList === list" 
       (click)="selectList(list)"
     >
       <span>{{ list.nameList }}</span>

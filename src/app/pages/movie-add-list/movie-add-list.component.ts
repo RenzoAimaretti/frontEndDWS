@@ -35,9 +35,10 @@ alreadyInList: boolean = false;
   }
 
   selectList(list: List): void {
-    this.selectedList = list;
-    
+    this.selectedList = list;  
+    console.log('Lista seleccionada:', this.selectedList); 
   }
+  
 
   addContent(): void {
     if (this.selectedList !== undefined) {
