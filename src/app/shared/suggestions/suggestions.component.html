@@ -1,0 +1,101 @@
+<div class="container mt-5">
+  <!-- Título de la página -->
+  <h2 class="mb-4 text-center">sugerencias</h2>
+
+  <!-- Formulario para agregar sugerencias -->
+  <div class="card shadow-lg mb-5">
+    <div class="card-header text-white">
+      <h5 class="card-title mb-0">
+        Dejar una sugerencia anonima para mejorar la pagina
+      </h5>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="suggestionForm" (ngSubmit)="postSuggestion()">
+        <!-- Campo de Título -->
+        <div class="form-group mb-3">
+          <label for="titleSuggestion">Titulo de la sugerencia</label>
+          <input
+            type="text"
+            id="titleSuggestion"
+            class="form-control"
+            placeholder="Mejoras del inicio"
+            formControlName="titleSuggestion"
+            [ngClass]="{
+              'is-invalid': titleSuggestion?.invalid && titleSuggestion?.touched
+            }"
+          />
+          <div
+            *ngIf="titleSuggestion?.invalid && titleSuggestion?.touched"
+            class="invalid-feedback"
+          >
+            Title is required.
+          </div>
+        </div>
+
+        <!-- Campo de Descripción -->
+        <div class="form-group mb-3">
+          <label for="description">Descripcion de la sugerencia</label>
+          <textarea
+            id="description"
+            class="form-control"
+            placeholder="Agregar listas nuevas..."
+            rows="3"
+            formControlName="description"
+            [ngClass]="{
+              'is-invalid': description?.invalid && description?.touched
+            }"
+          ></textarea>
+          <div
+            *ngIf="description?.invalid && description?.touched"
+            class="invalid-feedback"
+          >
+            Description is required.
+          </div>
+        </div>
+
+        <!-- Botón de envío -->
+        <button
+          type="submit"
+          class="btn btn-primary w-100"
+          [disabled]="suggestionForm.invalid"
+        >
+          Enviar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Listado de sugerencias -->
+  <div *ngIf="suggesionsList.length > 0" class="card shadow-lg">
+    <div class="card-header text-white">
+      <h5 class="card-title mb-0">Sugerencias de los usuarios</h5>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Descripcion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let suggestion of suggesionsList; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ suggestion.titleSuggestion }}</td>
+            <td>{{ suggestion.description }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Mensaje cuando no hay sugerencias -->
+  <div
+    *ngIf="suggesionsList.length === 0"
+    class="alert alert-warning text-center"
+    role="alert"
+  >
+    No suggestions available.
+  </div>
+</div>
