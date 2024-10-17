@@ -60,4 +60,9 @@ export class ListService {
     return this.http.put<{message: string, data:List}>(`${this.baseUrl + list.id}`, list).pipe(map((result: any) => result.data),
     catchError(this.handleError<List>('updateList')))
   }
+
+  deleteList(id:number): Observable<List> {
+    return this.http.delete<{message: string, data:List}>(`${this.baseUrl + id}`).pipe(map((result: any) => result.data),
+    catchError(this.handleError<List>('deleteList')))
+  }
 }

@@ -7,6 +7,7 @@ import { Movie } from '../../interface/movie';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service.js';
 
 @Component({
   selector: 'app-list-edit',
@@ -22,30 +23,43 @@ export class ListEditComponent {
   movies: Movie[] = [];
   searchQuery = '';
   showDelete = false;
+  userId?: number;
+  idCurrent?: number;
 
-  constructor(private listService: ListService, private TmdbService: TmdbService) {
+  constructor(private listService: ListService, private TmdbService: TmdbService, private authService: AuthService) {
     this.route.params.subscribe((params) => {
       this.listId = params['id'];
+      this.userId = params['userId'];
     });
   }
 
   ngOnInit(): void {
     if (this.listId !== undefined) {
-      this.listService.getList(this.listId).subscribe({
-        next: (response) => {
-          this.list = {
-            ...response,
-            contents: response.contents.map((content: any) => ({
-              ...content,
-              id: content.idContent
-            }))
-          };
-          this.loadMoviesForLists();
-        },
-        error: (error) => {
-          console.error(error);
-        },
-      });
+      this.authService.getIdFromToken()
+      this.authService.currentUser().subscribe({
+        next:(response)=>{
+          this.idCurrent=response;}})
+      if(this.idCurrent==this.userId){
+        console.log("el ususario coincide",this.userId);
+        this.listService.getList(this.listId).subscribe({
+          next: (response) => {
+            this.list = {
+              ...response,
+              contents: response.contents.map((content: any) => ({
+                ...content,
+                id: content.idContent
+              }))
+            };
+            this.loadMoviesForLists();
+          },
+          error: (error) => {
+            console.error(error);
+          },
+        });
+      }else{
+        console.log("el usuario no coincide",this.userId);
+        window.alert("No puedes editar las listas de otro usuario");
+      } 
     }
   }
 
@@ -105,13 +119,27 @@ export class ListEditComponent {
   saveList(): void {
     console.log(this.list)
     this.listService.updateList(this.list!).subscribe({
-      next: () => {
-        console.log('Lista guardada exitosamente');
+      next: (result) => {
+        console.log('Lista guardada exitosamente', result);
       },
       error: (error) => {
         console.error('Error guardando la lista:', error);
       },
     });
+  }
+
+  deleteList(): void {
+    let response = window.confirm('¿Estás seguro de que quieres eliminar la lista?');
+    if (response) {
+      this.listService.deleteList(this.listId!).subscribe({
+        next: (result) => {
+          console.log('Lista eliminada exitosamente', result);
+        },
+        error: (error) => {
+          console.error('Error eliminando la lista:', error);
+        },
+      });
+    }
   }
 
   getImageUrl(path: string): string {

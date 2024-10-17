@@ -42,9 +42,13 @@
   
     <!-- Botones para guardar o cancelar -->
     <div class="button-container">
-      <button class="save-button" (click)="saveList()">Guardar Cambios</button>
+      <button class="save-button" [routerLink]="['/user/lists/', userId]" (click)="saveList()">Guardar Cambios</button>
       <button class="cancel-button" [routerLink]="'/home'">Cancelar</button>
     </div>
+
+    <div>
+      <button class="delete-button" [routerLink]="['/user/lists/', userId]" (click)="deleteList()">Eliminar Lista</button>
+    </div>  
   </div>
   
   <ng-template #noList>
