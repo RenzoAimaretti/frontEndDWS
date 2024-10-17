@@ -70,7 +70,7 @@ export class ListCreateComponent {
       return this.listForm.get('title');
     }
     async searchMovie(): Promise<void> {
-      const titleValue = this.title?.value; // Obtener el valor del campo 'title' desde el FormGroup
+      const titleValue = this.title?.value;
       this.tmdbService.searchByTitle(titleValue).subscribe({
         next: (movies) => (this.movies = movies),
         error: (error) => console.log(error),

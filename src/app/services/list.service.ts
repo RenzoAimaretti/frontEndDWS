@@ -56,4 +56,8 @@ export class ListService {
     catchError(this.handleError<List>('createList')))
   }
 
+  updateList(list:List): Observable<List> {
+    return this.http.put<{message: string, data:List}>(`${this.baseUrl + list.id}`, list).pipe(map((result: any) => result.data),
+    catchError(this.handleError<List>('updateList')))
+  }
 }

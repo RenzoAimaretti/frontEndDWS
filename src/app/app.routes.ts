@@ -14,6 +14,7 @@ import { UserEditComponent } from './pages/user-edit/user-edit.component.js';
 import { ListDetailsComponent } from './pages/list-details/list-details.component.js';
 import { ListCreateComponent } from './pages/list-create/list-create.component.js';
 import { UserListsComponent } from './pages/user-lists/user-lists.component.js';
+import { ListEditComponent } from './pages/list-edit/list-edit.component.js';
 export const routes: Routes = [
   //Rutas de la aplicacion
   { path: 'users', component: UserComponent },
@@ -30,7 +31,8 @@ export const routes: Routes = [
   {path: 'lists/:id', component: ListDetailsComponent},
   {path: 'createList', component: ListCreateComponent},
   {path: 'createList/:id', component: ListCreateComponent},
-  {path: 'user/lists/:id', component: UserListsComponent}
+  {path: 'user/lists/:id', component: UserListsComponent},
+  {path: 'list/edit/:id', component: ListEditComponent}
 
 ];
 
