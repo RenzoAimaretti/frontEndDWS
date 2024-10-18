@@ -5,6 +5,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable,throwError, BehaviorSubject, tap, map } from 'rxjs';
 import { User } from '../interface/user';
 import { CookieService } from 'ngx-cookie-service';
+
 @Injectable({providedIn: 'root'})
 export class AuthService {
   authUrl = 'http://localhost:3000/api/auth/';
@@ -13,6 +14,7 @@ export class AuthService {
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   currentUserData: BehaviorSubject<string> = new BehaviorSubject<string>('')
   currentUserId= new BehaviorSubject<number>(-1)
+  currentisAdmin=new BehaviorSubject<boolean>(false);
   constructor(private http:HttpClient,private cookieService: CookieService) { 
     const accessToken = this.cookieService.get('access_token');
     this.currentUserLoginOn = new BehaviorSubject<boolean>(!!accessToken);
