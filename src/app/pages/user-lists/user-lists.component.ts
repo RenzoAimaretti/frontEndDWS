@@ -27,18 +27,24 @@ export class UserListsComponent {
   }
 
   async ngOnInit(): Promise<void> {
+    // Escuchar queryParams para verificar si hay que refrescar la lista
     this.route.queryParams.subscribe(queryParams => {
-      this.authService.getIdFromToken()
-      this.authService.currentUser().subscribe({
-        next:(response)=>{
-          this.idCurrent=response;}})
-      if(this.idCurrent==this.userId){
-        console.log("el ususario coincide",this.userId);
-        this.userLists();
+      if (queryParams['refresh'] === 'true') {
+        this.userLists(); // Recargar las listas
       }
-      else{
-        console.log("el usuario no coincide",this.userId);
-        window.alert("No puedes ver las listas de otro usuario");
+    });
+
+    this.authService.getIdFromToken();
+    this.authService.currentUser().subscribe({
+      next: (response) => {
+        this.idCurrent = response;
+        if (this.idCurrent == this.userId) {
+          console.log("el usuario coincide", this.userId);
+          this.userLists();
+        } else {
+          console.log("el usuario no coincide", this.userId);
+          window.alert("No puedes ver las listas de otro usuario");
+        }
       }
     });
   }

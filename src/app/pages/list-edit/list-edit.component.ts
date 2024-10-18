@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ListService } from '../../services/list.service';
 import { TmdbService } from '../../services/tmdb-service.service.js';
 import { List } from '../../interface/list';
@@ -26,7 +26,7 @@ export class ListEditComponent {
   userId?: number;
   idCurrent?: number;
 
-  constructor(private listService: ListService, private TmdbService: TmdbService, private authService: AuthService) {
+  constructor(private listService: ListService, private TmdbService: TmdbService, private authService: AuthService, private router: Router) {
     this.route.params.subscribe((params) => {
       this.listId = params['id'];
       this.userId = params['userId'];
@@ -121,6 +121,7 @@ export class ListEditComponent {
     this.listService.updateList(this.list!).subscribe({
       next: (result) => {
         console.log('Lista guardada exitosamente', result);
+        this.router.navigate(['/user/lists', this.userId], { queryParams: { refresh: true } });
       },
       error: (error) => {
         console.error('Error guardando la lista:', error);
@@ -134,6 +135,7 @@ export class ListEditComponent {
       this.listService.deleteList(this.listId!).subscribe({
         next: (result) => {
           console.log('Lista eliminada exitosamente', result);
+          this.router.navigate(['/user/lists', this.userId], { queryParams: { refresh: true } });
         },
         error: (error) => {
           console.error('Error eliminando la lista:', error);
