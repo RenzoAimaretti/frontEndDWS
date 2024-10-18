@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SubscripcionService } from '../../services/subscripcion.service'; // Ajusta la ruta según tu estructura
-
+//subscription
 @Component({
   selector: 'app-crear-suscripcion',
   templateUrl: './create-subscripcion.component.html',
