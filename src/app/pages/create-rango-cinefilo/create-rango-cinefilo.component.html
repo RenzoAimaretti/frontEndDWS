@@ -1,0 +1,12 @@
+<h2>Crear Nuevo Rango Cinefilo</h2>
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="nameRango">Nombre del Rango:</label>
+    <input type="text" id="nameRango" [(ngModel)]="rangoCinefilo.nameRango" name="nameRango" required>
+  </div>
+  <div>
+    <label for="descriptionRango">Descripción del Rango:</label>
+    <input type="text" id="descriptionRango" [(ngModel)]="rangoCinefilo.descriptionRango" name="descriptionRango" required>
+  </div>
+  <button type="submit">Crear Rango</button>
+</form>

@@ -1,0 +1,74 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif; /* Tipografía profesional */
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f2f5; /* Color de fondo suave */
+}
+
+/* Estilo del contenedor del formulario */
+form {
+    background: #62455b ;/* Fondo blanco para el formulario */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+    padding: 30px; /* Espaciado interno */
+    max-width: 500px; /* Ancho máximo del formulario */
+    margin: auto; /* Centrar el formulario en la página */
+}
+
+/* Estilo de los encabezados */
+h2 {
+    text-align: center; /* Centrar el texto */
+    color: #ffffff; /* Color de texto oscuro */
+    margin-bottom: 20px; /* Espacio debajo del encabezado */
+}
+
+/* Estilo de las etiquetas */
+label {
+    display: block; /* Hacer que las etiquetas ocupen el ancho completo */
+    margin-bottom: 5px; /* Espacio debajo de las etiquetas */
+    color: #ffffff; /* Color gris oscuro para las etiquetas */
+    font-weight: bold; /* Negrita para las etiquetas */
+}
+
+/* Estilo de los campos de entrada */
+input[type="text"] {
+    width: 100%; /* Ancho completo */
+    background: #f9f9f9; /* Fondo claro para los campos */
+    padding: 12px; /* Espaciado interno */
+    border: 1px solid #cccccc; /* Bordes suaves */
+    border-radius: 5px; /* Bordes redondeados */
+    box-sizing: border-box; /* Incluir el padding en el ancho total */
+    margin-bottom: 15px; /* Espacio debajo de los campos de entrada */
+    transition: border-color 0.3s; /* Efecto de transición en el color del borde */
+}
+
+input[type="text"]:focus {
+    border-color: #007BFF; /* Color del borde al enfocar */
+    outline: none; /* Sin contorno */
+}
+
+/* Estilo del botón */
+button {
+    background-color: #008a35; /* Color de fondo azul */
+    color: #ffffff; /* Color de texto blanco */
+    padding: 12px 15px; /* Espaciado interno */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    width: 100%; /* Ancho completo */
+    transition: background-color 0.3s; /* Efecto de transición en el color de fondo */
+    font-size: 16px; /* Tamaño de fuente del botón */
+}
+
+button:hover {
+    background-color: #0056b3; /* Color de fondo más oscuro al pasar el ratón */
+}
+
+/* Estilo de los mensajes de error */
+.error-message {
+    color: #d9534f; /* Color rojo para mensajes de error */
+    font-size: 0.9em; /* Tamaño de fuente un poco más pequeño */
+    margin-top: -10px; /* Espacio negativo para acercar al campo */
+    margin-bottom: 10px; /* Espacio debajo del mensaje de error */
+}
