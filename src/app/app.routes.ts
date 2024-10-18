@@ -13,25 +13,39 @@ import { RegisterComponent } from './pages/register/register.component';
 import { UserEditComponent } from './pages/user-edit/user-edit.component.js';
 import { ShowUsersComponent } from './pages/show-users/show-users.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 export const routes: Routes = [
   //Rutas de la aplicacion
   { path: 'users', component: UserComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  {path: 'home', component: HomeComponent},
-  {path: 'users/:id', component: UserDetailsComponent},
-  {path:'movie/:id',component : MovieComponent},
-  {path: 'dashboard', component: DashboardComponent,canActivate:[authGuard]},
-  {path: 'login', component: LoginComponent},
-  {path: 'search/movies',component:ShowMoviesComponent},
-  {path: 'search/lists',component:ShowListsComponent},
-  {path: 'register', component:RegisterComponent},
-  {path: 'dashboard/edit', component:UserEditComponent,canActivate:[authGuard]},
+  { path: 'home', component: HomeComponent },
+  { path: 'users/:id', component: UserDetailsComponent },
+  { path: 'movie/:id', component: MovieComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'login', component: LoginComponent },
+  { path: 'search/movies', component: ShowMoviesComponent },
+  { path: 'search/lists', component: ShowListsComponent },
+  { path: 'register', component: RegisterComponent },
+  {
+    path: 'dashboard/edit',
+    component: UserEditComponent,
+    canActivate: [authGuard],
+  },
   { path: 'search/users', component: ShowUsersComponent },
   { path: 'user-profile/:id', component: UserProfileComponent },
+  {
+    path: 'adminDashboard',
+    component: AdminDashboardComponent,
+    canActivate: [authGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
