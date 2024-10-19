@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { SubscriptionService } from '../../services/subscription.service';
-import { FormsModule } from '@angular/forms'; // Importar FormsModule
+import { FormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-create-subscription',
   standalone: true,
-  imports: [FormsModule], // Agregar FormsModule aquí
+  imports: [FormsModule], 
   templateUrl: './create-subscription.component.html',
   styleUrls: ['./create-subscription.component.css']
 })

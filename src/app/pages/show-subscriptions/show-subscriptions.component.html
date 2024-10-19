@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Resultados para Subscripción: "{{ searchTerm }}"</h1>
+  
+    <div *ngIf="results.length > 0; else noResults">
+      <div *ngFor="let result of results" class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">{{ result.name }}</h5>
+              <p *ngIf="result.cantidadSem">Cantidad Semanal: {{ result.cantidadSem }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <ng-template #noResults>
+      <p>No se encontraron suscripciones con ese nombre</p>
+    </ng-template>
+  </div>
+  

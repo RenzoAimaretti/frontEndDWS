@@ -1,7 +1,7 @@
 :host {
   display: block;
   padding: 20px;
-  background: linear-gradient(135deg, #141827 0%, #1e2230 100%); /* Degradado de fondo */
+  background: linear-gradient(135deg, #141827 0%, #1e2230 100%);
   color: white; 
   font-family: Arial, sans-serif; 
 }
@@ -9,23 +9,23 @@
 ul {
   list-style-type: none;
   padding: 0;
-  margin: 0 auto; /* Centrar las cajas */
-  max-width: 600px; /* Ancho máximo para las cajas */
+  margin: 0 auto; 
+  max-width: 600px; 
 }
 
 li {
   background-color: #62455b; 
   border: 1px solid #444; 
   margin-bottom: 15px;
-  padding: 15px; /* Añadir padding para espacio interno */
+  padding: 15px; 
   border-radius: 8px; 
-  transition: background-color 0.3s, transform 0.3s; /* Añadir animación al hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para las cajas */
+  transition: background-color 0.3s, transform 0.3s; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 li:hover {
   background-color: #141827; 
-  transform: translateY(-3px); /* Efecto de elevación en hover */
+  transform: translateY(-3px); 
 }
 
 li a {
@@ -33,12 +33,12 @@ li a {
   color: white; 
   font-weight: bold;
   display: block;
-  text-align: center; /* Centrar el texto */
+  text-align: center;
 }
 
 p {
   color: white;
   text-align: center;
   font-size: 16px;
-  margin-top: 20px; /* Espacio entre mensaje y lista */
+  margin-top: 20px; 
 }

@@ -16,6 +16,9 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { CreateRangoCinefiloComponent } from './pages/create-rango-cinefilo/create-rango-cinefilo.component'; 
 import { CreateSubscriptionComponent } from './pages/create-subscription/create-subscription.component'; 
+import { ShowRangosComponent } from './pages/show-rangos/show-rangos.component';
+import { ShowSubscriptionsComponent } from './pages/show-subscriptions/show-subscriptions.component';
+
 export const routes: Routes = [
   //Rutas de la aplicacion
   { path: 'users', component: UserComponent },
@@ -23,6 +26,8 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'users/:id', component: UserDetailsComponent },
   { path: 'movie/:id', component: MovieComponent },
+  { path: 'search/rangoCinefilo', component: ShowRangosComponent },
+  { path: 'search/subscriptions', component: ShowSubscriptionsComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
