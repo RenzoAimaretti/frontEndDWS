@@ -1,13 +1,16 @@
 import { Component,inject } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Movie } from '../../interface/movie.js';
 import { TmdbService} from '../../services/tmdb-service.service.js';
 import { CommonModule } from '@angular/common';
 import { ReviewComponent } from '../../shared/review/review.component.js';
+import { AuthService } from '../../services/auth.service.js';
+import { UserService } from '../../services/user.service.js';
+import { MovieAddListComponent } from '../movie-add-list/movie-add-list.component.js';
 @Component({
   selector: 'app-movie',
   standalone: true,
-  imports: [CommonModule,ReviewComponent],
+  imports: [CommonModule,ReviewComponent,RouterModule,MovieAddListComponent],
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.css'
 })
@@ -18,7 +21,12 @@ export class MovieComponent {
     genreString: string='';
     imageUrl: string='';
     posterUrl: string='';
-    constructor(private tmdbService: TmdbService) {
+    
+    showModal = false;
+    userId?:number
+    userLoginOn:boolean = false;
+    lists:any[] = [];
+    constructor(private tmdbService: TmdbService, private authService:AuthService, private userServices:UserService) {
       this.route.params.subscribe(params => {
         this.movieId = Number(params['id']);
       });
@@ -40,4 +48,57 @@ export class MovieComponent {
           error: (error) => console.log(error)
         });
     }
-}
+
+    handleModalChange(showModal: boolean) {
+      this.showModal = showModal;
+      console.log('Modal visibility changed:', this.showModal);
+    }
+
+    showList(): void {
+      this.authService.getIdFromToken();
+      this.authService.isUserLoggedIn().subscribe({
+        next: (response) => {
+          this.userLoginOn = response;
+            this.authService.currentUser().subscribe({
+              next: (response) => {
+                this.userId = response;
+                if (this.userId !== -1) {
+                  this.userServices.userLists(this.userId).subscribe({
+                    next: (response) => {
+                      this.lists = response;
+                      console.log(this.lists);
+                      // Mover el chequeo aquí después de que `this.lists` haya sido actualizado.
+                      if (this.lists.length !== 0) {
+                        this.showModal = true;
+                        console.log("hay listas");
+                        console.log(this.showModal)
+                      } else {
+                        console.log('no hay listas');
+                        this.showModal = true;
+                        console.log(this.showModal);
+                      }
+                    },
+                    error: (err) => {
+                      console.error('Error obteniendo las listas', err);
+                    }
+                  });
+                  
+                }else {
+                  console.log('no hay usuario logueado')
+                  window.alert('Debes iniciar sesión para agregar a una lista')}
+                  
+              },
+              error: (err) => {
+                console.error('Error obteniendo el usuario actual', err);
+              }
+            });
+        },
+        error: (err) => {
+          console.error('Error verificando si el usuario está logueado', err);
+        }
+      });
+    }
+    closeModal() {
+      this.showModal = false;
+    }
+   }

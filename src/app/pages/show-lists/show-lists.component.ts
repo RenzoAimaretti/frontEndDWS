@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
 import { ListService } from '../../services/list.service';
@@ -11,7 +11,7 @@ import { SearchComponent } from '../search/search.component';
   templateUrl: './show-lists.component.html',
   styleUrls: ['./show-lists.component.css'],
   standalone: true,
-  imports: [FormsModule, CommonModule, SearchComponent]
+  imports: [FormsModule, CommonModule, SearchComponent, RouterModule]
 })
 export class ShowListsComponent implements OnInit {
   lists: List[] = [];
