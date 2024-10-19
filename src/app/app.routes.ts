@@ -34,9 +34,9 @@ export const routes: Routes = [
   {path: 'createList', component: ListCreateComponent},
   {path: 'createList/:id', component: ListCreateComponent},
   {path: 'user/lists/:id', component: UserListsComponent},
-  {path: 'list/edit/:id/:userId', component: ListEditComponent}
+  {path: 'list/edit/:id/:userId', component: ListEditComponent},
   { path: 'search/users', component: ShowUsersComponent },
-  { path: 'user-profile/:id', component: UserProfileComponent },
+  { path: 'user-profile/:id', component: UserProfileComponent }
 ];
 
 @NgModule({
