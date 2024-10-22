@@ -1,17 +1,23 @@
-
-
-<div *ngIf="resultados.length > 0; else noResults">
-  <div *ngFor="let rango of resultados" class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="card-title">{{ rango.nameRango }}</h5>
-          <p *ngIf="rango.descriptionRango">{{ rango.descriptionRango }}</p>
+<div class="container">
+    <h1>Resultados de Rangos</h1>
+    <div class="row justify-content-center">
+      <div *ngIf="resultados.length > 0; else noResults">
+        <div *ngFor="let rango of resultados" class="col-12 col-md-4 mb-3">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">{{ rango.nameRango }}</h5>
+              <p class="card-text" *ngIf="rango.descriptionRango">{{ rango.descriptionRango }}</p>
+              <div class="d-flex justify-content-center"> 
+                <button (click)="editarRangoCinefilo(rango)" class="btn btn-primary me-2">Editar</button>
+                <button (click)="eliminarRangoCinefilo(rango.id)" class="btn btn-danger">Eliminar</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <ng-template #noResults>
+      <p>No se encontraron rangos con ese nombre</p>
+    </ng-template>
   </div>
-</div>
-<ng-template #noResults>
-  <p>No se encontraron rangos con ese nombre</p>
-</ng-template>
+  

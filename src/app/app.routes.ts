@@ -18,7 +18,8 @@ import { CreateRangoCinefiloComponent } from './pages/create-rango-cinefilo/crea
 import { CreateSubscriptionComponent } from './pages/create-subscription/create-subscription.component'; 
 import { ShowRangosComponent } from './pages/show-rangos/show-rangos.component';
 import { ShowSubscriptionsComponent } from './pages/show-subscriptions/show-subscriptions.component';
-
+import { EditarSubscripcionComponent } from './pages/editar-subscripcion/editar-subscripcion.component';
+import { EditarRangoCinefiloComponent } from './pages/editar-rango-cinefilo/editar-rango-cinefilo.component';
 export const routes: Routes = [
   //Rutas de la aplicacion
   { path: 'users', component: UserComponent },
@@ -51,6 +52,8 @@ export const routes: Routes = [
   },
   { path: 'create-rango-cinefilo', component: CreateRangoCinefiloComponent },
   { path: 'create-subscription', component: CreateSubscriptionComponent },
+  { path: 'editar-subscripcion/:id', component: EditarSubscripcionComponent },
+  { path: 'editar-rango-cinefilo/:id', component: EditarRangoCinefiloComponent },
 ];
 
 @NgModule({
@@ -58,3 +61,4 @@ export const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
+

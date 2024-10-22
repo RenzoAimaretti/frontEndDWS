@@ -1,19 +1,21 @@
 <div class="container">
-    <h1>Resultados para Subscripción: "{{ searchTerm }}"</h1>
-  
-    <div *ngIf="results.length > 0; else noResults">
-      <div *ngFor="let result of results" class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card h-100">
+    <h1>Resultados de Subscripción</h1>
+    <div class="row justify-content-center">
+      <div *ngIf="results.length > 0; else noResults">
+        <div *ngFor="let result of results" class="col-12 col-md-4 mb-3">
+          <div class="card text-center">
             <div class="card-body">
               <h5 class="card-title">{{ result.name }}</h5>
-              <p *ngIf="result.cantidadSem">Cantidad Semanal: {{ result.cantidadSem }}</p>
+              <p class="card-text">Cantidad Semanal: {{ result.cantidadSem }}</p>
+              <div class="d-flex justify-content-center"> 
+                <button (click)="editarSubscription(result)" class="btn btn-primary me-2">Editar</button>
+                <button (click)="eliminarSubscription(result.id)" class="btn btn-danger">Eliminar</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
     <ng-template #noResults>
       <p>No se encontraron suscripciones con ese nombre</p>
     </ng-template>

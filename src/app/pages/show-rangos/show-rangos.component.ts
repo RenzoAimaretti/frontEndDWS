@@ -1,9 +1,9 @@
-// show-rangos.component.ts
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RangoCinefiloService } from '../../services/rangoCinefilo.service'; 
 import { RangoCinefilo } from '../../interface/rangoCinefilo'; 
-import { CommonModule } from '@angular/common'
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-show-rangos',
   standalone: true,
@@ -15,7 +15,11 @@ export class ShowRangosComponent implements OnInit {
   query!: string;
   resultados: RangoCinefilo[] = []; 
 
-  constructor(private route: ActivatedRoute, private rangoCinefiloService: RangoCinefiloService) {}
+  constructor(
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private rangoCinefiloService: RangoCinefiloService
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -29,5 +33,19 @@ export class ShowRangosComponent implements OnInit {
       console.log('RangoCinefilo search resultados:', result);
       this.resultados = result; 
     });
+  }
+
+  editarRangoCinefilo(rangoCinefilo: RangoCinefilo): void {
+   
+    this.router.navigate(['/editar-rango-cinefilo', rangoCinefilo.id]);
+  }
+
+  eliminarRangoCinefilo(id: number | undefined): void {
+    if (confirm('¿Estás seguro de que deseas eliminar este rango cinefilo?')) {
+      this.rangoCinefiloService.deleteRangoCinefilo(id!).subscribe(() => {
+        
+        this.resultados = this.resultados.filter(rango => rango.id !== id);
+      });
+    }
   }
 }
