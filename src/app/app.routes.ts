@@ -14,12 +14,13 @@ import { UserEditComponent } from './pages/user-edit/user-edit.component.js';
 import { ShowUsersComponent } from './pages/show-users/show-users.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
-import { CreateRangoCinefiloComponent } from './pages/create-rango-cinefilo/create-rango-cinefilo.component'; 
-import { CreateSubscriptionComponent } from './pages/create-subscription/create-subscription.component'; 
+import { CreateRangoCinefiloComponent } from './pages/create-rango-cinefilo/create-rango-cinefilo.component';
+import { CreateSubscriptionComponent } from './pages/create-subscription/create-subscription.component';
 import { ShowRangosComponent } from './pages/show-rangos/show-rangos.component';
 import { ShowSubscriptionsComponent } from './pages/show-subscriptions/show-subscriptions.component';
 import { EditarSubscripcionComponent } from './pages/editar-subscripcion/editar-subscripcion.component';
 import { EditarRangoCinefiloComponent } from './pages/editar-rango-cinefilo/editar-rango-cinefilo.component';
+import { SuggestionsManagerComponent } from './pages/suggestions-manager/suggestions-manager.component';
 export const routes: Routes = [
   //Rutas de la aplicacion
   { path: 'users', component: UserComponent },
@@ -53,7 +54,15 @@ export const routes: Routes = [
   { path: 'create-rango-cinefilo', component: CreateRangoCinefiloComponent },
   { path: 'create-subscription', component: CreateSubscriptionComponent },
   { path: 'editar-subscripcion/:id', component: EditarSubscripcionComponent },
-  { path: 'editar-rango-cinefilo/:id', component: EditarRangoCinefiloComponent },
+  {
+    path: 'editar-rango-cinefilo/:id',
+    component: EditarRangoCinefiloComponent,
+  },
+  {
+    path: 'manage-suggestions',
+    component: SuggestionsManagerComponent,
+    canActivate: [authGuard],
+  },
 ];
 
 @NgModule({
@@ -61,4 +70,3 @@ export const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-

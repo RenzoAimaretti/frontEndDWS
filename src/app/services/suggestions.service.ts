@@ -54,9 +54,9 @@ export class SuggestionsService {
       );
   }
 
-  editSuggestion(
+  reviseSuggestion(
     idSuggestion: number,
-    suggestionToEdit: { titleSuggestion: string; description: string }
+    suggestionToEdit: { admin: Number; comentarioAdmin: string; estado: string }
   ): Observable<any> {
     return this.http
       .put(

@@ -17,6 +17,8 @@ import { Admin } from '../interface/admin';
 export class AuthService {
   authUrl = 'http://localhost:3000/api/auth/';
   dashboardUrl = 'http://localhost:3000/api/dashboard/';
+  dashboardAdminUrl = 'http://localhost:3000/api/dashboard/admin';
+  adminUrl = 'http://localhost:3000/api/admin/';
 
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
@@ -74,12 +76,12 @@ export class AuthService {
     return this.http.post<any>(`${this.authUrl}login/admin`, credentials).pipe(
       tap((userData) => {
         const { data, token } = userData;
-        this.currentUserId.next(data.id);
+        this.currentAdminId.next(data.id);
         this.cookieService.set('access_admin_token', token);
-        this.currentUserData.next(userData);
-        this.currentUserLoginOn.next(true);
-        this.getIdFromToken();
-        console.log(this.currentUserId.value);
+        this.currentAdminData.next(userData);
+        this.currentAdminLoginOn.next(true);
+        this.getAdminIdFromToken();
+        console.log(this.currentAdminId.value);
       }),
       catchError(this.handleError)
     );
@@ -93,10 +95,16 @@ export class AuthService {
   currentUser(): Observable<number> {
     return this.currentUserId.asObservable();
   }
+  currentAdmin(): Observable<number> {
+    console.log(this.currentAdminId.value);
+    return this.currentUserId.asObservable();
+  }
 
   getIdFromToken(): void {
+    const token = this.cookieService.get('access_token');
+    const headers = { Authorization: `${token}` };
     this.http
-      .get<any>(this.dashboardUrl)
+      .get<any>(this.dashboardUrl, { headers })
       .pipe(
         map((result: any) => result), // Mapear solo el ID del resultado
         catchError(this.handleError)
@@ -107,14 +115,17 @@ export class AuthService {
   }
 
   getAdminIdFromToken(): void {
+    const token = this.cookieService.get('access_admin_token');
+    const headers = { Authorization: `${token}` };
     this.http
-      .get<any>(`${this.dashboardUrl}admin`)
+      .get<any>(this.dashboardAdminUrl, { headers })
       .pipe(
         map((result: any) => result), // Mapear solo el ID del resultado
         catchError(this.handleError)
       )
       .subscribe((adminId: number) => {
         this.currentAdminId.next(adminId); // Guardar el ID en el BehaviorSubject
+        console.log(adminId); // Mostrar el resultado por consola
       });
   }
 
@@ -146,5 +157,11 @@ export class AuthService {
 
   isAdminLoggedIn(): Observable<boolean> {
     return this.currentAdminLoginOn.asObservable();
+  }
+
+  getAdmin(): Observable<Admin> {
+    return this.http.get<Admin>(
+      `${this.adminUrl}/${this.currentAdminId.value}`
+    );
   }
 }

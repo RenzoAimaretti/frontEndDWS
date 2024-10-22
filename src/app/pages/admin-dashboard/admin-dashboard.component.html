@@ -1,13 +1,20 @@
-<app-search-subscription></app-search-subscription>
-<div class="admin-dashboard">
-    <div class="button-container">
-      <button (click)="goToCreateSubscription()" class="btn">
-        Crear Subscripción
-      </button>
-  
-      <button (click)="goToCreateRangoCinefilo()" class="btn">
-        Crear Rango Cinefilo
-      </button>
-    </div>
+<div *ngIf="adminLoginOn" class="admin-dashboard">
+  <app-search-subscription></app-search-subscription>
+  <h1>Panel de administrador</h1>
+  <div class="adminData">
+    <p>Nombre: {{ admin?.name }}</p>
+    <p>Email: {{ admin?.email }}</p>
   </div>
-  
+
+  <div class="button-container">
+    <button (click)="goToCreateSubscription()" class="btn">
+      Crear Subscripción
+    </button>
+
+    <button (click)="goToCreateRangoCinefilo()" class="btn">
+      Crear Rango Cinefilo
+    </button>
+
+    <button (click)="goToManageSuggestions()">Gestionar sugerencias</button>
+  </div>
+</div>
