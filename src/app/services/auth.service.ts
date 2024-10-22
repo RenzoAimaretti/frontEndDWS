@@ -104,7 +104,7 @@ export class AuthService {
     const token = this.cookieService.get('access_token');
     const headers = { Authorization: `${token}` };
     this.http
-      .get<any>(this.dashboardUrl, { headers })
+      .get<any>(this.dashboardUrl)
       .pipe(
         map((result: any) => result), // Mapear solo el ID del resultado
         catchError(this.handleError)
@@ -116,9 +116,8 @@ export class AuthService {
 
   getAdminIdFromToken(): void {
     const token = this.cookieService.get('access_admin_token');
-    const headers = { Authorization: `${token}` };
     this.http
-      .get<any>(this.dashboardAdminUrl, { headers })
+      .get<any>(this.dashboardAdminUrl)
       .pipe(
         map((result: any) => result), // Mapear solo el ID del resultado
         catchError(this.handleError)
