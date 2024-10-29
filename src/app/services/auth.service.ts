@@ -97,12 +97,10 @@ export class AuthService {
   }
   currentAdmin(): Observable<number> {
     console.log(this.currentAdminId.value);
-    return this.currentUserId.asObservable();
+    return this.currentAdminId.asObservable();
   }
 
   getIdFromToken(): void {
-    const token = this.cookieService.get('access_token');
-    const headers = { Authorization: `${token}` };
     this.http
       .get<any>(this.dashboardUrl)
       .pipe(
@@ -115,7 +113,6 @@ export class AuthService {
   }
 
   getAdminIdFromToken(): void {
-    const token = this.cookieService.get('access_admin_token');
     this.http
       .get<any>(this.dashboardAdminUrl)
       .pipe(
