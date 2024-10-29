@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 export class SuggestionsManagerComponent {
   suggestions: Suggestion[] = [];
   admin?: number;
+  //TRASLADAR A UNA COMPONENTE NUEVA ASI NO SE REPITEN LOS COMENTARIOS PARA CADA SUGERENCIA
+  //SIMILAR A REVIEW Y COMMENTS
   adminComment: string = '';
 
   constructor(
@@ -64,5 +66,10 @@ export class SuggestionsManagerComponent {
     this.suggestionsService
       .reviseSuggestion(idSuggestion, suggestionToEdit)
       .subscribe(() => this.getSuggestions());
+  }
+  deleteSuggestion(idSuggestion: number): void {
+    this.suggestionsService.deleteSuggestion(idSuggestion).subscribe(() => {
+      this.getSuggestions();
+    });
   }
 }
