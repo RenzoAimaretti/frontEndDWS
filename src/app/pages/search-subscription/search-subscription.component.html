@@ -1,0 +1,24 @@
+<div class="container">
+  <!-- Campo de entrada para la búsqueda -->
+  <div class="form-group">
+    <input 
+      type="text" 
+      [(ngModel)]="input" 
+      class="form-control" 
+      placeholder="Escribe tu búsqueda..." 
+    />
+  </div>
+
+  <ul class="nav nav-pills nav-justified">
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="selected === 'rangoCinefilo'" (click)="selectSearchType('rangoCinefilo')">RangoCinefilo</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="selected === 'subscripcion'" (click)="selectSearchType('subscripcion')">Subscripción</a>
+    </li>
+  </ul>
+
+  <button class="btn btn-primary mt-3" (click)="selected === 'rangoCinefilo' ? searchRangoCinefilo() : searchSubscription()">
+    Buscar
+  </button>
+</div>

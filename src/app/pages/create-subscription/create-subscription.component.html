@@ -1,0 +1,13 @@
+<h2>Crear Nueva subscripcion</h2>
+<form (ngSubmit)="onSubmit()" #subscriptionForm="ngForm">
+    <div>
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" [(ngModel)]="subscription.name" name="name" required>
+    </div>
+    <div>
+      <label for="cantidadSem">Cantidad Semanal:</label>
+      <input type="number" id="cantidadSem" [(ngModel)]="subscription.cantidadSem" name="cantidadSem" required>
+    </div>
+    <button type="submit">Crear Subscripción</button>
+  </form>
+  

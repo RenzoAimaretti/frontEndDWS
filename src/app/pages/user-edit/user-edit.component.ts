@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../interface/user.js';
 import { AuthService } from '../../services/auth.service.js';
 import { UserService } from '../../services/user.service.js';
-import { RangoCinefiloServiceService } from '../../services/rango-cinefilo-service.service.js';
-import { RangoCinefilo } from '../../interface/RangoCinefilo.js';
-import { Subscription } from '../../interface/Subscription.js';
+import { RangoCinefiloService } from '../../services/rangoCinefilo.service.js';
+import { RangoCinefilo } from '../../interface/rangoCinefilo.js';
+import { Subscription } from '../../interface/subscription.js';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 

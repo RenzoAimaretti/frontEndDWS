@@ -1,5 +1,5 @@
 export interface Subscription{
-    id:number,
+    id?:number,
     name:string,
     cantidadSem:number
 }

@@ -7,20 +7,23 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [CommonModule,RouterModule,FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './nav.component.html',
-  styleUrl: './nav.component.css'
+  styleUrl: './nav.component.css',
 })
 export class NavComponent {
+  //usuario logueado
   userLoginOn: boolean = false;
-  input:string = '';
-  constructor(private authService:AuthService) { }
+  //admin logueado
+  adminLoginOn: boolean = false;
+  input: string = '';
+  constructor(private authService: AuthService) {}
 
-  enviar(){
-    console.log(this.input)
+  enviar() {
+    console.log(this.input);
   }
 
-  logOut(){
+  logOut() {
     this.authService.logout();
   }
 
@@ -28,14 +31,26 @@ export class NavComponent {
     this.authService.isUserLoggedIn().subscribe({
       next: (response) => {
         this.userLoginOn = response;
-        console.log(this.userLoginOn)
+        console.log(this.userLoginOn);
       },
       error: (error) => {
         console.log(error);
       },
       complete: () => {
         console.log('Complete');
-      }
+      },
+    });
+    this.authService.isAdminLoggedIn().subscribe({
+      next: (response) => {
+        this.adminLoginOn = response;
+        console.log(this.adminLoginOn);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {
+        console.log('Complete');
+      },
     });
   }
 

@@ -1,5 +1,5 @@
-import { RangoCinefilo } from './RangoCinefilo.js';
-import { Subscription } from './Subscription.js';
+import { RangoCinefilo } from './rangoCinefilo.js';
+import { Subscription } from './subscription.js';
 export interface User {
     id: number;
     name: string;
