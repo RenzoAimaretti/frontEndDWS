@@ -1,23 +1,62 @@
 <nav class="navbar sticky-top bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="assets/logo.png" alt="Bootstrap" height="60px">
-        Cinemateca
-      </a>
-      <form #searchForm="ngForm" (ngSumbit)="enviar()" class="d-flex" role="search">
-        <input id = "input" [(ngModel)]="input" [ngModelOptions]="{standalone:true}" class="form-control me-2" type="search" placeholder="Buscar Peliculas/Listas/usuarios" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit" [routerLink]="['/search/movies']" [queryParams]="{query: input}">Buscar</button>
-      </form>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="assets/logo.png" alt="Bootstrap" height="60px" />
+      Cinemateca
+    </a>
+    <form
+      #searchForm="ngForm"
+      (ngSumbit)="enviar()"
+      class="d-flex"
+      role="search"
+    >
+      <input
+        id="input"
+        [(ngModel)]="input"
+        [ngModelOptions]="{ standalone: true }"
+        class="form-control me-2"
+        type="search"
+        placeholder="Buscar Peliculas/Listas/usuarios"
+        aria-label="Search"
+      />
+      <button
+        class="btn btn-outline-success"
+        type="submit"
+        [routerLink]="['/search/movies']"
+        [queryParams]="{ query: input }"
+      >
+        Buscar
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-            <a class="nav-link" [routerLink]="'/dashboard'">Perfil</a>
-            <a class="nav-link" [routerLink]="'/login'" *ngIf="!userLoginOn">Iniciar sesion</a>
-            <a class="nav-link" (click)="logOut()" [routerLink]="'/home'" *ngIf="userLoginOn">Cerrar sesion</a>
-          </div>
+    </form>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <a class="nav-link" [routerLink]="'/dashboard'">Perfil</a>
+        <a
+          class="nav-link"
+          [routerLink]="'/login'"
+          *ngIf="!userLoginOn && !adminLoginOn"
+          >Iniciar sesion</a
+        >
+        <a
+          class="nav-link"
+          (click)="logOut()"
+          [routerLink]="'/home'"
+          *ngIf="userLoginOn || adminLoginOn"
+          >Cerrar sesion</a
+        >
       </div>
     </div>
+  </div>
 </nav>
