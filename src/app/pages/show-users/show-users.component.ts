@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { User } from '../../interface/user';
+import { SearchComponent } from '../search/search.component.js';
 
 @Component({
   selector: 'app-show-users',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, SearchComponent],
   templateUrl: './show-users.component.html',
   styleUrls: ['./show-users.component.css']
 })

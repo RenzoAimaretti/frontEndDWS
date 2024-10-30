@@ -1,49 +1,77 @@
-.list-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .search-input {
-    width: calc(100% - 100px);
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .search-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .search-button:hover {
-    background-color: #0056b3;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    margin-bottom: 20px;
-  }
-  
-  h3 {
-    margin: 0;
-    font-size: 1.5em;
-  }
-  
-  p {
-    margin: 5px 0;
-    color: #555;
-  }
-  
+/* Contenedor principal de los resultados */
+.search-results-container {
+  max-width: 800px; /* Ajusta el ancho máximo del contenedor */
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #f5f5f5;
+}
+
+.search-title {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #f5f5f5;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.lists-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espacio entre listas */
+}
+
+/* Contenedor de cada lista */
+.list-card {
+  padding: 10px; /* Tamaño más pequeño del contenedor */
+  background-color: #62455b;
+  border-radius: 8px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  text-align: center;
+  cursor: pointer; /* Indica que es clickeable */
+}
+
+.list-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+}
+
+.list-title {
+  font-size: 1.2em; /* Tamaño ajustado del título */
+  color: #f5f5f5;
+  margin-bottom: 8px;
+}
+
+/* Contenedor de las películas de cada lista */
+.movies-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.movie-thumbnail {
+  width: 80px; /* Tamaño más pequeño de miniatura */
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.movie-thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.movie-image {
+  width: 100%;
+  border-radius: 4px;
+}
+
+/* Oculta el título de las películas */
+.movie-title {
+  display: none;
+}
+
+.no-results-message {
+  text-align: center;
+  color: #f5f5f5;
+  font-size: 1.2em;
+}

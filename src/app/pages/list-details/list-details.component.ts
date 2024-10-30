@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ListService } from '../../services/list.service.js';
 import { List } from '../../interface/list.js';
+import { TmdbService } from '../../services/tmdb-service.service.js';
 
 @Component({
   selector: 'app-list-details',
@@ -16,20 +17,59 @@ export class ListDetailsComponent {
   listId=-1;
   list: List|null= null;
 
-  constructor(private listService: ListService) {
+  constructor(private listService: ListService, private tmdbService: TmdbService) {
     this.route.params.subscribe(params => {
     this.listId = params['id'];
   });
 }
 
-async ngOnInit(): Promise<void> {
-  
-  await this.getList();
+ngOnInit(): void {
+  this.getList();
 }
-async getList():Promise<void>{
+
+getList():void{
   this.listService.getList(this.listId).subscribe({
-    next: (result) => {console.log(result), this.list = result},
+    next: (response) => {this.list = {
+      ...response,
+      contents: response.contents.map((content: any) => ({
+        ...content,
+        id: content.idContent
+      }))
+    };
+    this.loadMoviesForLists();
+    },
     error: (error) => console.log(error)
   });
 }
+
+loadMoviesForLists(): void {
+  console.log("entro a loadMoviesForLists");
+  console.log(this.list)
+  
+  if (this.list !== null) {
+    
+    for (const content of this.list.contents) {
+      console.log('contenido',content)
+      if (content) { 
+        this.tmdbService.getMovie(content.id).subscribe({
+          next: (response) => {
+            console.log("respuesta", response);
+            content.title = response.title;
+            content.poster_path = response.poster_path;
+          },
+          error: (err) => {
+            console.error('Error obteniendo la película', err);
+          }
+        });
+      } else {
+        console.error('ID de película no definido para este contenido:', content);
+      }
+    }
+  }
+}
+
+getImageUrl(path: string): string {
+  return `https://image.tmdb.org/t/p/w500${path}`;
+}
+
 }

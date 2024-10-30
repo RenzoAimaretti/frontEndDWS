@@ -1,21 +1,23 @@
-<p>El id de la lista seleccionada es: {{listId}}</p>
-
-<h2>Detalles de la Lista</h2>
-
-<div *ngIf="list; else noList">
-    <ul>
-        <li>
-            <strong>Id:</strong> {{list.id}}
-        </li>
-        <li>
-            <strong>Nombre:</strong> {{list.nameList}}
-        </li>
-        <li>
-            <strong>Descripcion:</strong> {{list.descriptionList}}
-        </li>
-    </ul>
-</div>
-
-<ng-template #noList>
-    <p>Lista no encontrada</p>
-</ng-template>
+<div class="list-details-container">
+    <!-- Nombre de la lista -->
+    <h2 class="list-title">{{ list?.nameList }}</h2>
+  
+    <!-- Descripción de la lista -->
+    <p class="list-description">{{ list?.descriptionList }}</p>
+  
+    <!-- Sección de películas -->
+    <div class="movies-container">
+      <div 
+        *ngFor="let content of list?.contents" 
+        class="movie-card" 
+        [routerLink]="['/movie/', content.id]"
+        title="{{ content.title }}"
+      >
+        <img [src]="getImageUrl(content.poster_path)" [alt]="content.title" />
+        <div class="movie-overlay">
+          <p class="movie-title">{{ content.title }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
