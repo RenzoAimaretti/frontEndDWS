@@ -1,0 +1,165 @@
+.list-edit-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1b1b2f;
+  color: white;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  background-color: #2b2b3d;
+  border: none;
+  color: white;
+}
+
+.search-input-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-input-button input {
+  flex-grow: 1;
+  background-color: #2b2b3d;
+  padding: 10px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  color: white;
+}
+
+.search-input-button button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-input-button button:hover {
+  background-color: #0056b3;
+}
+
+.movies-search-results,
+.current-movies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.movie-card {
+  width: 150px;
+  padding: 10px;
+  background-color: #2b2b3d;
+  text-align: center;
+  border-radius: 5px;
+  position: relative;
+}
+
+.movie-card img {
+  width: 100px;
+  height: 150px;
+  border-radius: 5px;
+}
+
+.movie-card p {
+  margin: 10px 0 0 0;
+  font-size: 14px;
+  color: #ddd;
+}
+
+.selected {
+  border: 2px solid green;
+}
+
+.movie-card:hover {
+  background-color: #34344e;
+}
+
+.movie-card button {
+  background-color: #e74c3c;
+  border: none;
+  padding: 5px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border-radius: 5px;
+  display: none;
+}
+
+.movie-card:hover button {
+  display: block;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.button-container button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+}
+
+.save-button {
+  background-color: #006d24;
+}
+
+.save-button:hover {
+  background-color: #015a1f;
+}
+
+.cancel-button {
+  background-color: #dc3545;
+}
+
+.cancel-button:hover {
+  background-color: #c82333;
+}
+
+.delete-button-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.delete-button {
+  padding: 10px 20px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
