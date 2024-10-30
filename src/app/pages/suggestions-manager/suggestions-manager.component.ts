@@ -18,7 +18,7 @@ export class SuggestionsManagerComponent {
   //TRASLADAR A UNA COMPONENTE NUEVA ASI NO SE REPITEN LOS COMENTARIOS PARA CADA SUGERENCIA
   //SIMILAR A REVIEW Y COMMENTS
   adminComment: string = '';
-
+  suggestionIndex: number | null = null;
   constructor(
     private suggestionsService: SuggestionsService,
     private authService: AuthService
@@ -39,6 +39,12 @@ export class SuggestionsManagerComponent {
 
     this.getSuggestions();
     this.authService.currentAdminId.subscribe((id) => (this.admin = id));
+  }
+
+  startEditingSuggestion(index: number): void {
+    this.suggestionIndex = index;
+    console.log(this.suggestions[index].comentarioAdmin);
+    this.adminComment = this.suggestions[index].comentarioAdmin || '';
   }
 
   getSuggestions(): void {
