@@ -29,24 +29,30 @@ export const routes: Routes = [
   //Rutas de la aplicacion
   { path: 'users', component: UserComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-<<<<<<< HEAD
-  {path: 'home', component: HomeComponent},
-  {path: 'users/:id', component: UserDetailsComponent},
-  {path:'movie/:id',component : MovieComponent},
-  {path: 'dashboard', component: DashboardComponent,canActivate:[authGuard]},
-  {path: 'login', component: LoginComponent},
-  {path: 'search/movies',component:ShowMoviesComponent},
-  {path: 'search/lists',component:ShowListsComponent},
-  {path: 'register', component:RegisterComponent},
-  {path: 'dashboard/edit', component:UserEditComponent,canActivate:[authGuard]},
-  {path: 'lists/:id', component: ListDetailsComponent},
-  {path: 'createList', component: ListCreateComponent},
-  {path: 'createList/:id', component: ListCreateComponent},
-  {path: 'user/lists/:id', component: UserListsComponent},
-  {path: 'list/edit/:id/:userId', component: ListEditComponent},
+  { path: 'home', component: HomeComponent },
+  { path: 'users/:id', component: UserDetailsComponent },
+  { path: 'movie/:id', component: MovieComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'login', component: LoginComponent },
+  { path: 'search/movies', component: ShowMoviesComponent },
+  { path: 'search/lists', component: ShowListsComponent },
+  { path: 'register', component: RegisterComponent },
+  {
+    path: 'dashboard/edit',
+    component: UserEditComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'lists/:id', component: ListDetailsComponent },
+  { path: 'createList', component: ListCreateComponent },
+  { path: 'createList/:id', component: ListCreateComponent },
+  { path: 'user/lists/:id', component: UserListsComponent },
+  { path: 'list/edit/:id/:userId', component: ListEditComponent },
   { path: 'search/users', component: ShowUsersComponent },
-  { path: 'user-profile/:id', component: UserProfileComponent }
-=======
+  { path: 'user-profile/:id', component: UserProfileComponent },
   { path: 'home', component: HomeComponent },
   { path: 'users/:id', component: UserDetailsComponent },
   { path: 'movie/:id', component: MovieComponent },
@@ -85,7 +91,6 @@ export const routes: Routes = [
     component: SuggestionsManagerComponent,
     canActivate: [authGuard],
   },
->>>>>>> vistaadmin
 ];
 
 @NgModule({
