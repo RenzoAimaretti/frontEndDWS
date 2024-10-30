@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './pages/user/user.component';
-import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import { MovieComponent } from './pages/movie/movie.component';
 import { HomeComponent } from './pages/home/home.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -30,22 +29,13 @@ export const routes: Routes = [
   { path: 'users', component: UserComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'users/:id', component: UserDetailsComponent },
   { path: 'movie/:id', component: MovieComponent },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [authGuard],
-  },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'search/movies', component: ShowMoviesComponent },
   { path: 'search/lists', component: ShowListsComponent },
   { path: 'register', component: RegisterComponent },
-  {
-    path: 'dashboard/edit',
-    component: UserEditComponent,
-    canActivate: [authGuard],
-  },
+  { path: 'dashboard/edit', component: UserEditComponent, canActivate: [authGuard] },
   { path: 'lists/:id', component: ListDetailsComponent },
   { path: 'createList', component: ListCreateComponent },
   { path: 'createList/:id', component: ListCreateComponent },
@@ -53,44 +43,14 @@ export const routes: Routes = [
   { path: 'list/edit/:id/:userId', component: ListEditComponent },
   { path: 'search/users', component: ShowUsersComponent },
   { path: 'user-profile/:id', component: UserProfileComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'users/:id', component: UserDetailsComponent },
-  { path: 'movie/:id', component: MovieComponent },
   { path: 'search/rangoCinefilo', component: ShowRangosComponent },
   { path: 'search/subscriptions', component: ShowSubscriptionsComponent },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [authGuard],
-  },
-  { path: 'login', component: LoginComponent },
-  { path: 'search/movies', component: ShowMoviesComponent },
-  { path: 'search/lists', component: ShowListsComponent },
-  { path: 'register', component: RegisterComponent },
-  {
-    path: 'dashboard/edit',
-    component: UserEditComponent,
-    canActivate: [authGuard],
-  },
-  { path: 'search/users', component: ShowUsersComponent },
-  { path: 'user-profile/:id', component: UserProfileComponent },
-  {
-    path: 'adminDashboard',
-    component: AdminDashboardComponent,
-    canActivate: [authGuard],
-  },
+  { path: 'adminDashboard',component: AdminDashboardComponent, canActivate: [authGuard] },
   { path: 'create-rango-cinefilo', component: CreateRangoCinefiloComponent },
   { path: 'create-subscription', component: CreateSubscriptionComponent },
   { path: 'editar-subscripcion/:id', component: EditarSubscripcionComponent },
-  {
-    path: 'editar-rango-cinefilo/:id',
-    component: EditarRangoCinefiloComponent,
-  },
-  {
-    path: 'manage-suggestions',
-    component: SuggestionsManagerComponent,
-    canActivate: [authGuard],
-  },
+  { path: 'editar-rango-cinefilo/:id', component: EditarRangoCinefiloComponent },
+  { path: 'manage-suggestions', component: SuggestionsManagerComponent, canActivate: [authGuard] },
 ];
 
 @NgModule({
