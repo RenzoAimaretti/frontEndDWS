@@ -1,49 +1,21 @@
-/* Contenedor general */
-:host {
-  display: block;
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Colores y estilos personalizados */
+.custom-alert-warning {
+  background-color: #ffdfba; /* Color de advertencia personalizado */
+  color: #6c757d;
 }
 
-/* Mensaje de estado de usuario */
-p {
-  font-size: 16px;
-  font-weight: 500;
-  color: #555;
-  margin-bottom: 15px;
+.custom-card {
+  background-color: #ffffff; /* Fondo de tarjeta */
+  border-color: #c0c0c0; /* Color de borde de la tarjeta */
 }
 
-/* Información del usuario */
-.details p {
-  font-size: 18px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 10px;
+.custom-card-header {
+  background-color: #62455b; /* Color principal que usas para encabezados */
+  color: #ffffff;
 }
 
-.details p span {
-  font-weight: normal;
-  color: #555;
-}
-
-/* Botón editar */
-button {
-  padding: 10px 20px;
-  font-size: 14px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  display: block;
-  margin: 20px 0;
-}
-
-button:hover {
-  background-color: #0056b3;
+.custom-btn-primary:hover,
+.custom-btn-success:hover,
+.custom-btn-info:hover {
+  opacity: 0.85; /* Efecto de opacidad al pasar el cursor */
 }

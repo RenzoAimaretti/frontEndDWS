@@ -10,7 +10,6 @@ export const authGuard: CanActivateFn = (route, state) => {
   if (authToken != '') {
     return true;
   } else if (authAdminToken != '') {
-    //sera asi el guard de admin? o tengo que hacer otro propio para el dashboard de admin??
     return true;
   } else {
     const url = router.createUrlTree(['/login']);
