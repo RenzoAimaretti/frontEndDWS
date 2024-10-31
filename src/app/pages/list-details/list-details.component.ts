@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ListService } from '../../services/list.service.js';
 import { List } from '../../interface/list.js';
 import { TmdbService } from '../../services/tmdb-service.service.js';
+import { UserService } from '../../services/user.service.js';
 
 @Component({
   selector: 'app-list-details',
@@ -16,8 +17,7 @@ export class ListDetailsComponent {
   route:ActivatedRoute=inject(ActivatedRoute);
   listId=-1;
   list: List|null= null;
-
-  constructor(private listService: ListService, private tmdbService: TmdbService) {
+  constructor(private listService: ListService, private tmdbService: TmdbService, private userService:UserService) {
     this.route.params.subscribe(params => {
     this.listId = params['id'];
   });
@@ -36,10 +36,11 @@ getList():void{
         id: content.idContent
       }))
     };
+    console.log("este es el dueño",this.list.owner);
     this.loadMoviesForLists();
     },
     error: (error) => console.log(error)
-  });
+  })
 }
 
 loadMoviesForLists(): void {

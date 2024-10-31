@@ -1,11 +1,11 @@
 <div class="list-details-container">
-    <!-- Nombre de la lista -->
-    <h2 class="list-title">{{ list?.nameList }}</h2>
+
+  <h2 class="list-title">
+    {{ list?.nameList }} de: "{{ this.list?.owner?.name }}"
+  </h2>
   
-    <!-- Descripción de la lista -->
     <p class="list-description">{{ list?.descriptionList }}</p>
   
-    <!-- Sección de películas -->
     <div class="movies-container">
       <div 
         *ngFor="let content of list?.contents" 

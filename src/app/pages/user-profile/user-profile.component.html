@@ -44,7 +44,6 @@
   </div>
 </div>
 
-<!-- Sección de listas del usuario -->
 <div class="user-lists mt-5">
   <h3 class="text-center">Listas de {{ user?.name }}</h3>
   <div *ngIf="lists.length > 0; else noLists" class="list-container">
@@ -52,16 +51,14 @@
       <h4 class="list-title">{{ list.nameList }}</h4>
       <div class="movie-thumbnails">
         <ng-container *ngFor="let content of list.contents; let i = index">
-          <div *ngIf="i < 5; else moreMovies" class="thumbnail">
+          <div *ngIf="i < 5" class="thumbnail">
             <img [src]="getImageUrl(content.poster_path)" [alt]="content.title" />
             <p class="movie-title">{{ content.title }}</p>
           </div>
         </ng-container>
-        <ng-template #moreMovies>
-          <div class="thumbnail more-movies">
-            <span>+{{ list.contents.length - 5 }}</span>
-          </div>
-        </ng-template>
+        <div *ngIf="list.contents.length > 5" class="thumbnail more-movies">
+          <span>+{{ list.contents.length - 5 }}</span>
+        </div>
       </div>
     </div>
   </div>
