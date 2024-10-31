@@ -27,10 +27,9 @@ export class UserListsComponent {
   }
 
   async ngOnInit(): Promise<void> {
-    // Escuchar queryParams para verificar si hay que refrescar la lista
     this.route.queryParams.subscribe(queryParams => {
       if (queryParams['refresh'] === 'true') {
-        this.userLists(); // Recargar las listas
+        this.userLists();
       }
     });
 

@@ -1,4 +1,4 @@
-/* Estilo del fondo modal */
+
 .modal-background {
   position: fixed;
   top: 0;
@@ -9,7 +9,6 @@
   z-index: 1000;
 }
 
-/* Estilo del contenido modal */
 .modal-content {
   background-color: #111827;
   padding: 20px;
@@ -60,11 +59,10 @@ h2 {
   max-height: 300px;
   overflow-y: auto;
   margin-bottom: 20px;
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: #374151 #1F2937; /* Scroll color and background */
+  scrollbar-width: thin;
+  scrollbar-color: #374151 #1F2937;
 }
 
-/* Scrollbar customization for WebKit (Chrome, Safari) */
 .existing-lists::-webkit-scrollbar {
   width: 8px;
 }
@@ -91,12 +89,10 @@ h2 {
   transition: background-color 0.3s ease;
 }
 
-/* Efecto hover sobre los elementos de lista */
 .list-item:hover {
   background-color: #374151;
 }
 
-/* Cuando una lista está seleccionada */
 .list-item.selected {
   background-color: #10B981;
   color: white;

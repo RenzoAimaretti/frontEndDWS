@@ -1,6 +1,6 @@
-/* General Styles */
+
 body {
-    background-color: #1b1d29; /* Fondo oscuro */
+    background-color: #1b1d29; 
     color: #ffffff;
     font-family: 'Roboto', sans-serif;
     padding: 20px;
@@ -25,24 +25,24 @@ form {
 
 .form-control {
     margin-bottom: 20px;
-    background-color: #141827; /* Fondo oscuro */
+    background-color: #141827; 
 }
 
 input, select, textarea {
     width: calc(100% - 20px);
     padding: 10px;
-    background-color: #ffffff; /* Fondo oscuro */
-    border: 1px solid transparent; /* Eliminamos el borde blanco */
+    background-color: #ffffff; 
+    border: 1px solid transparent; 
     border-radius: 5px;
     color: #000000;
     font-size: 1em;
     margin-bottom: 10px;
 }
 
-/* Esto asegura que al enfocar el input tampoco se vea borde blanco */
+
 input:focus, textarea:focus {
     outline: none;
-    border-color: #505365; /* Un borde más oscuro al enfocarse */
+    border-color: #505365; 
 }
 
 textarea {
@@ -57,7 +57,6 @@ label {
     font-weight: bold;
 }
 
-/* Controles de guardar y cancelar alineados a la derecha */
 .action-buttons {
     display: flex;
     justify-content: flex-end;
@@ -93,7 +92,7 @@ label {
     background-color: #e53935;
 }
 
-/* Controles para la búsqueda de películas */
+
 .search-controls {
     display: flex;
     align-items: center;
@@ -103,7 +102,7 @@ label {
 .search-movie-input {
     width: 70%;
     padding: 10px;
-    background-color: #ffffff; /* Fondo oscuro */
+    background-color: #ffffff;
     border: none;
     border-radius: 5px;
     color: #000000;
@@ -123,7 +122,7 @@ label {
     background-color: #2f8ac2;
 }
 
-/* Lista de películas encontradas */
+
 .movie-list {
     margin-top: 20px;
 }
@@ -150,7 +149,7 @@ label {
     transform: scale(1.05);
 }
 
-/* Películas sin seleccionar */
+
 .movie-item {
     display: flex;
     flex-direction: column;
@@ -163,15 +162,14 @@ label {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* Animación al pasar por encima */
+
 .movie-item:hover {
     transform: scale(1.05);
 }
 
-/* Películas seleccionadas (más oscuras o con borde claro) */
 .movie-item.selected {
-    background-color: #2a2d3b;  /* Fondo más oscuro */
-    border: 2px solid #00b14f;  /* Borde verde indicando selección */
+    background-color: #2a2d3b;  
+    border: 2px solid #00b14f;  
 }
 
 .movie-card img {
@@ -194,12 +192,12 @@ label {
     font-size: 1.1em;
 }
 
-/* Ocultar el checkbox por defecto */
+
 .movie-item input[type="checkbox"] {
     display: none;
 }
 
-/* Mostrar que una lista está seleccionada con fondo más oscuro */
+
 .movie-item.selected .movie-info {
     background-color: #1b1d29;
     border-radius: 5px;

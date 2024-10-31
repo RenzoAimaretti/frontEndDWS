@@ -3,12 +3,10 @@
   <span class="close" (click)="closeModal()">&times;</span>
   <h2>Agregar '{{ movieTitle }}' a la lista</h2>
 
-  <!-- Botón para crear nueva lista -->
   <div class="list-actions">
     <button [routerLink]="['/createList', movieId]" class="new-list-btn">+ Nueva lista</button>
   </div>
 
-  <!-- Listas existentes -->
   <div class="existing-lists">
     <div 
       *ngFor="let list of lists"
@@ -20,6 +18,5 @@
     </div>
   </div>
 
-  <!-- Botón de agregar -->
   <button class="add-btn" (click)="addContent()">AÑADIR</button>
 </div>

@@ -3,10 +3,7 @@
   
   <div *ngIf="lists.length > 0; else noResults" class="lists-container">
     <div *ngFor="let list of lists" class="list-card" [routerLink]="['/lists/', list.id]">
-      <!-- Título de la lista -->
       <h3 class="list-title">{{ list.nameList }}</h3>
-
-      <!-- Películas de la lista -->
       <div class="movies-container">
         <div *ngFor="let content of list.contents" class="movie-thumbnail">
           <img [src]="getImageUrl(content.poster_path)" [alt]="content.title" class="movie-image" />

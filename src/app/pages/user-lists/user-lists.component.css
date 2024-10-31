@@ -9,13 +9,13 @@
     display: flex;
     padding: 20px;
     border-bottom: 1px solid #333;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
   }
   
   .list-item:hover {
-    background-color: #2a2a2a; /* Cambia el color de fondo al hacer hover */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Sombreado suave */
-    cursor: pointer; /* Mostrar que es clicable */
+    background-color: #2a2a2a; 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+    cursor: pointer; 
   }
   
   .list-info {
