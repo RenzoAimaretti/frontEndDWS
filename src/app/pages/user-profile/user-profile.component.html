@@ -1,8 +1,3 @@
-<!-- Mostrar el ID del usuario seleccionado -->
-<p class="alert alert-info text-center">
-  El id del usuario seleccionado es: {{ userId }}
-</p>
-
 <!-- Sección de detalles del usuario -->
 <h2 class="text-center my-4">Detalles del usuario</h2>
 
@@ -10,17 +5,24 @@
   <div class="card-body">
     <ul class="list-group list-group-flush">
       <li
-        *ngIf="isAlreadyFollowing"
+        *ngIf="isAlreadyFollowing && userId != loggedUserId"
         class="list-group-item text-center bg-success text-white"
       >
         <strong>Estado:</strong> Ya sigues a este usuario
       </li>
 
       <li
-        *ngIf="!isAlreadyFollowing"
+        *ngIf="!isAlreadyFollowing && userId != loggedUserId"
         class="list-group-item text-center bg-danger text-white"
       >
         <strong>Estado:</strong> No sigues a este usuario
+      </li>
+
+      <li
+        *ngIf="userId === loggedUserId"
+        class="list-group-item text-center bg-info text-white"
+      >
+        <strong>Estado:</strong> Tu eres este usuario
       </li>
 
       <li class="list-group-item"><strong>Id:</strong> {{ user.id }}</li>
@@ -40,7 +42,11 @@
         {{ user.friendsFrom.length }}
       </li>
     </ul>
-    <div class="d-flex justify-content-center mt-3">
+
+    <div
+      *ngIf="userId != loggedUserId"
+      class="d-flex justify-content-center mt-3"
+    >
       <button
         *ngIf="!isAlreadyFollowing"
         class="btn btn-success mx-2"
