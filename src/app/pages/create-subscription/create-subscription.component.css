@@ -39,7 +39,7 @@ textarea {
     box-sizing: border-box; 
     margin-bottom: 15px; 
     transition: border-color 0.3s;
-} /* Cerramos este bloque correctamente */
+} 
 
 input[type="text"]:focus,
 input[type="number"]:focus,

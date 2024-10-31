@@ -20,11 +20,11 @@ export class CreateRangoCinefiloComponent {
     this.rangoCinefiloService.createRangoCinefilo(this.rangoCinefilo).subscribe({
       next: (response) => {
         console.log('RangoCinefilo creado:', response);
-        
+        alert('¡Rango cinefilo creado con éxito!');
       },
       error: (error) => {
         console.error('Error al crear RangoCinefilo:', error);
-        
+        alert('Error al crear el Rango cinefilo. Inténtalo de nuevo más tarde.');
       }
     });
   }

@@ -40,14 +40,17 @@ export class ShowSubscriptionsComponent implements OnInit {
   
     this.router.navigate(['/editar-subscripcion', subscription.id]);
   }
-
   eliminarSubscription(id: number | undefined): void {
     if (confirm('¿Estás seguro de que deseas eliminar esta subscripción?')) {
-      this.subscriptionService.deleteSubscription(id!).subscribe(() => {
-       
-        this.results = this.results.filter(sub => sub.id !== id);
+      this.subscriptionService.deleteSubscription(id!).subscribe({
+        next: (response) => {
+          alert(response.message); 
+          this.results = this.results.filter(sub => sub.id !== id);
+        },
+        error: (error: any) => { 
+          alert('Error al eliminar la subscripción'); 
+        }
       });
     }
   }
-  
 }
