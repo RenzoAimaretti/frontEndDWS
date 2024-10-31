@@ -31,7 +31,6 @@ export class NavComponent {
     this.authService.isUserLoggedIn().subscribe({
       next: (response) => {
         this.userLoginOn = response;
-        console.log(this.userLoginOn);
       },
       error: (error) => {
         console.log(error);
@@ -43,7 +42,6 @@ export class NavComponent {
     this.authService.isAdminLoggedIn().subscribe({
       next: (response) => {
         this.adminLoginOn = response;
-        console.log(this.adminLoginOn);
       },
       error: (error) => {
         console.log(error);

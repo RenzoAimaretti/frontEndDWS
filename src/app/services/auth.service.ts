@@ -32,22 +32,19 @@ export class AuthService {
   currentAdminData: BehaviorSubject<string> = new BehaviorSubject<string>('');
   currentAdminId = new BehaviorSubject<number>(-1);
   constructor(private http: HttpClient, private cookieService: CookieService) {
+    //user
     const accessToken = this.cookieService.get('access_token');
     this.currentUserLoginOn = new BehaviorSubject<boolean>(!!accessToken);
     this.currentUserData = new BehaviorSubject<string>(accessToken || '');
     if (this.currentUserLoginOn.value) {
-      //esto que estamos haciendo aca esta atado con alambre
-      //tendria que hacer un metodo nuevo que en vez de actualizar
-      //el currentUserId, lo devuelva para asignarlo igual que el resto
       this.getIdFromToken();
-      console.log(this.currentUserId.value);
     }
+    //admin
     const accessAdminToken = this.cookieService.get('access_admin_token');
     this.currentAdminLoginOn = new BehaviorSubject<boolean>(!!accessAdminToken);
     this.currentAdminData = new BehaviorSubject<string>(accessAdminToken || '');
     if (this.currentAdminLoginOn.value) {
       this.getAdminIdFromToken();
-      console.log(this.currentAdminId.value);
     }
   }
 
@@ -58,6 +55,8 @@ export class AuthService {
   }
 
   login(credentials: LoginRequest): Observable<User> {
+    //limpiamos las cookies de admin para evitar que esten activas a la vez
+    this.cookieService.delete('access_admin_token');
     return this.http.post<any>(`${this.authUrl}login`, credentials).pipe(
       tap((userData) => {
         const { data, token } = userData;
@@ -73,6 +72,8 @@ export class AuthService {
   }
 
   loginAdmin(credentials: LoginRequest): Observable<Admin> {
+    //limpiamos las cookies de usuario para evitar que esten activas a la vez
+    this.cookieService.delete('access_token');
     return this.http.post<any>(`${this.authUrl}login/admin`, credentials).pipe(
       tap((userData) => {
         const { data, token } = userData;
@@ -96,7 +97,6 @@ export class AuthService {
     return this.currentUserId.asObservable();
   }
   currentAdmin(): Observable<number> {
-    console.log(this.currentAdminId.value);
     return this.currentAdminId.asObservable();
   }
 
@@ -121,7 +121,6 @@ export class AuthService {
       )
       .subscribe((adminId: number) => {
         this.currentAdminId.next(adminId); // Guardar el ID en el BehaviorSubject
-        console.log(adminId); // Mostrar el resultado por consola
       });
   }
 

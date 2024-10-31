@@ -18,7 +18,6 @@ export class SuggestionsService {
   getSuggestions(): Observable<any> {
     return this.http.get<any>(this.suggestionUrl).pipe(
       map((result: any) => result.data),
-      tap((result) => console.log(result)),
       catchError(this.handleError)
     );
   }
@@ -26,7 +25,6 @@ export class SuggestionsService {
   getOneSuggestion(idSuggestion: number): Observable<any> {
     return this.http.get<any>(`${this.suggestionUrl}${idSuggestion}`).pipe(
       map((result: any) => result.data),
-      tap((result) => console.log(result)),
       catchError(this.handleError)
     );
   }
@@ -39,7 +37,6 @@ export class SuggestionsService {
       .post<any>(this.suggestionUrl, suggestionToPost, this.httpOptions)
       .pipe(
         map((result: any) => result.data),
-        tap((result) => console.log(result)),
         catchError(this.handleError)
       );
   }
@@ -49,7 +46,6 @@ export class SuggestionsService {
       .delete(`${this.suggestionUrl}${idSuggestion}`, this.httpOptions)
       .pipe(
         map((result: any) => result.data),
-        tap((result) => console.log(result)),
         catchError(this.handleError)
       );
   }
@@ -66,7 +62,6 @@ export class SuggestionsService {
       )
       .pipe(
         map((result: any) => result.data),
-        tap((result) => console.log(result)),
         catchError(this.handleError)
       );
   }

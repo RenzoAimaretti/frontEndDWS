@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subscription } from '../interface/subscription'; 
+import { Subscription } from '../interface/subscription';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 @Injectable({
-  providedIn: 'root', 
+  providedIn: 'root',
 })
 export class SubscriptionService {
   private apiUrl = 'http://localhost:3000/api/subscription';
-   private searchUrl ='http://localhost:3000/api/subscription/search?name='
+  private searchUrl = 'http://localhost:3000/api/subscription/search?name=';
 
   constructor(private http: HttpClient) {}
 
@@ -16,27 +16,33 @@ export class SubscriptionService {
     return this.http.post<Subscription>(this.apiUrl, subscription);
   }
   getSubscriptionById(id: number): Observable<Subscription> {
-    return this.http.get<{ message: string; data: Subscription }>(`${this.apiUrl}/${id}`).pipe(
-        map(response => response.data)
-    );
-}
+    return this.http
+      .get<{ message: string; data: Subscription }>(`${this.apiUrl}/${id}`)
+      .pipe(map((response) => response.data));
+  }
 
-  
   searchSubscription(query: string): Observable<Subscription[]> {
-    return this.http.get<{ message: string, data:Subscription[] }>(`${this.searchUrl}${query}`)
+    return this.http
+      .get<{ message: string; data: Subscription[] }>(
+        `${this.searchUrl}${query}`
+      )
       .pipe(
-        map(result => result.data),
+        map((result) => result.data),
         catchError(this.handleError<Subscription[]>('searchSubscriptions', []))
       );
   }
-  editSubscription(id: number, subscription: Subscription): Observable<Subscription> {
-    return this.http.put<Subscription>(`${this.apiUrl}/${id}`, subscription)
+  editSubscription(
+    id: number,
+    subscription: Subscription
+  ): Observable<Subscription> {
+    return this.http
+      .put<Subscription>(`${this.apiUrl}/${id}`, subscription)
       .pipe(catchError(this.handleError<Subscription>('editSubscription')));
   }
 
-
   deleteSubscription(id: number): Observable<Subscription> {
-    return this.http.delete<Subscription>(`${this.apiUrl}/${id}`)
+    return this.http
+      .delete<Subscription>(`${this.apiUrl}/${id}`)
       .pipe(catchError(this.handleError<Subscription>('deleteSubscription')));
   }
   private handleError<T>(operation = 'operation', result?: T) {

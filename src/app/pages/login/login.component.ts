@@ -52,7 +52,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value as LoginRequest).subscribe({
         next: (response) => {
-          console.log(response);
+          console.log('Login satisfactorio, bienvenido usuario');
         },
         error: (error) => {
           console.log(error);
@@ -75,7 +75,7 @@ export class LoginComponent {
         .loginAdmin(this.loginForm.value as LoginRequest)
         .subscribe({
           next: (response) => {
-            console.log(response);
+            console.log('Login satisfactorio, bienvenido administrador');
           },
           error: (error) => {
             console.log(error);
