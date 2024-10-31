@@ -4,6 +4,8 @@ import { UserService } from '../../services/user.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { User } from '../../interface/user';
 import { AuthService } from '../../services/auth.service';
+import { List } from '../../interface/list.js';
+import { TmdbService } from '../../services/tmdb-service.service.js';
 
 @Component({
   selector: 'app-user-profile',
@@ -19,7 +21,8 @@ export class UserProfileComponent implements OnInit {
   isUserLogged?:boolean;
   loggedUserId?:number;
   isAlreadyFollowing?:boolean
-  constructor(private userService: UserService, private authService:AuthService) {}
+  lists: List[] = [];
+  constructor(private userService: UserService, private authService:AuthService, private tmdbService:TmdbService) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -27,6 +30,7 @@ export class UserProfileComponent implements OnInit {
       if (id) {
         this.userId = +id; // Convert to number
         this.loadUser();
+        this.userLists();
       }
       this.authService.getIdFromToken();
       this.authService.isUserLoggedIn().subscribe({
@@ -102,4 +106,61 @@ export class UserProfileComponent implements OnInit {
       }
     }
   }
+
+  userLists(): void {
+    if (this.userId !== null) {
+      console.log("entre a userLists");
+      this.userService.userLists(this.userId).subscribe({
+        next: (response) => {
+          this.lists = response.map((list: List) => {
+            return {
+              ...list,
+              contents: list.contents.map((content: any) => ({
+                ...content,
+                id: content.idContent
+              }))
+            };
+          });
+          if (this.lists.length !== 0) {
+            console.log("hay listas");
+            console.log(this.lists);
+          } else {
+            console.log('no hay listas');
+          }
+          this.loadMoviesForLists();
+        },
+        error: (err) => {
+          console.error('Error obteniendo las listas', err);
+        }
+      });
+    }
+  }
+
+  loadMoviesForLists(): void {
+    for (const list of this.lists) {
+      console.log("entro en la lista:", list);
+      for (const content of list.contents) {
+        console.log('contenido',content)
+        if (content) { 
+          this.tmdbService.getMovie(content.id).subscribe({
+            next: (response) => {
+              console.log("respuesta", response);
+              content.title = response.title;
+              content.poster_path = response.poster_path;
+            },
+            error: (err) => {
+              console.error('Error obteniendo la película', err);
+            }
+          });
+        } else {
+          console.error('ID de película no definido para este contenido:', content);
+        }
+      }
+    }
+  }
+
+  getImageUrl(path: string): string {
+    return `https://image.tmdb.org/t/p/w500${path}`;
+  }
+
 }

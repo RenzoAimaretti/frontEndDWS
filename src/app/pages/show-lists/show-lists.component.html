@@ -1,22 +1,21 @@
 <app-search></app-search>
-<div *ngIf="lists.length > 0; else noLists">
-      <div *ngFor="let list of lists" class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col">
-            <div class="card h-100">
-              <div class="card-body">
-                <a [routerLink]="['/lists', list.id]">
-                <h5 class="card-title">{{ list.nameList }}</h5>
-                </a>
-                <p *ngIf="list.descriptionList">{{ list.descriptionList }}</p>
-                <ul>
-                  <li *ngFor="let item of list.contents">{{ item }}</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-      </div>
-  </div>
-  <ng-template #noLists>
-      <p>No se encontraron listas con ese nombre</p>
-  </ng-template>
+<div class="search-results-container">
   
+  <div *ngIf="lists.length > 0; else noResults" class="lists-container">
+    <div *ngFor="let list of lists" class="list-card" [routerLink]="['/lists/', list.id]">
+      <!-- Título de la lista -->
+      <h3 class="list-title">{{ list.nameList }}</h3>
+
+      <!-- Películas de la lista -->
+      <div class="movies-container">
+        <div *ngFor="let content of list.contents" class="movie-thumbnail">
+          <img [src]="getImageUrl(content.poster_path)" [alt]="content.title" class="movie-image" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noResults>
+    <p class="no-results-message">No se encontraron listas con ese criterio de búsqueda.</p>
+  </ng-template>
+</div>
