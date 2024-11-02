@@ -1,21 +1,25 @@
-<p *ngIf="!adminLoginOn">El administrador no esta logueado</p>
-<div *ngIf="adminLoginOn" class="admin-dashboard">
+<p *ngIf="!adminLoginOn" class="alert alert-warning">
+  El administrador no está logueado
+</p>
+<div *ngIf="adminLoginOn" class="admin-dashboard container mt-4">
   <app-search-subscription></app-search-subscription>
-  <h1>Panel de administrador</h1>
-  <div class="adminData">
-    <p>Nombre: {{ admin?.name }}</p>
-    <p>Email: {{ admin?.email }}</p>
+  <h1 class="mb-4">Panel de administrador</h1>
+  <div class="adminData mb-4">
+    <p><strong>Nombre:</strong> {{ admin?.name }}</p>
+    <p><strong>Email:</strong> {{ admin?.email }}</p>
   </div>
 
-  <div class="button-container">
-    <button (click)="goToCreateSubscription()" class="btn">
+  <div class="button-container d-flex flex-column gap-2">
+    <button (click)="goToCreateSubscription()" class="btn btn-primary">
       Crear Subscripción
     </button>
 
-    <button (click)="goToCreateRangoCinefilo()" class="btn">
+    <button (click)="goToCreateRangoCinefilo()" class="btn btn-secondary">
       Crear Rango Cinefilo
     </button>
 
-    <button (click)="goToManageSuggestions()">Gestionar sugerencias</button>
+    <button (click)="goToManageSuggestions()" class="btn btn-info">
+      Gestionar sugerencias
+    </button>
   </div>
 </div>

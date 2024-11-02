@@ -1,45 +1,42 @@
-
 .container {
-    max-width: 600px;
-    margin: auto; 
-    padding: 20px; 
-  }
-  
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
 
-  .input-group {
-    display: flex; 
-  }
-  
+.input-group {
+  display: flex;
+}
 
-  .input-group input {
-    flex: 1; 
-    border-radius: 4px 0 0 4px; 
-  }
-  
-  .input-group button {
-    border-radius: 0 4px 4px 0;
-    padding: 10px 15px; 
-  }
-  
+.input-group input {
+  flex: 1;
+  border-radius: 4px 0 0 4px;
+}
 
-  .nav-pills {
-    margin-top: 20px;
-  }
-  
- 
-  .nav-pills .nav-link {
-    border-radius: 20px;
-  }
-  
+.input-group button {
+  border-radius: 0 4px 4px 0;
+  padding: 10px 15px;
+}
 
-  .nav-pills .nav-link.active {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  
-  .nav-pills .nav-link:hover {
-    background-color: #0056b3;
-    color: white;
-  }
-  
+.nav-pills {
+  margin-top: 20px;
+}
+
+.nav-pills .nav-link {
+  border-radius: 20px;
+}
+
+.nav-pills .nav-link {
+  background-color: #647486;
+  color: white;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.nav-pills .nav-link:hover {
+  background-color: #0056b3;
+  color: white;
+}

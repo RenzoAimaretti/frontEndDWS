@@ -4,6 +4,9 @@
   padding: 20px;
   justify-content: center;
   align-items: center;
+  background-color: #62455b;
+  border-radius: 3%;
+  text-align: center;
 }
 
 .button-container {
