@@ -1,18 +1,45 @@
-<div class="lists-container">
-  <div *ngFor="let list of lists" class="list-item" [routerLink]="['/lists/', list.id]">
-    <div class="list-info">
-      <div class="list-thumbnail">
-        <img *ngFor="let content of list.contents.slice(0, 12)" class="thumbnail-img" [src]="getImageUrl(content.poster_path)" alt="{{ content.title }}">
-        <img *ngIf="list.contents.length > 3" class="thumbnail-placeholder" src="path-to-placeholder" alt="mas peliculas">
+<div *ngIf="lists.length > 0">
+  <div class="lists-container">
+    <div
+      *ngFor="let list of lists"
+      class="list-item"
+      [routerLink]="['/lists/', list.id]"
+    >
+      <div class="list-info">
+        <div class="list-thumbnail">
+          <img
+            *ngFor="let content of list.contents.slice(0, 12)"
+            class="thumbnail-img"
+            [src]="getImageUrl(content.poster_path)"
+            alt="{{ content.title }}"
+          />
+          <img
+            *ngIf="list.contents.length > 3"
+            class="thumbnail-placeholder"
+            src="path-to-placeholder"
+            alt="mas peliculas"
+          />
+        </div>
+        <div class="list-details">
+          <h3 class="list-title">{{ list.nameList }}</h3>
+          <span class="list-count">{{ list.contents.length }} películas</span>
+          <p class="list-description">{{ list.descriptionList }}</p>
+        </div>
       </div>
-      <div class="list-details">
-        <h3 class="list-title">{{ list.nameList }}</h3>
-        <span class="list-count">{{ list.contents.length }} películas</span>
-        <p class="list-description">{{ list.descriptionList }}</p>
+      <div class="list-actions">
+        <button
+          [routerLink]="['/list/edit', list.id, userId]"
+          class="edit-button"
+        >
+          Editar Lista
+        </button>
       </div>
-    </div>
-    <div class="list-actions">
-      <button [routerLink]="['/list/edit', list.id, userId]" class="edit-button">Editar Lista</button>
     </div>
   </div>
+</div>
+<div *ngIf="lists.length === 0" class="text-center mt-5">
+  <p>El usuario no posee listas</p>
+  <button [routerLink]="'/createList'" class="btn btn-primary mt-3">
+    Crear Lista
+  </button>
 </div>
