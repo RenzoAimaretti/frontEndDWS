@@ -40,13 +40,12 @@ export class RangoCinefiloService {
    
     editRangoCinefilo(id: number, rangoCinefilo: RangoCinefilo): Observable<RangoCinefilo> {
       return this.http.put<RangoCinefilo>(`${this.apiUrl}/${id}`, rangoCinefilo)
-      .pipe(catchError(this.handleError<RangoCinefilo>('editSubscription')));
+      .pipe(catchError(this.handleError<RangoCinefilo>('editRangoCinefilo')));
   }
 
   
-   
-    deleteRangoCinefilo(id: number): Observable<void> {
-      return this.http.delete<void>(`${this.apiUrl}/${id}`);
-    }
-  }
-
+  deleteRangoCinefilo(id: number): Observable<{ message: string }> {
+  return this.http.delete<{ message: string }>(`${this.apiUrl}/${id}`)
+    .pipe(catchError(this.handleError<{ message: string }>('deleteRangocinefilo')));
+}
+}

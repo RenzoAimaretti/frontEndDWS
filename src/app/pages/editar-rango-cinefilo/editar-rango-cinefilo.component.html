@@ -1,16 +1,39 @@
-<div class="container">
-    <h1>Editar Rango Cinefilo</h1>
-    <form *ngIf="rangoCinefilo" (ngSubmit)="guardarCambios()">
-      <div class="form-group">
-        <label>Nombre:</label>
-        <input [(ngModel)]="rangoCinefilo.nameRango" name="nombre" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label>Descripción:</label>
-        <input [(ngModel)]="rangoCinefilo.descriptionRango" name="descripcion" class="form-control" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-      <button type="button" class="btn btn-secondary" (click)="router.navigate(['/search/rangoCinefilo'])">Cancelar</button>
-    </form>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="text-center mb-4">Editar Rango Cinefilo</h1>
+      <form *ngIf="rangoCinefilo" (ngSubmit)="guardarCambios()">
+        <div class="form-group mb-3">
+          <label for="nombre">Nombre:</label>
+          <input
+            [(ngModel)]="rangoCinefilo.nameRango"
+            id="nombre"
+            name="nombre"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="descripcion">Descripción:</label>
+          <input
+            [(ngModel)]="rangoCinefilo.descriptionRango"
+            id="descripcion"
+            name="descripcion"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="router.navigate(['/search/rangoCinefilo'])"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-  
+</div>

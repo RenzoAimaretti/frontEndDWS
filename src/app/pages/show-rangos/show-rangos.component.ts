@@ -42,10 +42,15 @@ export class ShowRangosComponent implements OnInit {
 
   eliminarRangoCinefilo(id: number | undefined): void {
     if (confirm('¿Estás seguro de que deseas eliminar este rango cinefilo?')) {
-      this.rangoCinefiloService.deleteRangoCinefilo(id!).subscribe(() => {
-        
-        this.resultados = this.resultados.filter(rango => rango.id !== id);
-      });
+        this.rangoCinefiloService.deleteRangoCinefilo(id!).subscribe({
+            next: (response) => {
+                alert(response.message); 
+                this.resultados = this.resultados.filter(rango => rango.id !== id);
+            },
+            error: (error: any) => {
+                alert('Error al eliminar el rango cinefilo');
+            }
+        });
     }
-  }
+}
 }

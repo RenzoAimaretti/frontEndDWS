@@ -40,11 +40,13 @@ export class SubscriptionService {
       .pipe(catchError(this.handleError<Subscription>('editSubscription')));
   }
 
-  deleteSubscription(id: number): Observable<Subscription> {
-    return this.http
-      .delete<Subscription>(`${this.apiUrl}/${id}`)
-      .pipe(catchError(this.handleError<Subscription>('deleteSubscription')));
+
+
+  deleteSubscription(id: number): Observable<{ message: string }> {
+    return this.http.delete<{ message: string }>(`${this.apiUrl}/${id}`)
+      .pipe(catchError(this.handleError<{ message: string }>('deleteSubscription')));
   }
+  
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
