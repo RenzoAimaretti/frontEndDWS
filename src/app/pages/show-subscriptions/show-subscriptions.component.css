@@ -12,27 +12,18 @@ h1 {
 }
 
 .row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   margin: 0 auto;
-}
-
-.col-12 {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 15px;
 }
 
 .card {
   background-color: #62455b;
   border: 1px solid #444;
-  padding: 15px;
+  padding: 12px;
   border-radius: 8px;
   transition: background-color 0.3s, transform 0.3s;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 300px;
-  width: 100%;
+  width: 60%;
+  margin: 0 auto;
 }
 
 .card:hover {
@@ -66,5 +57,5 @@ p {
 }
 
 .me-2 {
-  margin-right: 10px; 
+  margin-right: 10px;
 }

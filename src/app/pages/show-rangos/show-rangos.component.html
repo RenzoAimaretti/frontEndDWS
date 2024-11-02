@@ -1,24 +1,38 @@
 <div class="container">
   <h1 class="text-center">Resultados de Rangos</h1>
   <div class="row justify-content-center align-items-center">
-      <div *ngIf="resultados.length > 0; else noResults">
-          <div *ngFor="let rango of resultados" class="col-12 col-md-4 mb-3 d-flex justify-content-center">
-              <div class="card text-center"> 
-                  <div class="card-body">
-                      <h5 class="card-title">{{ rango.nameRango }}</h5>
-                      <p class="card-text" *ngIf="rango.descriptionRango">{{ rango.descriptionRango }}</p>
-                      <div class="d-flex justify-content-center"> 
-                          <button (click)="editarRangoCinefilo(rango)" class="btn btn-primary me-2">Editar</button>
-                          <button (click)="eliminarRangoCinefilo(rango.id)" 
-                                  class="btn btn-danger" 
-                                  [disabled]="rango.id === 1">Eliminar</button>
-                      </div>
-                  </div>
-              </div>
+    <div *ngIf="resultados.length > 0; else noResults">
+      <div
+        *ngFor="let rango of resultados"
+        class="mb-3 d-flex justify-content-center"
+      >
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">{{ rango.nameRango }}</h5>
+            <p class="card-text" *ngIf="rango.descriptionRango">
+              {{ rango.descriptionRango }}
+            </p>
+            <div class="d-flex justify-content-center">
+              <button
+                (click)="editarRangoCinefilo(rango)"
+                class="btn btn-primary me-2"
+              >
+                Editar
+              </button>
+              <button
+                (click)="eliminarRangoCinefilo(rango.id)"
+                class="btn btn-danger"
+                [disabled]="rango.id === 1"
+              >
+                Eliminar
+              </button>
+            </div>
           </div>
+        </div>
       </div>
+    </div>
   </div>
   <ng-template #noResults>
-      <p class="text-center">No se encontraron rangos con ese nombre</p>
+    <p class="text-center">No se encontraron rangos con ese nombre</p>
   </ng-template>
 </div>
