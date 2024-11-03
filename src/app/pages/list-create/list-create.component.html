@@ -1,8 +1,8 @@
-<form [formGroup]="listForm">
+<form [formGroup]="listForm" class="list-create-container">
   <h1>Nueva Lista</h1>
 
-  <div class="form-control">
-    <label for="nameList">Nombre</label>
+  <div class="form-group">
+    <label for="nameList">Nombre de la lista</label>
     <input
       id="nameList"
       formControlName="nameList"
@@ -11,8 +11,8 @@
     />
   </div>
 
-  <div class="form-control">
-    <label for="description">Descripción</label>
+  <div class="form-group">
+    <label for="descriptionList">Descripción</label>
     <textarea
       id="descriptionList"
       formControlName="descriptionList"
@@ -27,9 +27,10 @@
     <button class="cancel-btn" [routerLink]="'/dashboard'">CANCELAR</button>
   </div>
 
-  <label for="title">Añadir película</label>
+  <label for="movieSearch">Añadir película</label>
   <div class="search-controls">
     <input
+      id="movieSearch"
       class="search-movie-input"
       formControlName="title"
       type="text"
@@ -52,7 +53,7 @@
           <img [src]="getImageUrl(movie.poster_path)" alt="{{ movie.title }}" />
           <div class="movie-info">
             <h5 class="movie-title">{{ movie.title }}</h5>
-            <p class="movie-year">{{ movie.release_date | date : "yyyy" }}</p>
+            <p class="movie-year">{{ movie.release_date | date: 'yyyy' }}</p>
           </div>
         </div>
       </div>

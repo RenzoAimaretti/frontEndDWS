@@ -1,12 +1,22 @@
 <app-search></app-search>
-<div class="search-results-container">
+
+<div class="container search-results-container">
   
+
   <div *ngIf="lists.length > 0; else noResults" class="lists-container">
-    <div *ngFor="let list of lists" class="list-card" [routerLink]="['/lists/', list.id]">
-      <h3 class="list-title">{{ list.nameList }}</h3>
-      <div class="movies-container">
-        <div *ngFor="let content of list.contents" class="movie-thumbnail">
-          <img [src]="getImageUrl(content.poster_path)" [alt]="content.title" class="movie-image" />
+    <div
+      *ngFor="let list of lists"
+      class="list-card card p-3 mb-3"
+      [routerLink]="['/lists/', list.id]"
+    >
+      <h3 class="list-title card-title">{{ list.nameList }}</h3>
+      <div class="movies-container d-flex flex-wrap justify-content-center">
+        <div *ngFor="let content of list.contents" class="movie-thumbnail m-1">
+          <img
+            [src]="getImageUrl(content.poster_path)"
+            [alt]="content.title"
+            class="movie-image img-fluid"
+          />
         </div>
       </div>
     </div>

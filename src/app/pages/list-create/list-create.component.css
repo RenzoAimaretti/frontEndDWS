@@ -1,231 +1,173 @@
-
 body {
-    background-color: #1b1d29; 
-    color: #ffffff;
-    font-family: 'Roboto', sans-serif;
-    padding: 20px;
+  background-color: #1b1d29;
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  padding: 20px;
 }
 
 h1 {
-    font-size: 2em;
-    color: #ffffff;
-    margin-bottom: 20px;
-    text-align: center;
-    font-weight: bold;
+  font-size: 2em;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
 }
 
-form {
-    background-color: #2a2d3b;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    max-width: 800px;
-    margin: 0 auto;
+.list-create-container {
+  background-color: #2a2d3b;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.form-control {
-    margin-bottom: 20px;
-    background-color: #141827; 
+.form-group {
+  margin-bottom: 20px;
 }
 
-input, select, textarea {
-    width: calc(100% - 20px);
-    padding: 10px;
-    background-color: #ffffff; 
-    border: 1px solid transparent; 
-    border-radius: 5px;
-    color: #000000;
-    font-size: 1em;
-    margin-bottom: 10px;
+.form-group label {
+  color: #ffffff;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
+.form-group input,
+.form-group textarea {
+  width: calc(100% - 20px);
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: #000000;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
 
-input:focus, textarea:focus {
-    outline: none;
-    border-color: #505365; 
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #505365;
 }
 
 textarea {
-    height: 100px;
-    resize: none;
-}
-
-label {
-    color: #ffffff;
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+  height: 100px;
+  resize: none;
 }
 
 .action-buttons {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .save-btn {
-    background-color: #4caf50;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    color: rgb(255, 255, 255);
-    font-size: 1em;
-    cursor: pointer;
+  background-color: #4caf50;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 1em;
+  cursor: pointer;
 }
 
 .save-btn:hover {
-    background-color: #43a047;
+  background-color: #43a047;
 }
 
 .cancel-btn {
-    background-color: #f44336;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 1em;
-    cursor: pointer;
+  background-color: #f44336;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
 }
 
 .cancel-btn:hover {
-    background-color: #e53935;
+  background-color: #e53935;
 }
 
-
 .search-controls {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .search-movie-input {
-    width: 70%;
-    padding: 10px;
-    background-color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    color: #000000;
-    margin-right: 10px;
+  width: 70%;
+  padding: 10px;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  color: #000000;
+  margin-right: 10px;
 }
 
 .add-film-btn {
-    background-color: #38a1db;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    color: rgb(255, 255, 255);
-    cursor: pointer;
+  background-color: #38a1db;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  cursor: pointer;
 }
 
 .add-film-btn:hover {
-    background-color: #2f8ac2;
+  background-color: #2f8ac2;
 }
 
-
 .movie-list {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .movie-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
 }
 
 .movie-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #383b4a;
-    border-radius: 8px;
-    padding: 10px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #383b4a;
+  border-radius: 8px;
+  padding: 10px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
 }
 
 .movie-item:hover {
-    transform: scale(1.05);
-}
-
-
-.movie-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #383b4a;
-    border-radius: 8px;
-    padding: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-
-.movie-item:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .movie-item.selected {
-    background-color: #2a2d3b;  
-    border: 2px solid #00b14f;  
+  background-color: #2a2d3b;
+  border: 2px solid #00b14f;
 }
 
 .movie-card img {
-    width: 100px;
-    height: 150px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+  width: 100px;
+  height: 150px;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .movie-info {
-    color: #ffffff;
-    width: 100%;
-    padding: 10px;
-    background-color: #383b4a;
-    border-radius: 5px;
-    text-align: center;
+  color: #ffffff;
+  width: 100%;
+  padding: 10px;
+  background-color: #383b4a;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .movie-title {
-    font-size: 1.1em;
-}
-
-
-.movie-item input[type="checkbox"] {
-    display: none;
-}
-
-
-.movie-item.selected .movie-info {
-    background-color: #1b1d29;
-    border-radius: 5px;
-}
-
-.movie-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.movie-card img {
-    width: 100px;
-    height: 150px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.movie-info {
-    color: #fff;
-    width: 100%;
-    padding: 10px;
-    background-color: #383b4a;
-    border-radius: 5px;
-}
-
-.movie-title {
-    font-size: 1.1em;
-    margin-bottom: 5px;
+  font-size: 1.1em;
+  margin-bottom: 5px;
 }

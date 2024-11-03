@@ -1,35 +1,31 @@
 <div *ngIf="lists.length > 0">
-  <div class="lists-container">
-    <div
-      *ngFor="let list of lists"
-      class="list-item"
-      [routerLink]="['/lists/', list.id]"
-    >
-      <div class="list-info">
-        <div class="list-thumbnail">
+  <div class="container my-4">
+    <div *ngFor="let list of lists" [routerLink]="['/lists/', list.id]" class="list-item row align-items-center p-3" >
+      <div class="col-md-10 d-flex align-items-center list-info">
+        <div class="list-thumbnail d-flex align-items-center gap-2">
           <img
             *ngFor="let content of list.contents.slice(0, 12)"
-            class="thumbnail-img"
+            class="thumbnail-img img-fluid"
             [src]="getImageUrl(content.poster_path)"
             alt="{{ content.title }}"
           />
           <img
             *ngIf="list.contents.length > 3"
-            class="thumbnail-placeholder"
+            class="thumbnail-placeholder img-fluid"
             src="path-to-placeholder"
-            alt="mas peliculas"
+            alt="más películas"
           />
         </div>
-        <div class="list-details">
-          <h3 class="list-title">{{ list.nameList }}</h3>
+        <div class="list-details ms-4">
+          <h3 class="list-title mb-1">{{ list.nameList }}</h3>
           <span class="list-count">{{ list.contents.length }} películas</span>
-          <p class="list-description">{{ list.descriptionList }}</p>
+          <p class="list-description mt-2">{{ list.descriptionList }}</p>
         </div>
       </div>
-      <div class="list-actions">
+      <div class="col-md-2 d-flex justify-content-end list-actions">
         <button
           [routerLink]="['/list/edit', list.id, userId]"
-          class="edit-button"
+          class="btn btn-success edit-button"
         >
           Editar Lista
         </button>
