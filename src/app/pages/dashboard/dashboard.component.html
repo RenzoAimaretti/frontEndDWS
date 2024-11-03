@@ -1,5 +1,5 @@
 <div class="container my-4">
-  <!-- Mensaje para usuario no logueado -->
+  
   <div
     *ngIf="!userLoginOn"
     class="alert custom-alert-warning text-center"
@@ -8,7 +8,7 @@
     Usuario no logueado
   </div>
 
-  <!-- Información del usuario -->
+  
   <div *ngIf="userLoginOn" class="card custom-card shadow-lg">
     <div class="card-header custom-card-header">
       <h4 class="mb-0">Perfil del Usuario</h4>
@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <!-- Botones de acción -->
+    
     <div class="card-footer text-center">
       <button class="btn btn-primary mx-2" [routerLink]="'/dashboard/edit'">
         <i class="bi bi-pencil-square me-2"></i>Editar Usuario
