@@ -30,7 +30,7 @@ export class ShowRangosComponent implements OnInit {
 
   buscarRangos(query: string): void {
     this.rangoCinefiloService.searchRangoCinefilo(query).subscribe(result => {
-      console.log('RangoCinefilo search resultados:', result);
+    
       this.resultados = result; 
     });
   }
