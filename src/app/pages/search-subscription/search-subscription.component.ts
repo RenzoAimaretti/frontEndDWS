@@ -20,18 +20,18 @@ export class SearchSubscriptionComponent {
   input = '';
   selected = 'rangoCinefilo';
 
-  // Inyecta los servicios
+  
   subscriptionService: SubscriptionService = inject(SubscriptionService);
   rangoCinefiloService: RangoCinefiloService = inject(RangoCinefiloService);
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(queryParams => {
-      this.input = queryParams['query'] || ''; // Maneja el caso donde no hay query
+      this.input = queryParams['query'] || ''; 
     });
   }
 
   selectSearchType(type: string) {
-    this.selected = type; // Actualiza el tipo de búsqueda seleccionado
+    this.selected = type; 
   }
 
   searchRangoCinefilo(): void {
