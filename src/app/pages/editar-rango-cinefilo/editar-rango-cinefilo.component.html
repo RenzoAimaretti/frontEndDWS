@@ -1,10 +1,10 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <h1 class="text-center mb-4">Editar Rango Cinefilo</h1>
-      <form *ngIf="rangoCinefilo" (ngSubmit)="guardarCambios()">
+      <h1 class="text-center text-white mb-4">Editar Rango Cinefilo</h1>
+      <form *ngIf="rangoCinefilo" (ngSubmit)="guardarCambios()" class="bg-dark p-4 rounded shadow">
         <div class="form-group mb-3">
-          <label for="nombre">Nombre:</label>
+          <label for="nombre" class="form-label text-white">Nombre:</label>
           <input
             [(ngModel)]="rangoCinefilo.nameRango"
             id="nombre"
@@ -14,7 +14,7 @@
           />
         </div>
         <div class="form-group mb-3">
-          <label for="descripcion">Descripción:</label>
+          <label for="descripcion" class="form-label text-white">Descripción:</label>
           <input
             [(ngModel)]="rangoCinefilo.descriptionRango"
             id="descripcion"
@@ -28,7 +28,7 @@
           <button
             type="button"
             class="btn btn-secondary"
-            (click)="router.navigate(['/search/rangoCinefilo'])"
+            (click)="router.navigate(['/adminDashboard'])"
           >
             Cancelar
           </button>

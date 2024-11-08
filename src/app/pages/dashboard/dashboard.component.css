@@ -1,21 +1,21 @@
-/* Colores y estilos personalizados */
+
 .custom-alert-warning {
-  background-color: #ffdfba; /* Color de advertencia personalizado */
+  background-color: #ffdfba; 
   color: #6c757d;
 }
 
 .custom-card {
-  background-color: #ffffff; /* Fondo de tarjeta */
-  border-color: #c0c0c0; /* Color de borde de la tarjeta */
+  background-color: #ffffff;
+  border-color: #c0c0c0; 
 }
 
 .custom-card-header {
-  background-color: #62455b; /* Color principal que usas para encabezados */
+  background-color: #62455b;
   color: #ffffff;
 }
 
 .custom-btn-primary:hover,
 .custom-btn-success:hover,
 .custom-btn-info:hover {
-  opacity: 0.85; /* Efecto de opacidad al pasar el cursor */
+  opacity: 0.85; 
 }

@@ -1,12 +1,17 @@
-<h2>Crear Nuevo Rango Cinefilo</h2>
-<form (ngSubmit)="onSubmit()">
-  <div>
-    <label for="nameRango">Nombre del Rango:</label>
-    <input type="text" id="nameRango" [(ngModel)]="rangoCinefilo.nameRango" name="nameRango" required>
-  </div>
-  <div>
-    <label for="descriptionRango">Descripción del Rango:</label>
-    <input type="text" id="descriptionRango" [(ngModel)]="rangoCinefilo.descriptionRango" name="descriptionRango" required>
-  </div>
-  <button type="submit">Crear Rango</button>
-</form>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<div class="container-fluid">
+    <div class="container pt-5">
+        <h2 class="text-center">Crear Nuevo Rango Cinefilo</h2>
+        <form (ngSubmit)="onSubmit()" #rangoForm="ngForm" class="rango-form">
+            <div class="form-group">
+                <label for="nameRango" class="text-white font-weight-bold">Nombre del Rango:</label>
+                <input type="text" id="nameRango" [(ngModel)]="rangoCinefilo.nameRango" name="nameRango" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="descriptionRango" class="text-white font-weight-bold">Descripción del Rango:</label>
+                <input type="text" id="descriptionRango" [(ngModel)]="rangoCinefilo.descriptionRango" name="descriptionRango" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Crear Rango</button>
+        </form>
+    </div>
+</div>
