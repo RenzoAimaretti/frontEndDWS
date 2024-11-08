@@ -1,36 +1,57 @@
 <div class="list-edit-container">
   <h1>Editar Lista</h1>
 
-  <div *ngIf="list else noList">
+  <div *ngIf="list; else noList">
     <div class="form-group">
       <label for="listName">Nombre de la lista</label>
-      <input id="listName" [(ngModel)]="list.nameList" placeholder="Nombre de la lista..." />
+      <input
+        id="listName"
+        [(ngModel)]="list.nameList"
+        placeholder="Nombre de la lista..."
+      />
     </div>
 
     <div class="form-group">
       <label for="listDescription">Descripción</label>
-      <textarea id="listDescription" [(ngModel)]="list.descriptionList" placeholder="Añade una descripción..."></textarea>
+      <textarea
+        id="listDescription"
+        [(ngModel)]="list.descriptionList"
+        placeholder="Añade una descripción..."
+      ></textarea>
     </div>
   </div>
 
   <div class="form-group movie-search-container">
     <label for="movieSearch">Buscar película para agregar</label>
     <div class="search-input-button">
-      <input id="movieSearch" [(ngModel)]="searchQuery" placeholder="Ingresa nombre de película..." />
+      <input
+        id="movieSearch"
+        [(ngModel)]="searchQuery"
+        placeholder="Ingresa nombre de película..."
+      />
       <button (click)="searchMovie()">Buscar</button>
     </div>
   </div>
 
   <div class="movies-search-results">
-    <div *ngFor="let movie of movies" class="movie-card" [class.selected]="isMovieInList(movie)" (click)="toggleMovie(movie)">
+    <div
+      *ngFor="let movie of movies"
+      class="movie-card"
+      [class.selected]="isMovieInList(movie)"
+      (click)="toggleMovie(movie)"
+    >
       <img [src]="getImageUrl(movie.poster_path)" alt="{{ movie.title }}" />
       <p>{{ movie.title }}</p>
     </div>
   </div>
-
+  <h3>Películas en la lista</h3>
   <div class="current-movies">
-    <h3>Películas en la lista</h3>
-    <div class="movie-card" *ngFor="let movie of list?.contents" (mouseover)="showDelete = true" (mouseleave)="showDelete = false">
+    <div
+      class="movie-card"
+      *ngFor="let movie of list?.contents"
+      (mouseover)="showDelete = true"
+      (mouseleave)="showDelete = false"
+    >
       <img [src]="getImageUrl(movie.poster_path)" alt="{{ movie.title }}" />
       <p>{{ movie.title }}</p>
       <button *ngIf="showDelete" (click)="removeMovie(movie)">Eliminar</button>
@@ -38,14 +59,25 @@
   </div>
 
   <div class="button-container">
-    <button class="save-button" [routerLink]="['/user/lists/', userId ]" (click)="saveList()">Guardar Cambios</button>
+    <button
+      class="save-button"
+      [routerLink]="['/user/lists/', userId]"
+      (click)="saveList()"
+    >
+      Guardar Cambios
+    </button>
     <button class="cancel-button" [routerLink]="'/home'">Cancelar</button>
   </div>
 
-
   <div class="delete-button-container">
-    <button class="delete-button" [routerLink]="['/user/lists/', userId]" (click)="deleteList()">Eliminar Lista</button>
-  </div>  
+    <button
+      class="delete-button"
+      [routerLink]="['/user/lists/', userId]"
+      (click)="deleteList()"
+    >
+      Eliminar Lista
+    </button>
+  </div>
 </div>
 
 <ng-template #noList>

@@ -4,11 +4,10 @@ import { AuthService } from '../../services/auth.service';
 import { User } from '../../interface/user';
 import { UserService } from '../../services/user.service';
 import { RouterModule } from '@angular/router';
-import { ListCreateComponent } from '../list-create/list-create.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule, ListCreateComponent],
+  imports: [CommonModule, RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
