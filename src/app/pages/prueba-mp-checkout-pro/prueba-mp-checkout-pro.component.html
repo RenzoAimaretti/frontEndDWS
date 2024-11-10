@@ -10,7 +10,21 @@
       Some quick example text to build on the card title and make up the bulk of
       the card's content.
     </p>
-    <button id="checkout-btn">Comprar</button>
-    <div id="wallet_container"></div>
+    <div class="button-container">
+      <button
+        id="checkout-btn"
+        (click)="redirectToMpUrl()"
+        [disabled]="mpUrl == null"
+      >
+        <span *ngIf="mpUrl != null"> Comprar</span>
+        <span
+          class="spinner-border spinner-border-sm"
+          aria-hidden="true"
+          *ngIf="mpUrl == null"
+        ></span>
+
+        <span role="status" *ngIf="mpUrl == null">Cargando...</span>
+      </button>
+    </div>
   </div>
 </div>

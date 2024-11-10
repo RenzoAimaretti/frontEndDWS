@@ -14,7 +14,7 @@ export class MercadoPagoService {
   }) {
     try {
       const response = await this.http
-        .post<{ id: string }>(
+        .post<{ url: string }>(
           'http://localhost:3000/api/mp/create_preference',
           orderData
         )

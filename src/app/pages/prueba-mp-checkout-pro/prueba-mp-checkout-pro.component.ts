@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import MercadoPago from 'mercadopago';
 import { environment } from '../../../enviroments/enviroment';
 import { MercadoPagoService } from '../../services/mercado-pago.service';
+import { CommonModule } from '@angular/common';
 
 declare global {
   interface Window {
@@ -12,12 +13,13 @@ declare global {
 @Component({
   selector: 'app-prueba-mp-checkout-pro',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './prueba-mp-checkout-pro.component.html',
   styleUrl: './prueba-mp-checkout-pro.component.css',
 })
 export class PruebaMpCheckoutProComponent implements OnInit {
   mp: any;
+  mpUrl: string | null = null;
   constructor(private mercadoPagoService: MercadoPagoService) {
     this.mp = new MercadoPago({
       accessToken: environment.mercadoPagoPublicKey,
@@ -25,48 +27,30 @@ export class PruebaMpCheckoutProComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cargarCheckout();
+  }
+
+  async cargarCheckout() {
     try {
-      const checkoutBtn = document.getElementById('checkout-btn');
-      if (checkoutBtn) {
-        console.log('tenemos boton');
-        checkoutBtn.addEventListener('click', async () => {
-          const orderData = {
-            title: 'Mi producto',
-            quantity: 1,
-            unit_price: 100,
-          };
-          const response = await this.mercadoPagoService.createPreference(
-            orderData
-          );
-          console.log(response);
-          this.createCheckoutButton(response);
-        });
-      }
+      const orderData = {
+        title: 'Mi producto',
+        quantity: 1,
+        unit_price: 100,
+      };
+      //armamos la preferencia con la order data y nos devuelve la url de mercado pago
+      const preference = await this.mercadoPagoService.createPreference(
+        orderData
+      );
+      this.mpUrl = preference?.url || null;
+      console.log(this.mpUrl);
     } catch (e) {
       console.log(e);
     }
   }
 
-  createCheckoutButton(response: any) {
-    // Initialize the checkout
-    const bricksBuilder = this.mp.bricks();
-    // por alguna razon no renderiza el boton de pago
-    const renderComponent = async (bricksBuilder: any) => {
-      if (window.checkoutButton) window.checkoutButton.unmount();
-      await bricksBuilder.create(
-        'wallet',
-        'button-checkout', // class/id where the payment button will be displayed
-        {
-          initialization: {
-            preferenceId: response.id,
-          },
-          callbacks: {
-            onError: (error: any) => console.error(error),
-            onReady: () => {},
-          },
-        }
-      );
-    };
-    window.checkoutButton = renderComponent(bricksBuilder);
+  redirectToMpUrl() {
+    if (this.mpUrl) {
+      window.location.href = this.mpUrl;
+    }
   }
 }

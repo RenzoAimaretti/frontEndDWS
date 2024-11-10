@@ -6,10 +6,10 @@ import { NavComponent } from './shared/nav/nav.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,UserComponent,RouterModule,NavComponent],
+  imports: [RouterOutlet, RouterModule, NavComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'frontEndDWS';
+  title = 'Cinemateca';
 }
