@@ -24,18 +24,27 @@ import { ShowSubscriptionsComponent } from './pages/show-subscriptions/show-subs
 import { EditarSubscripcionComponent } from './pages/editar-subscripcion/editar-subscripcion.component';
 import { EditarRangoCinefiloComponent } from './pages/editar-rango-cinefilo/editar-rango-cinefilo.component';
 import { SuggestionsManagerComponent } from './pages/suggestions-manager/suggestions-manager.component';
+import { PruebaMpCheckoutProComponent } from './pages/prueba-mp-checkout-pro/prueba-mp-checkout-pro.component';
 export const routes: Routes = [
   //Rutas de la aplicacion
   { path: 'users', component: UserComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'movie/:id', component: MovieComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard],
+  },
   { path: 'login', component: LoginComponent },
   { path: 'search/movies', component: ShowMoviesComponent },
   { path: 'search/lists', component: ShowListsComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'dashboard/edit', component: UserEditComponent, canActivate: [authGuard] },
+  {
+    path: 'dashboard/edit',
+    component: UserEditComponent,
+    canActivate: [authGuard],
+  },
   { path: 'lists/:id', component: ListDetailsComponent },
   { path: 'createList', component: ListCreateComponent },
   { path: 'createList/:id', component: ListCreateComponent },
@@ -45,12 +54,24 @@ export const routes: Routes = [
   { path: 'user-profile/:id', component: UserProfileComponent },
   { path: 'search/rangoCinefilo', component: ShowRangosComponent },
   { path: 'search/subscriptions', component: ShowSubscriptionsComponent },
-  { path: 'adminDashboard',component: AdminDashboardComponent, canActivate: [authGuard] },
+  {
+    path: 'adminDashboard',
+    component: AdminDashboardComponent,
+    canActivate: [authGuard],
+  },
   { path: 'create-rango-cinefilo', component: CreateRangoCinefiloComponent },
   { path: 'create-subscription', component: CreateSubscriptionComponent },
   { path: 'editar-subscripcion/:id', component: EditarSubscripcionComponent },
-  { path: 'editar-rango-cinefilo/:id', component: EditarRangoCinefiloComponent },
-  { path: 'manage-suggestions', component: SuggestionsManagerComponent, canActivate: [authGuard] },
+  {
+    path: 'editar-rango-cinefilo/:id',
+    component: EditarRangoCinefiloComponent,
+  },
+  {
+    path: 'manage-suggestions',
+    component: SuggestionsManagerComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'checkout', component: PruebaMpCheckoutProComponent },
 ];
 
 @NgModule({
