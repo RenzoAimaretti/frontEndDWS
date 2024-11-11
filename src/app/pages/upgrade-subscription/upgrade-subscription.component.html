@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-center">
+  <div class="row justify-content-center">
+    <div
+      *ngFor="let subscription of subscriptions"
+      class="col-md-4 col-md-3 mb-4"
+    >
+      <app-subscription-item
+        [suscriptionInput]="subscription"
+      ></app-subscription-item>
+    </div>
+  </div>
+</div>

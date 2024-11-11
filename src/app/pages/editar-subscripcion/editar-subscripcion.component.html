@@ -1,17 +1,53 @@
 <div class="container mt-5">
   <h1 class="text-center text-white mb-4">Editar Subscripción</h1>
-  <form *ngIf="subscription" (ngSubmit)="guardarCambios()" class="bg-dark p-4 rounded shadow">
-      <div class="form-group mb-3">
-          <label for="name" class="form-label text-white">Nombre:</label>
-          <input [(ngModel)]="subscription.name" name="name" id="name" class="form-control" required>
-      </div>
-      <div class="form-group mb-3">
-          <label for="cantidadSem" class="form-label text-white">Cantidad Semanal:</label>
-          <input [(ngModel)]="subscription.cantidadSem" name="cantidadSem" id="cantidadSem" type="number" class="form-control" required>
-      </div>
-      <div class="d-flex justify-content-between">
-          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-          <button type="button" class="btn btn-secondary" (click)="router.navigate(['/adminDashboard'])">Cancelar</button>
-      </div>
+  <form
+    *ngIf="subscription"
+    (ngSubmit)="guardarCambios()"
+    class="bg-dark p-4 rounded shadow"
+  >
+    <div class="form-group mb-3">
+      <label for="name" class="form-label text-white">Nombre:</label>
+      <input
+        [(ngModel)]="subscription.name"
+        name="name"
+        id="name"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="cantidadSem" class="form-label text-white"
+        >Cantidad Semanal:</label
+      >
+      <input
+        [(ngModel)]="subscription.cantidadSem"
+        name="cantidadSem"
+        id="cantidadSem"
+        type="number"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="precio" class="form-label text-white">Precio:</label>
+      <input
+        [(ngModel)]="subscription.precio"
+        name="precio"
+        id="precio"
+        type="number"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="router.navigate(['/adminDashboard'])"
+      >
+        Cancelar
+      </button>
+    </div>
   </form>
 </div>
