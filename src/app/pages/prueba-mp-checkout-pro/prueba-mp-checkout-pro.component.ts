@@ -33,9 +33,9 @@ export class PruebaMpCheckoutProComponent implements OnInit {
   async cargarCheckout() {
     try {
       const orderData = {
-        title: 'Mi producto',
+        title: 'Premium',
         quantity: 1,
-        unit_price: 100,
+        unit_price: 100000,
       };
       //armamos la preferencia con la order data y nos devuelve la url de mercado pago
       const preference = await this.mercadoPagoService.createPreference(

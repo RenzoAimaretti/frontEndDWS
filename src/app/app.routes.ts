@@ -25,6 +25,7 @@ import { EditarSubscripcionComponent } from './pages/editar-subscripcion/editar-
 import { EditarRangoCinefiloComponent } from './pages/editar-rango-cinefilo/editar-rango-cinefilo.component';
 import { SuggestionsManagerComponent } from './pages/suggestions-manager/suggestions-manager.component';
 import { PruebaMpCheckoutProComponent } from './pages/prueba-mp-checkout-pro/prueba-mp-checkout-pro.component';
+import { UpgradeSubscriptionComponent } from './pages/upgrade-subscription/upgrade-subscription.component';
 export const routes: Routes = [
   //Rutas de la aplicacion
   { path: 'users', component: UserComponent },
@@ -72,6 +73,11 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   { path: 'checkout', component: PruebaMpCheckoutProComponent },
+  {
+    path: 'dashboard/upgradeSubscription',
+    component: UpgradeSubscriptionComponent,
+    canActivate: [authGuard],
+  },
 ];
 
 @NgModule({

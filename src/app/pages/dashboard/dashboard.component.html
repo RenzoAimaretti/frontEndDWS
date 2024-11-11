@@ -1,5 +1,4 @@
 <div class="container my-4">
-  
   <div
     *ngIf="!userLoginOn"
     class="alert custom-alert-warning text-center"
@@ -8,7 +7,6 @@
     Usuario no logueado
   </div>
 
-  
   <div *ngIf="userLoginOn" class="card custom-card shadow-lg">
     <div class="card-header custom-card-header">
       <h4 class="mb-0">Perfil del Usuario</h4>
@@ -43,7 +41,6 @@
       </div>
     </div>
 
-    
     <div class="card-footer text-center">
       <button class="btn btn-primary mx-2" [routerLink]="'/dashboard/edit'">
         <i class="bi bi-pencil-square me-2"></i>Editar Usuario
@@ -53,6 +50,12 @@
       </button>
       <button class="btn btn-primary mx-2" [routerLink]="['/user/lists/', id]">
         <i class="bi bi-list-ul me-2"></i>Ver Listas
+      </button>
+      <button
+        class="btn btn-primary mx-2"
+        [routerLink]="['/dashboard/upgradeSubscription']"
+      >
+        <i class="bi bi-list-ul me-2"></i>Aumentar suscripción
       </button>
     </div>
   </div>

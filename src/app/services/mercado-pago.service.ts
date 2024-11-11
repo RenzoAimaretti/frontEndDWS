@@ -13,6 +13,7 @@ export class MercadoPagoService {
     unit_price: number;
   }) {
     try {
+      console.log(orderData);
       const response = await this.http
         .post<{ url: string }>(
           'http://localhost:3000/api/mp/create_preference',

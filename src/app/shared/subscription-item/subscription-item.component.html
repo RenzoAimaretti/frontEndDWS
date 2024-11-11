@@ -1,0 +1,37 @@
+<div class="card shadow-sm border-0 rounded-3 mb-4" style="width: 18rem">
+  <!-- Reemplaza la imagen por un círculo con la inicial -->
+  <div
+    class="card-img-top rounded-top d-flex align-items-center justify-content-center bg-primary text-white"
+    style="height: 150px; font-size: 3rem; font-weight: bold"
+  >
+    {{ suscriptionInput.name.charAt(0) }}
+  </div>
+
+  <div class="card-body text-center">
+    <h5 class="card-title text-primary fw-bold">{{ suscriptionInput.name }}</h5>
+    <p class="card-text text-muted">
+      Mejora tu suscripción actual a <strong>{{ suscriptionInput.name }}</strong
+      >!
+    </p>
+    <div class="button-container mt-3">
+      <button
+        id="checkout-btn"
+        (click)="redirectToMpUrl()"
+        [disabled]="
+          mpUrl == null || currentSubscription?.id == suscriptionInput.id
+        "
+        class="btn btn-primary w-100 d-flex align-items-center justify-content-center"
+      >
+        <span *ngIf="mpUrl != null">
+          Comprar: ${{ suscriptionInput.precio }}
+        </span>
+        <span
+          *ngIf="mpUrl == null"
+          class="spinner-border spinner-border-sm me-2"
+          role="status"
+        ></span>
+        <span *ngIf="mpUrl == null">Cargando...</span>
+      </button>
+    </div>
+  </div>
+</div>

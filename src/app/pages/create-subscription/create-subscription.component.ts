@@ -1,18 +1,20 @@
 import { Component } from '@angular/core';
 import { SubscriptionService } from '../../services/subscription.service';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { Subscription } from '../../interface/subscription';
 
 @Component({
   selector: 'app-create-subscription',
   standalone: true,
-  imports: [FormsModule], 
+  imports: [FormsModule],
   templateUrl: './create-subscription.component.html',
-  styleUrls: ['./create-subscription.component.css']
+  styleUrls: ['./create-subscription.component.css'],
 })
 export class CreateSubscriptionComponent {
-  subscription = {
+  subscription: Subscription = {
     name: '',
-    cantidadSem: 0
+    cantidadSem: 0,
+    precio: 0,
   };
 
   constructor(private subscriptionService: SubscriptionService) {}
@@ -26,7 +28,7 @@ export class CreateSubscriptionComponent {
       error: (error) => {
         console.error('Error al crear la subscripción:', error);
         alert('Error al crear la suscripción. Inténtalo de nuevo más tarde.');
-      }
+      },
     });
   }
 }
