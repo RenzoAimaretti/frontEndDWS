@@ -5,24 +5,21 @@ import { CookieService } from 'ngx-cookie-service';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const cookieService = inject(CookieService);
 
-  if (req.url.indexOf('home') > 0) return next(req);
+  if (req.url.includes('home')) {
+    return next(req);
+  }
 
   const authToken = cookieService.get('access_token');
   const authAdminToken = cookieService.get('access_admin_token');
-  if (authToken != '') {
-    const clonReq = req.clone({
+  //Correccion de logica de manejo de tokens correspondiente a Middle issue
+  const token = authToken || authAdminToken;
+  if (token) {
+    const clonedRequest = req.clone({
       setHeaders: {
-        authorization: authToken,
+        authorization: token,
       },
     });
-    return next(clonReq);
-  } else if (authAdminToken != '') {
-    const clonReq = req.clone({
-      setHeaders: {
-        authorization: authAdminToken,
-      },
-    });
-    return next(clonReq);
+    return next(clonedRequest);
   }
 
   return next(req);
