@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../interface/user';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-subscription-item',
@@ -41,6 +42,7 @@ export class SubscriptionItemComponent {
               next: (Response) => {
                 this.currentSubscription = Response.subscription;
                 if (this.currentSubscription.id === this.suscriptionInput.id) {
+                  //quizas este log pasarlo a una alerta al intentar oprimir el boton
                   console.log(
                     'Ya tienes esta subscripcion',
                     this.currentSubscription.name
@@ -64,7 +66,7 @@ export class SubscriptionItemComponent {
     this.cargarCheckout();
   }
 
-  async cargarCheckout() {
+  cargarCheckout() {
     try {
       const orderData = {
         title: this.suscriptionInput.name,
@@ -72,10 +74,15 @@ export class SubscriptionItemComponent {
         unit_price: this.suscriptionInput.precio,
       };
       //armamos la preferencia con la order data y nos devuelve la url de mercado pago
-      const preference = await this.mercadoPagoService.createPreference(
-        orderData
-      );
-      this.mpUrl = preference?.url || null;
+      this.mercadoPagoService.createPreference(orderData)?.subscribe({
+        next: (result: any) => {
+          this.mpUrl = result.url;
+          console.log(this.mpUrl);
+        },
+        error: (e) => {
+          console.log(e);
+        },
+      });
       console.log(this.mpUrl);
     } catch (e) {
       console.log(e);

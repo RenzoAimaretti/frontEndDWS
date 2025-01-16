@@ -8,7 +8,6 @@ import { authInterceptor } from './custom/auth.interceptor';
 //import de las rutas que estaban el app.routes.ts. correccion de Middle issues
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserComponent } from './pages/user/user.component';
 import { MovieComponent } from './pages/movie/movie.component';
 import { HomeComponent } from './pages/home/home.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -32,12 +31,10 @@ import { ShowSubscriptionsComponent } from './pages/show-subscriptions/show-subs
 import { EditarSubscripcionComponent } from './pages/editar-subscripcion/editar-subscripcion.component';
 import { EditarRangoCinefiloComponent } from './pages/editar-rango-cinefilo/editar-rango-cinefilo.component';
 import { SuggestionsManagerComponent } from './pages/suggestions-manager/suggestions-manager.component';
-import { PruebaMpCheckoutProComponent } from './pages/prueba-mp-checkout-pro/prueba-mp-checkout-pro.component';
 import { UpgradeSubscriptionComponent } from './pages/upgrade-subscription/upgrade-subscription.component';
 //migracion del codigo de rutas que se encintraba en app.routes.ts. Middle issue
 const routes: Routes = [
   //Rutas de la aplicacion
-  { path: 'users', component: UserComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'movie/:id', component: MovieComponent },
@@ -81,7 +78,6 @@ const routes: Routes = [
     component: SuggestionsManagerComponent,
     canActivate: [authGuard],
   },
-  { path: 'checkout', component: PruebaMpCheckoutProComponent },
   {
     path: 'dashboard/upgradeSubscription',
     component: UpgradeSubscriptionComponent,

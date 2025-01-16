@@ -29,7 +29,7 @@ export class UserListsComponent {
     });
   }
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     this.route.queryParams.subscribe((queryParams) => {
       if (queryParams['refresh'] === 'true') {
         this.userLists();
@@ -43,6 +43,7 @@ export class UserListsComponent {
         if (this.idCurrent == this.userId) {
           this.userLists();
         } else {
+          //definir que hacemos con esta alerta, salta cuando no es necesario por como esta manejado el user id
           window.alert('No puedes ver las listas de otro usuario');
         }
       },
