@@ -23,10 +23,10 @@ export class HomeComponent {
   constructor(private tmdbService: TmdbService) {}
 
   async ngOnInit(): Promise<void> {
-    await this.loadMovies();
+    this.loadMovies();
   }
 
-  async loadMovies(): Promise<void> {
+  loadMovies(): void {
     this.tmdbService.getPopularMovies().subscribe({
       next: (movies) => (this.popularMovies = movies),
       error: (error) => console.error(error),

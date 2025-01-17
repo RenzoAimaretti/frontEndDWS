@@ -36,11 +36,11 @@ export class MovieComponent {
     });
   }
 
-  async ngOnInit(): Promise<void> {
-    await this.getMovie();
+  ngOnInit(): void {
+    this.getMovie();
   }
 
-  async getMovie(): Promise<void> {
+  getMovie(): void {
     this.tmdbService.getMovie(this.movieId).subscribe({
       next: (result) => {
         (this.movie = result),

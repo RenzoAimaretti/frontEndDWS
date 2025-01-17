@@ -74,9 +74,6 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  //Estaria bueno un metodo para retornar de antemano si el usuario logueado ya lo esta siguiendo
-  // y asi poner un boton se seguir o dejar de seguir respectivamente
-
   followUser(): void {
     if (this.isUserLogged && this.loggedUserId != null) {
       if (this.user) {
