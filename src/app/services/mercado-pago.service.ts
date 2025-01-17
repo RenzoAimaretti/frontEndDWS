@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
+import { environment } from '../../environments/environment.js';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +18,7 @@ export class MercadoPagoService {
       console.log(orderData);
       const response = this.http
         .post<{ url: string }>(
-          'http://localhost:3000/api/mp/create_preference',
+          `${environment.domainBack}/api/mp/create_preference`,
           orderData
         )
         .pipe(map((res) => res));
