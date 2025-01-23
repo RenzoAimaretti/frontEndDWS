@@ -1,4 +1,3 @@
-import { Button } from 'bootstrap';
 import { environment } from '../../src/environments/environment';
 
 beforeEach(() => {

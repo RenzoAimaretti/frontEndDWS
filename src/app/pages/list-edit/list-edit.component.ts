@@ -26,7 +26,12 @@ export class ListEditComponent {
   userId?: number;
   idCurrent?: number;
 
-  constructor(private listService: ListService, private TmdbService: TmdbService, private authService: AuthService, private router: Router) {
+  constructor(
+    private listService: ListService,
+    private TmdbService: TmdbService,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.route.params.subscribe((params) => {
       this.listId = params['id'];
       this.userId = params['userId'];
@@ -35,20 +40,22 @@ export class ListEditComponent {
 
   ngOnInit(): void {
     if (this.listId !== undefined) {
-      this.authService.getIdFromToken()
+      this.authService.getIdFromToken();
       this.authService.currentUser().subscribe({
-        next:(response)=>{
-          this.idCurrent=response;}})
-      if(this.idCurrent==this.userId){
-        console.log("el ususario coincide",this.userId);
+        next: (response) => {
+          this.idCurrent = response;
+        },
+      });
+      if (this.idCurrent == this.userId) {
+        console.log('el ususario coincide', this.userId);
         this.listService.getList(this.listId).subscribe({
           next: (response) => {
             this.list = {
               ...response,
               contents: response.contents.map((content: any) => ({
                 ...content,
-                id: content.idContent
-              }))
+                id: content.idContent,
+              })),
             };
             this.loadMoviesForLists();
           },
@@ -56,30 +63,33 @@ export class ListEditComponent {
             console.error(error);
           },
         });
-      }else{
-        console.log("el usuario no coincide",this.userId);
-        window.alert("No puedes editar las listas de otro usuario");
-      } 
+      } else {
+        console.log('el usuario no coincide', this.userId);
+        window.alert('No puedes editar las listas de otro usuario');
+      }
     }
   }
 
   loadMoviesForLists(): void {
-    if(this.list){
+    if (this.list) {
       for (const content of this.list.contents) {
-        console.log('contenido',content)
-        if (content) { 
+        console.log('contenido', content);
+        if (content) {
           this.TmdbService.getMovie(content.id).subscribe({
             next: (response) => {
-              console.log("respuesta", response);
+              console.log('respuesta', response);
               content.title = response.title;
               content.poster_path = response.poster_path;
             },
             error: (err) => {
               console.error('Error obteniendo la película', err);
-            }
+            },
           });
         } else {
-          console.error('ID de película no definido para este contenido:', content);
+          console.error(
+            'ID de película no definido para este contenido:',
+            content
+          );
         }
       }
     }
@@ -117,25 +127,34 @@ export class ListEditComponent {
   }
 
   saveList(): void {
-    console.log(this.list)
-    this.listService.updateList(this.list!).subscribe({
-      next: (result) => {
-        console.log('Lista guardada exitosamente', result);
-        this.router.navigate(['/user/lists', this.userId], { queryParams: { refresh: true } });
-      },
-      error: (error) => {
-        console.error('Error guardando la lista:', error);
-      },
-    });
+    if (!this.list?.nameList || !this.list?.descriptionList) {
+      window.alert('Una lista debe contener nombre y descripción.');
+    } else {
+      this.listService.updateList(this.list!).subscribe({
+        next: (result) => {
+          console.log('Lista guardada exitosamente', result);
+          this.router.navigate(['/user/lists', this.userId], {
+            queryParams: { refresh: true },
+          });
+        },
+        error: (error) => {
+          console.error('Error guardando la lista:', error);
+        },
+      });
+    }
   }
 
   deleteList(): void {
-    let response = window.confirm('¿Estás seguro de que quieres eliminar la lista?');
+    let response = window.confirm(
+      '¿Estás seguro de que quieres eliminar la lista?'
+    );
     if (response) {
       this.listService.deleteList(this.listId!).subscribe({
         next: (result) => {
           console.log('Lista eliminada exitosamente', result);
-          this.router.navigate(['/user/lists', this.userId], { queryParams: { refresh: true } });
+          this.router.navigate(['/user/lists', this.userId], {
+            queryParams: { refresh: true },
+          });
         },
         error: (error) => {
           console.error('Error eliminando la lista:', error);

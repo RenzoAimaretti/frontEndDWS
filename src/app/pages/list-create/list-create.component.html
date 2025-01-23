@@ -21,9 +21,7 @@
   </div>
 
   <div class="action-buttons">
-    <button class="save-btn" [routerLink]="'/dashboard'" (click)="createList()">
-      GUARDAR
-    </button>
+    <button class="save-btn" (click)="createList()">GUARDAR</button>
     <button class="cancel-btn" [routerLink]="'/dashboard'">CANCELAR</button>
   </div>
 
@@ -53,7 +51,7 @@
           <img [src]="getImageUrl(movie.poster_path)" alt="{{ movie.title }}" />
           <div class="movie-info">
             <h5 class="movie-title">{{ movie.title }}</h5>
-            <p class="movie-year">{{ movie.release_date | date: 'yyyy' }}</p>
+            <p class="movie-year">{{ movie.release_date | date : "yyyy" }}</p>
           </div>
         </div>
       </div>
