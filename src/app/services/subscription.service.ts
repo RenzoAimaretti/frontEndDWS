@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Subscription } from '../interface/subscription';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { environment } from '../../environments/environment.js';
+
 @Injectable({
   providedIn: 'root',
 })
 export class SubscriptionService {
-  private apiUrl = 'http://localhost:3000/api/subscription';
-  private searchUrl = 'http://localhost:3000/api/subscription/search?name=';
+  private apiUrl = `${environment.domainBack}/api/subscription`;
+  private searchUrl = `${environment.domainBack}/api/subscription/search?name=`;
 
   constructor(private http: HttpClient) {}
 

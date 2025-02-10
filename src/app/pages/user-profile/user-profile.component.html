@@ -42,25 +42,26 @@
         {{ user.friendsFrom.length }}
       </li>
     </ul>
-
-    <div
-      *ngIf="userId != loggedUserId"
-      class="d-flex justify-content-center mt-3"
-    >
-      <button
-        *ngIf="!isAlreadyFollowing"
-        class="btn btn-success mx-2"
-        (click)="followUser()"
+    <div *ngIf="isUserLogged">
+      <div
+        *ngIf="userId != loggedUserId"
+        class="d-flex justify-content-center mt-3"
       >
-        Seguir a este usuario
-      </button>
-      <button
-        *ngIf="isAlreadyFollowing"
-        class="btn btn-danger mx-2"
-        (click)="unfollowUser()"
-      >
-        Dejar de seguir a este usuario
-      </button>
+        <button
+          *ngIf="!isAlreadyFollowing"
+          class="btn btn-success mx-2"
+          (click)="followUser()"
+        >
+          Seguir a este usuario
+        </button>
+        <button
+          *ngIf="isAlreadyFollowing"
+          class="btn btn-danger mx-2"
+          (click)="unfollowUser()"
+        >
+          Dejar de seguir a este usuario
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -68,12 +69,19 @@
 <div class="user-lists mt-5">
   <h3 class="text-center">Listas de {{ user?.name }}</h3>
   <div *ngIf="lists.length > 0; else noLists" class="list-container">
-    <div *ngFor="let list of lists" class="list-card" [routerLink]="['/lists/', list.id]">
+    <div
+      *ngFor="let list of lists"
+      class="list-card"
+      [routerLink]="['/lists/', list.id]"
+    >
       <h4 class="list-title">{{ list.nameList }}</h4>
       <div class="movie-thumbnails">
         <ng-container *ngFor="let content of list.contents; let i = index">
           <div *ngIf="i < 5" class="thumbnail">
-            <img [src]="getImageUrl(content.poster_path)" [alt]="content.title" />
+            <img
+              [src]="getImageUrl(content.poster_path)"
+              [alt]="content.title"
+            />
             <p class="movie-title">{{ content.title }}</p>
           </div>
         </ng-container>
@@ -87,6 +95,3 @@
     <p class="text-center">Este usuario no tiene listas creadas.</p>
   </ng-template>
 </div>
-
-
-

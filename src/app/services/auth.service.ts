@@ -13,12 +13,13 @@ import {
 import { User } from '../interface/user';
 import { CookieService } from 'ngx-cookie-service';
 import { Admin } from '../interface/admin';
+import { environment } from '../../environments/environment.js';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  authUrl = 'http://localhost:3000/api/auth/';
-  dashboardUrl = 'http://localhost:3000/api/dashboard/';
-  dashboardAdminUrl = 'http://localhost:3000/api/dashboard/admin';
-  adminUrl = 'http://localhost:3000/api/admin/';
+  authUrl = `${environment.domainBack}/api/auth/`;
+  dashboardUrl = `${environment.domainBack}/api/dashboard/`;
+  dashboardAdminUrl = `${environment.domainBack}/api/dashboard/admin`;
+  adminUrl = `${environment.domainBack}/api/admin/`;
 
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false

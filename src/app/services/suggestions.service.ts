@@ -5,11 +5,13 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
 export class SuggestionsService {
-  private suggestionUrl = 'http://localhost:3000/api/suggestions/';
+  private suggestionUrl = `${environment.domainBack}/api/suggestions/`;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };

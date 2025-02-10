@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
+import { environment } from '../../environments/environment.js';
+
 @Injectable({
   providedIn: 'root',
 })
 export class MercadoPagoService {
   constructor(private http: HttpClient) {}
 
-  async createPreference(orderData: {
+  createPreference(orderData: {
     title: string;
     quantity: number;
     unit_price: number;
   }) {
     try {
       console.log(orderData);
-      const response = await this.http
+      const response = this.http
         .post<{ url: string }>(
-          'http://localhost:3000/api/mp/create_preference',
+          `${environment.domainBack}/api/mp/create_preference`,
           orderData
         )
-        .pipe(map((res) => res))
-        .toPromise();
+        .pipe(map((res) => res));
       return response;
     } catch (e) {
       console.log(e);
