@@ -1,32 +1,35 @@
 <div *ngIf="movie; else noMovie">
-    <div class="banner">
-        <img class="backdrop" src="{{imageUrl}}" alt="Imagen de la pelicula"/>
-        <div class="banner-content">
-            <img class="poster" src="{{posterUrl}}" alt="Poster de la pelicula">
-            <div class="importantInfo">  
-                <h1 class="title">{{movie.title}}</h1>
-                <p class="overview">{{movie.overview}}</p>
-            </div>
-        </div>
+  <div class="banner">
+    <img class="backdrop" src="{{ imageUrl }}" alt="Imagen de la pelicula" />
+    <div class="banner-content">
+      <img class="poster" src="{{ posterUrl }}" alt="Poster de la pelicula" />
+      <div class="importantInfo">
+        <h1 class="title">{{ movie.title }}</h1>
+        <p class="overview">{{ movie.overview }}</p>
+      </div>
     </div>
-    <div class="details">
-        <strong>Genero: </strong> {{genreString}}
-        <strong>Pais de origen: </strong> {{movie.origin_country}}
-        <strong>Fecha de lanzamiento: </strong> {{movie.release_date}}
-        <strong>Idioma original: </strong> {{movie.original_language}}
-        <button class="add-to-list-btn" (click)="showList()">Agregar a lista</button>
-        <div id="modal" class="modal" *ngIf="showModal">
-            <app-movie-add-list [movieTitle]="movie.title" [movieId]="movieId" [lists]="lists" (showModalChange)="handleModalChange($event)"></app-movie-add-list>
-        </div>
+  </div>
+  <div class="details">
+    <strong>Genero: </strong> {{ genreString }}
+    <strong>Pais de origen: </strong> {{ movie.origin_country }}
+    <strong>Fecha de lanzamiento: </strong> {{ movie.release_date }}
+    <strong>Idioma original: </strong> {{ movie.original_language }}
+    <button class="add-to-list-btn" (click)="showList()">
+      Agregar a lista
+    </button>
+    <div id="modal" class="modal" *ngIf="showModal">
+      <app-movie-add-list
+        [movieTitle]="movie.title"
+        [movieId]="movieId"
+        [lists]="lists"
+        (showModalChange)="handleModalChange($event)"
+      ></app-movie-add-list>
     </div>
-    
-    <app-review [idContent]="movieId" [nameContent]="movie.title"></app-review>
-        
+  </div>
+
+  <app-review [idContent]="movieId" [nameContent]="movie.title"></app-review>
 </div>
 
-
-
-
 <ng-template #noMovie>
-    <p>Pelicula no encontrada</p>
+  <p>Pelicula no encontrada</p>
 </ng-template>
