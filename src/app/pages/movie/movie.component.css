@@ -196,6 +196,7 @@
   }
   .importantInfo {
     display: block;
+    font-size: medium;
   }
 }
 

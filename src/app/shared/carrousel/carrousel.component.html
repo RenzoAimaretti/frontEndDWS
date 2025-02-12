@@ -5,16 +5,12 @@
   </button>
   <!-- Botón izquierdo -->
 
-  <div class="my-carousel carousel-{{ idCarrusel }} row">
-    <div
-      *ngFor="let movie of movies"
-      class="my-carousel-item col-sm-6 col-md-4 col-lg-3"
-    >
+  <div class="my-carousel carousel-{{ idCarrusel }}">
+    <div *ngFor="let movie of movies" class="my-carousel-item">
       <a [routerLink]="['/movie', movie.id]">
         <img
           [src]="getImageUrl(movie.poster_path)"
           alt="{{ movie.title }} poster"
-          class="img-fluid"
         />
         <p>{{ movie.title }}</p>
       </a>
