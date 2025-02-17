@@ -1,31 +1,53 @@
 <form [formGroup]="loginForm">
-    <div class="mb-3">
-      <label for="InputEmail1" class="form-label">Correo</label>
-      <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-      placeholder="correo@gmail.com">
-        <div
-        *ngIf="email && email.invalid && (email.dirty || email.touched)"
-        class="text-danger">   
-            <div *ngIf="email && email.errors?.['required']">
-                El email es requerido.
-            </div>
-            <div *ngIf="email && email.errors?.['email']">
-              El formato no es correcto.
-            </div>
-        </div>
+  <div class="mb-3">
+    <label for="InputEmail1" class="form-label">Correo</label>
+    <input
+      formControlName="email"
+      type="email"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      placeholder="correo@gmail.com"
+    />
+    <div
+      *ngIf="email && email.invalid && (email.dirty || email.touched)"
+      class="text-danger"
+    >
+      <div *ngIf="email && email.errors?.['required']">
+        El email es requerido.
+      </div>
+      <div *ngIf="email && email.errors?.['email']">
+        El formato no es correcto.
+      </div>
     </div>
-    <div class="mb-3">
-      <label for="InputPassword1" class="form-label">Contraseña</label>
-      <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="12345678">
-        <div
-        *ngIf="password && password.invalid && (password.dirty || password.touched)"
-        class="text-danger">   
-            <div *ngIf="email && email.errors?.['required']">
-                La Contraseña es requerida.
-            </div>
-        </div>
+  </div>
+  <div class="mb-3">
+    <label for="InputPassword1" class="form-label">Contraseña</label>
+    <input
+      formControlName="password"
+      type="password"
+      class="form-control"
+      id="exampleInputPassword1"
+      placeholder="12345678"
+    />
+    <div
+      *ngIf="
+        password && password.invalid && (password.dirty || password.touched)
+      "
+      class="text-danger"
+    >
+      <div *ngIf="password && password.errors?.['required']">
+        La Contraseña es requerida.
+      </div>
+      <div *ngIf="password && password.errors?.['minlength']">
+        La Contraseña debe tener una longitud minima de 8 caracteres.
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary" (click)="login()">Iniciar sesion</button>
-    <button type="submit" class="btn btn-primary" [routerLink]="'/register'">Registrarse</button>
-
-  </form>
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="login()">
+    Iniciar sesion
+  </button>
+  <button type="submit" class="btn btn-primary" [routerLink]="'/register'">
+    Registrarse
+  </button>
+</form>

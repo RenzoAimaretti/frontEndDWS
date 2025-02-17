@@ -1,24 +1,42 @@
 <div class="container">
-  
   <div class="form-group">
-    <input 
-      type="text" 
-      [(ngModel)]="input" 
-      class="form-control" 
-      placeholder="Escribe tu búsqueda..." 
+    <input
+      type="text"
+      [(ngModel)]="input"
+      class="form-control"
+      placeholder="Escribe tu búsqueda..."
     />
   </div>
 
   <ul class="nav nav-pills nav-justified">
     <li class="nav-item">
-      <a class="nav-link" [class.active]="selected === 'rangoCinefilo'" (click)="selectSearchType('rangoCinefilo')">RangoCinefilo</a>
+      <a
+        class="nav-link"
+        [class.active]="selected === 'rangoCinefilo'"
+        (click)="selectSearchType('rangoCinefilo')"
+        >RangoCinefilo</a
+      >
     </li>
     <li class="nav-item">
-      <a class="nav-link" [class.active]="selected === 'subscripcion'" (click)="selectSearchType('subscripcion')">Subscripción</a>
+      <a
+        class="nav-link"
+        [class.active]="selected === 'subscripcion'"
+        (click)="selectSearchType('subscripcion')"
+        >Subscripción</a
+      >
     </li>
   </ul>
 
-  <button class="btn btn-primary mt-3" (click)="selected === 'rangoCinefilo' ? searchRangoCinefilo() : searchSubscription()">
-    Buscar
-  </button>
+  <div class="d-flex justify-content-center mt-3">
+    <button
+      class="btn btn-primary"
+      (click)="
+        selected === 'rangoCinefilo'
+          ? searchRangoCinefilo()
+          : searchSubscription()
+      "
+    >
+      Buscar
+    </button>
+  </div>
 </div>

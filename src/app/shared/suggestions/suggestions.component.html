@@ -11,45 +11,48 @@
     </div>
     <div class="card-body">
       <form [formGroup]="suggestionForm" (ngSubmit)="postSuggestion()">
-        <!-- Campo de Título -->
-        <div class="form-group mb-3">
-          <label for="titleSuggestion">Titulo de la sugerencia</label>
-          <input
-            type="text"
-            id="titleSuggestion"
-            class="form-control"
-            placeholder="Mejoras del inicio"
-            formControlName="titleSuggestion"
-            [ngClass]="{
-              'is-invalid': titleSuggestion?.invalid && titleSuggestion?.touched
-            }"
-          />
-          <div
-            *ngIf="titleSuggestion?.invalid && titleSuggestion?.touched"
-            class="invalid-feedback"
-          >
-            El titulo es requeridos.
+        <div class="row">
+          <!-- Campo de Título -->
+          <div class="form-group mb-3 col-12 col-sm-6 col-md-4">
+            <label for="titleSuggestion">Titulo de la sugerencia</label>
+            <input
+              type="text"
+              id="titleSuggestion"
+              class="form-control"
+              placeholder="Mejoras del inicio"
+              formControlName="titleSuggestion"
+              [ngClass]="{
+                'is-invalid':
+                  titleSuggestion?.invalid && titleSuggestion?.touched
+              }"
+            />
+            <div
+              *ngIf="titleSuggestion?.invalid && titleSuggestion?.touched"
+              class="invalid-feedback"
+            >
+              El titulo es requeridos.
+            </div>
           </div>
-        </div>
 
-        <!-- Campo de Descripción -->
-        <div class="form-group mb-3">
-          <label for="description">Descripcion de la sugerencia</label>
-          <textarea
-            id="description"
-            class="form-control"
-            placeholder="Agregar listas nuevas..."
-            rows="3"
-            formControlName="description"
-            [ngClass]="{
-              'is-invalid': description?.invalid && description?.touched
-            }"
-          ></textarea>
-          <div
-            *ngIf="description?.invalid && description?.touched"
-            class="invalid-feedback"
-          >
-            La descripcion es requerida.
+          <!-- Campo de Descripción -->
+          <div class="form-group mb-3 col-12 col-sm-6 col-md-8">
+            <label for="description">Descripcion de la sugerencia</label>
+            <textarea
+              id="description"
+              class="form-control"
+              placeholder="Agregar listas nuevas..."
+              rows="1"
+              formControlName="description"
+              [ngClass]="{
+                'is-invalid': description?.invalid && description?.touched
+              }"
+            ></textarea>
+            <div
+              *ngIf="description?.invalid && description?.touched"
+              class="invalid-feedback"
+            >
+              La descripcion es requerida.
+            </div>
           </div>
         </div>
 

@@ -23,7 +23,7 @@
   padding-bottom: 12px;
 }
 
-.my-carousel-item:hover{
+.my-carousel-item:hover {
   transform: scale(1.1);
   transition: transform 0.5s;
 }
@@ -68,7 +68,7 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-h2{
+h2 {
   text-align: center;
   color: #c1d9d0;
   margin: 20px 0;
@@ -76,10 +76,8 @@ h2{
   padding: 10px;
   border-radius: 8px;
   width: 50%;
-  margin-left: auto; 
+  margin-left: auto;
   margin-right: auto;
-  margin-left: auto; 
+  margin-left: auto;
   margin-right: auto;
 }
-
-

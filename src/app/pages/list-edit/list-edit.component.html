@@ -29,7 +29,7 @@
         [(ngModel)]="searchQuery"
         placeholder="Ingresa nombre de película..."
       />
-      <button (click)="searchMovie()">Buscar</button>
+      <button class="search-movie-btn" (click)="searchMovie()">Buscar</button>
     </div>
   </div>
 
@@ -59,13 +59,7 @@
   </div>
 
   <div class="button-container">
-    <button
-      class="save-button"
-      [routerLink]="['/user/lists/', userId]"
-      (click)="saveList()"
-    >
-      Guardar Cambios
-    </button>
+    <button class="save-button" (click)="saveList()">Guardar Cambios</button>
     <button class="cancel-button" [routerLink]="'/home'">Cancelar</button>
   </div>
 

@@ -1,17 +1,58 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+/>
 <div class="container-fluid">
-    <div class="container pt-5">
-        <h2 class="text-center">Crear Nuevo Rango Cinefilo</h2>
-        <form (ngSubmit)="onSubmit()" #rangoForm="ngForm" class="rango-form">
-            <div class="form-group">
-                <label for="nameRango" class="text-white font-weight-bold">Nombre del Rango:</label>
-                <input type="text" id="nameRango" [(ngModel)]="rangoCinefilo.nameRango" name="nameRango" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="descriptionRango" class="text-white font-weight-bold">Descripción del Rango:</label>
-                <input type="text" id="descriptionRango" [(ngModel)]="rangoCinefilo.descriptionRango" name="descriptionRango" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-success w-100">Crear Rango</button>
-        </form>
-    </div>
+  <div class="container pt-5">
+    <h2 class="text-center">Crear Nuevo Rango Cinefilo</h2>
+    <form (ngSubmit)="onSubmit()" #rangoForm="ngForm" class="rango-form">
+      <div class="form-group">
+        <div class="form-group row">
+          <label
+            for="nameRango"
+            class="col-form-label col-12 col-md-4 text-white font-weight-bold"
+            >Nombre del Rango:</label
+          >
+          <div class="col-12 col-md-8">
+            <input
+              type="text"
+              id="nameRango"
+              [(ngModel)]="rangoCinefilo.nameRango"
+              name="nameRango"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-group row">
+          <label
+            for="descriptionRango"
+            class="col-form-label col-12 col-md-4 text-white font-weight-bold"
+            >Descripción del Rango:</label
+          >
+          <div class="col-12 col-md-8">
+            <input
+              type="text"
+              id="descriptionRango"
+              [(ngModel)]="rangoCinefilo.descriptionRango"
+              name="descriptionRango"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="!rangoForm.form.valid"
+        >
+          Crear Rango
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
