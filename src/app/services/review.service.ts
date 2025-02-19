@@ -8,7 +8,29 @@ import {
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment.js';
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css';
 
+const notyf = new Notyf({
+  duration: 4000, 
+  position: {
+    x: 'center', 
+    y: 'top',
+  },
+  ripple: true, 
+  dismissible: true, 
+  types: [
+    {
+      type: 'success',
+      background: 'linear-gradient(135deg, #72c6ef 0%, #004e92 100%)',
+      icon: {
+        className: 'notyf__icon--custom',
+        tagName: 'span',
+      },
+      className: 'custom-success',
+    },
+  ],
+});
 @Injectable({
   providedIn: 'root',
 })
@@ -40,11 +62,17 @@ export class ReviewService {
       )
       .pipe(
         map((result: any) => result),
-        tap((result) => console.log(result)),
+        tap((result) => {
+          console.log(result);
+          if (result.rangoChanged) {
+           
+            notyf.success(`🎉 ¡Felicidades! Obtuviste el rango: ${result.newRango}`);
+          }
+        }),
         catchError(this.handleError)
       );
   }
-
+     
   deleteReview(idContent: number): Observable<any> {
     const ownerId = this.authService.currentUserId.value;
     return this.http
