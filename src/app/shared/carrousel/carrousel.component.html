@@ -1,16 +1,24 @@
 <h2>{{ title }}</h2>
 <div class="my-carousel-container">
-  <button class="my-carousel-button prev" (click)="scrollLeft()">&#9664;</button> <!-- Botón izquierdo -->
-  
+  <button class="my-carousel-button prev" (click)="scrollLeft()">
+    &#9664;
+  </button>
+  <!-- Botón izquierdo -->
+
   <div class="my-carousel carousel-{{ idCarrusel }}">
     <div *ngFor="let movie of movies" class="my-carousel-item">
       <a [routerLink]="['/movie', movie.id]">
-        <img [src]="getImageUrl(movie.poster_path)" alt="{{ movie.title }} poster">
+        <img
+          [src]="getImageUrl(movie.poster_path)"
+          alt="{{ movie.title }} poster"
+        />
         <p>{{ movie.title }}</p>
       </a>
     </div>
   </div>
-  
-  <button class="my-carousel-button next" (click)="scrollRight()">&#9654;</button> <!-- Botón derecho -->
-</div>
 
+  <button class="my-carousel-button next" (click)="scrollRight()">
+    &#9654;
+  </button>
+  <!-- Botón derecho -->
+</div>

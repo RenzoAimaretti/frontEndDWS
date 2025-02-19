@@ -5,14 +5,21 @@
   <div class="card-body">
     <ul class="list-group list-group-flush">
       <li
-        *ngIf="isAlreadyFollowing && userId != loggedUserId"
+        *ngIf="isUserLogged === false"
+        class="list-group-item text-center bg-warning text-white"
+      >
+        <strong>Estado:</strong> No estas logueado
+      </li>
+
+      <li
+        *ngIf="isAlreadyFollowing && userId != loggedUserId && isUserLogged"
         class="list-group-item text-center bg-success text-white"
       >
         <strong>Estado:</strong> Ya sigues a este usuario
       </li>
 
       <li
-        *ngIf="!isAlreadyFollowing && userId != loggedUserId"
+        *ngIf="!isAlreadyFollowing && userId != loggedUserId && isUserLogged"
         class="list-group-item text-center bg-danger text-white"
       >
         <strong>Estado:</strong> No sigues a este usuario

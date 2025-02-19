@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CarrouselComponent } from '../../shared/carrousel/carrousel.component';
 import { Movie } from '../../interface/movie';
-import { TmdbService } from '../../services/tmdb-service.service.js';
+import { TmdbService } from '../../services/tmdb-service.service';
 import { CarrouselSpotlightComponent } from '../../shared/carrousel-spotlight/carrousel-spotlight.component';
 import { SuggestionsComponent } from '../../shared/suggestions/suggestions.component';
 @Component({

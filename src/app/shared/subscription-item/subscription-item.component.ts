@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MercadoPagoService } from '../../services/mercado-pago.service';
 import MercadoPago from 'mercadopago';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.js';
 import { Subscription } from '../../interface/subscription';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
@@ -29,7 +29,6 @@ export class SubscriptionItemComponent {
     private userService: UserService,
     private authService: AuthService
   ) {
-    
     //usamos una pequeña reversion de la funcion de dashboard para obtener la subscripcion actual del usuario
     this.authService.getIdFromToken();
     this.authService.isUserLoggedIn().subscribe({

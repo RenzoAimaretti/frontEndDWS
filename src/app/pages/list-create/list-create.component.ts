@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Movie } from '../../interface/movie.js';
 import { TmdbService } from '../../services/tmdb-service.service.js';
 import { List } from '../../interface/list.js';
@@ -36,7 +36,8 @@ export class ListCreateComponent {
     private fb: FormBuilder,
     private listService: ListService,
     private authService: AuthService,
-    private userServices: UserService
+    private userServices: UserService,
+    private router: Router
   ) {
     this.route.params.subscribe((params) => {
       if (params['id'] !== undefined) {
@@ -109,9 +110,6 @@ export class ListCreateComponent {
 
   createList(): void {
     if (this.listForm.valid) {
-      console.log(this.selectedMovies);
-      console.log(this.userId);
-
       if (this.userId) {
         const { title, ...formDataWithoutTitle } = this.listForm.value;
 
@@ -120,14 +118,14 @@ export class ListCreateComponent {
           ...formDataWithoutTitle,
           contents: this.selectedMovies,
         };
-
-        console.log('Lista creada:', this.list);
       }
 
       if (this.list) {
         this.listService.createList(this.list).subscribe({
           next: (response) => {
-            console.log('List created:', response);
+            alert('Lista creada exitosamente!');
+            this.listForm.reset();
+            this.router.navigate(['/dashboard']);
           },
           error: (error) => {
             console.log('Error creating List:', error);
@@ -135,8 +133,7 @@ export class ListCreateComponent {
         });
       }
     } else {
-      console.log('Formulario inválido');
-      console.log(this.selectedMovies);
+      alert('Una lista debe contener nombre y descripción.');
     }
   }
 

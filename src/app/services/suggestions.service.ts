@@ -5,7 +5,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
-import { environment } from '../../environments/environment.js';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
