@@ -40,7 +40,11 @@ export class ReviewService {
       )
       .pipe(
         map((result: any) => result),
-        tap((result) => console.log(result)),
+        tap((result) => {
+          if(result.message === "Toxicity detected"){
+            window.alert("Tu reseña contiene contenido toxico, por favor modificala")
+          }
+          console.log(result)}),
         catchError(this.handleError)
       );
   }
@@ -76,8 +80,12 @@ export class ReviewService {
         this.httpOptions
       )
       .pipe(
-        map((result: any) => result.data),
-        //tap(result=>console.log(result)),
+        map((result: any) => result),
+        tap((result) =>{
+          if(result.message === "Toxicity detected"){
+            window.alert("Lo que intentas modificar es toxico, por favor modificalo")
+          }
+          console.log(result)}),
         catchError(this.handleError)
       );
   }
