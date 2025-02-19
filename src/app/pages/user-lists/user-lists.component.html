@@ -8,7 +8,7 @@
       <div class="col-md-10 d-flex align-items-center list-info">
         <div class="list-thumbnail d-flex align-items-center gap-2">
           <img
-            *ngFor="let content of list.contents.slice(0, 12)"
+            *ngFor="let content of list.contents.slice(0, 10)"
             class="thumbnail-img img-fluid"
             [src]="getImageUrl(content.poster_path)"
             alt="{{ content.title }}"
@@ -17,7 +17,7 @@
           <img
             *ngIf="list.contents.length > 3"
             class="thumbnail-placeholder img-fluid"
-            src="path-to-placeholder"
+            src="../../assets/simbolo-mas.png"
             alt="más películas"
           />
           <!-- reemplazar place holder!!! -->
