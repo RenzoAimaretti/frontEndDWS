@@ -38,13 +38,6 @@ export class SubscriptionItemComponent {
             this.userService.getUser(response).subscribe({
               next: (Response) => {
                 this.currentSubscription = Response.subscription;
-                if (this.currentSubscription.id === this.suscriptionInput.id) {
-                  //quizas este log pasarlo a una alerta al intentar oprimir el boton
-                  console.log(
-                    'Ya tienes esta subscripcion',
-                    this.currentSubscription.name
-                  );
-                }
               },
             });
           },
@@ -74,13 +67,12 @@ export class SubscriptionItemComponent {
       this.mercadoPagoService.createPreference(orderData)?.subscribe({
         next: (result: any) => {
           this.mpUrl = result.url;
-          console.log(this.mpUrl);
         },
         error: (e) => {
           console.log(e);
         },
       });
-      console.log(this.mpUrl);
+      // console.log(this.mpUrl);
     } catch (e) {
       console.log(e);
     }
