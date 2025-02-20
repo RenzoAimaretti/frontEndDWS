@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RangoCinefiloService } from '../../services/rangoCinefilo.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-rango-cinefilo',
@@ -16,7 +17,10 @@ export class CreateRangoCinefiloComponent {
     minReviews: null, // Se inicializa en null para que el usuario lo ingrese
   };
 
-  constructor(private rangoCinefiloService: RangoCinefiloService) {}
+  constructor(
+    private rangoCinefiloService: RangoCinefiloService,
+    private router: Router
+  ) {}
 
   onSubmit() {
     this.rangoCinefiloService
@@ -25,6 +29,7 @@ export class CreateRangoCinefiloComponent {
         next: (response) => {
           console.log('RangoCinefilo creado:', response);
           alert('¡Rango cinefilo creado con éxito!');
+          this.router.navigate(['/adminDashboard']);
         },
         error: (error) => {
           console.error('Error al crear RangoCinefilo:', error);

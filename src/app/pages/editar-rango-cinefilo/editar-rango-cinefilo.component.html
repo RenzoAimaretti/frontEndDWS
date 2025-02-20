@@ -1,13 +1,12 @@
-<link
-  rel="stylesheet"
-  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-/>
-
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <h1 class="text-center text-white mb-4">Editar Rango Cinefilo</h1>
-      <form *ngIf="rangoCinefilo" (ngSubmit)="guardarCambios()" class="bg-dark p-4 rounded shadow">
+      <form
+        *ngIf="rangoCinefilo"
+        (ngSubmit)="guardarCambios()"
+        class="bg-dark p-4 rounded shadow"
+      >
         <div class="form-group mb-3">
           <label for="nombre" class="form-label text-white">Nombre:</label>
           <input
@@ -16,33 +15,35 @@
             name="nombre"
             class="form-control"
             required
-            type="text"
           />
         </div>
         <div class="form-group mb-3">
-          <label for="descripcion" class="form-label text-white">Descripción:</label>
+          <label for="descripcion" class="form-label text-white"
+            >Descripción:</label
+          >
           <input
             [(ngModel)]="rangoCinefilo.descriptionRango"
             id="descripcion"
             name="descripcion"
             class="form-control"
             required
-            type="text"
           />
         </div>
         <div class="form-group mb-3">
-          <label for="minReviews" class="form-label text-white">Mínimo de Reseñas:</label>
+          <label for="minReviews" class="form-label text-white"
+            >Mínimo de Reseñas:</label
+          >
           <input
             [(ngModel)]="rangoCinefilo.minReviews"
             id="minReviews"
             name="minReviews"
             class="form-control"
             type="number"
-            [value]="rangoCinefilo.minReviews || 0" 
+            [value]="rangoCinefilo.minReviews || 0"
           />
         </div>
         <div class="d-flex justify-content-between">
-          <button type="submit" class="btn btn-success">Guardar Cambios</button>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
           <button
             type="button"
             class="btn btn-secondary"
