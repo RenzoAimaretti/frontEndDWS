@@ -24,16 +24,20 @@ describe('Register test', () => {
   });
 });
 
-describe('login tests', () => {
+describe('login and delete tests', () => {
   it('Login user', () => {
-    cy.get('#exampleInputEmail1').type('test_user_1902302378@testuser.com');
-    cy.get('#exampleInputPassword1').type('12341234');
+    cy.get('#exampleInputEmail1').type('maile2e@gmail.com');
+    cy.get('#exampleInputPassword1').type('password1234');
 
     cy.get('.btn-primary').contains('Iniciar sesion').click();
     //Validar que la url sea la correcta
     cy.url().should('include', '/dashboard');
     //Validar que la cookie exista
     cy.getCookie('access_token').should('exist');
+    cy.get('.btn-primary').contains('Editar Usuario').click();
+    cy.url().should('include', '/edit');
+    cy.get('.btn-danger').click();
+    cy.url().should('include', '/home');
   });
 
   it('Login admin', () => {
