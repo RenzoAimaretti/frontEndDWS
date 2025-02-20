@@ -13,14 +13,12 @@
             [src]="getImageUrl(content.poster_path)"
             alt="{{ content.title }}"
           />
-          <!-- reemplazar place holder!!! -->
           <img
-            *ngIf="list.contents.length > 3"
+            *ngIf="list.contents.length > 10"
             class="thumbnail-placeholder img-fluid"
             src="../../assets/simbolo-mas.png"
             alt="más películas"
           />
-          <!-- reemplazar place holder!!! -->
         </div>
         <div class="list-details ms-4">
           <h3 class="list-title mb-1">{{ list.nameList }}</h3>

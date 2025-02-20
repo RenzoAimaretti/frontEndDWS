@@ -62,6 +62,7 @@ export class LoginComponent {
           error: (error) => {
             console.log(error);
             this.errorUser = true;
+
             resolve();
           },
           complete: () => {
@@ -71,6 +72,10 @@ export class LoginComponent {
             resolve();
           },
         });
+      } else {
+        this.loginForm.markAllAsTouched();
+        console.log('Formulario no válido');
+        resolve();
       }
     });
   }
@@ -88,6 +93,7 @@ export class LoginComponent {
             error: (error) => {
               console.log(error);
               this.errorAdmin = true;
+
               resolve();
             },
             complete: () => {
@@ -97,6 +103,10 @@ export class LoginComponent {
               resolve();
             },
           });
+      } else {
+        this.loginForm.markAllAsTouched();
+        console.log('Formulario no válido');
+        resolve();
       }
     });
   }

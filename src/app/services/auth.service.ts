@@ -160,4 +160,9 @@ export class AuthService {
       `${this.adminUrl}/${this.currentAdminId.value}`
     );
   }
+
+  clearToken(): Promise<any> {
+    this.cookieService.deleteAll();
+    return Promise.resolve('clear');
+  }
 }

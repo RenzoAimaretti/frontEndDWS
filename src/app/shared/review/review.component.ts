@@ -53,10 +53,15 @@ export class ReviewComponent {
         result => {
           console.log(result)
           //obtener la lista de reseñas actualizada
+          if (result.message === 'Toxicity detected') {
+            this.rating = result.data.rating;
+            this.description = result.data.desc;
+          } else{
           this.getReviews();
           // Limpiar los campos del formulario
           this.rating = 1;
           this.description = '';
+        }
         }
       )
 
@@ -141,12 +146,16 @@ export class ReviewComponent {
       this.reviewService.editReview(this.idContent, reviewToEdit).subscribe(
         result => {
           console.log(result)
+          if(result.message == "toxicity detected"){
+            this.editingRating = result.data.rating;
+            this.editingDescription = result.data.desc;
+          }else{
           //obtener la lista de reseñas actualizada
           this.getReviews();
           // Limpiar los campos del formulario
           this.editingRating = 1;
           this.editingDescription = '';
-          this.editingReviewIndex = null;
+          this.editingReviewIndex = null;}
         }
       )
     }

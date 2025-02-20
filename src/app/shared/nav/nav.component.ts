@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 
@@ -17,14 +17,18 @@ export class NavComponent {
   //admin logueado
   adminLoginOn: boolean = false;
   input: string = '';
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   enviar() {
     console.log(this.input);
   }
 
   logOut() {
-    this.authService.logout();
+    this.authService.clearToken().then(() => {
+      this.userLoginOn = false;
+      this.adminLoginOn = false;
+      this.router.navigate(['/home']);
+    });
   }
 
   ngOnInit(): void {
