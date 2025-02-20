@@ -15,7 +15,6 @@ export class MercadoPagoService {
     unit_price: number;
   }) {
     try {
-      console.log(orderData);
       const response = this.http
         .post<{ url: string }>(
           `${environment.domainBack}/api/mp/create_preference`,
