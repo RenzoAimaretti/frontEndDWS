@@ -23,6 +23,9 @@ export class LoginComponent {
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
 
+  errorUser = false;
+  errorAdmin = false;
+
   ngOnInit(): void {}
 
   get email() {
@@ -35,60 +38,66 @@ export class LoginComponent {
 
   login() {
     //prueba login de usuario
-    try {
-      this.loginUser();
-    } catch (error) {
-      console.error(error);
-    }
-    //intentar login de admin si falla usuario
-    try {
-      this.loginAdmin();
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
-  loginUser() {
-    if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value as LoginRequest).subscribe({
-        next: (response) => {
-          console.log('Login satisfactorio, bienvenido usuario');
-        },
-        error: (error) => {
-          console.log(error);
-        },
-        complete: () => {
-          console.log('Complete');
-          this.router.navigate(['/dashboard']);
-          this.loginForm.reset();
-        },
+    // Ejecutar login de usuario y admin en paralelo y esperar a que ambas se completen
+    Promise.all([this.loginUser(), this.loginAdmin()])
+      .then(() => {
+        if (this.errorUser && this.errorAdmin) {
+          window.alert('Credenciales incorrectas');
+        }
+      })
+      .catch((error) => {
+        console.error('Error during login process:', error);
       });
-    } else {
-      this.loginForm.markAllAsTouched();
-      console.log('Formulario no válido');
-    }
   }
 
-  loginAdmin() {
-    if (this.loginForm.valid) {
-      this.authService
-        .loginAdmin(this.loginForm.value as LoginRequest)
-        .subscribe({
+  loginUser(): Promise<void> {
+    return new Promise((resolve) => {
+      if (this.loginForm.valid) {
+        this.authService.login(this.loginForm.value as LoginRequest).subscribe({
           next: (response) => {
-            console.log('Login satisfactorio, bienvenido administrador');
+            this.errorUser = false;
+            console.log('Login satisfactorio, bienvenido usuario');
           },
           error: (error) => {
             console.log(error);
+            this.errorUser = true;
+            resolve();
           },
           complete: () => {
             console.log('Complete');
-            this.router.navigate(['/adminDashboard']); //no lo implemente todavia en el front
+            this.router.navigate(['/dashboard']);
             this.loginForm.reset();
+            resolve();
           },
         });
-    } else {
-      this.loginForm.markAllAsTouched();
-      console.log('Formulario no válido');
-    }
+      }
+    });
+  }
+
+  loginAdmin(): Promise<void> {
+    return new Promise((resolve) => {
+      if (this.loginForm.valid) {
+        this.authService
+          .loginAdmin(this.loginForm.value as LoginRequest)
+          .subscribe({
+            next: (response) => {
+              this.errorAdmin = false;
+              console.log('Login satisfactorio, bienvenido administrador');
+            },
+            error: (error) => {
+              console.log(error);
+              this.errorAdmin = true;
+              resolve();
+            },
+            complete: () => {
+              console.log('Complete');
+              this.router.navigate(['/adminDashboard']); //no lo implemente todavia en el front
+              this.loginForm.reset();
+              resolve();
+            },
+          });
+      }
+    });
   }
 }
