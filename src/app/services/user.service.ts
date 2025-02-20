@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../interface/user';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment.js';
 
 @Injectable({ providedIn: 'root' })
@@ -14,7 +13,7 @@ export class UserService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  constructor(private http: HttpClient) {}
 
   getUsers(): Observable<User[]> {
     return this.http.get<{ message: string; data: [] }>(this.usersUrl).pipe(
@@ -41,7 +40,6 @@ export class UserService {
 
   delateUser(id: number): Observable<User> {
     console.log(id);
-    this.cookieService.deleteAll();
     return this.http
       .delete<{ message: string; data: User }>(this.usersUrl + id)
       .pipe(

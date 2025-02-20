@@ -13,6 +13,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-user-edit',
@@ -32,6 +33,7 @@ export class UserEditComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private userService: UserService,
+    private cookieService: CookieService,
     private router: Router,
     private fb: FormBuilder // Inyectamos FormBuilder para construir el formulario reactivo
   ) {}
@@ -104,8 +106,9 @@ export class UserEditComponent implements OnInit {
       const confirmed = window.confirm(
         '¿Estás seguro de que deseas borrar este usuario?'
       );
+      console.log(confirmed);
 
-      if (this.user.id !== undefined && confirmed) {
+      if (confirmed) {
         this.userService.delateUser(this.user.id).subscribe({
           next: (response) => {
             console.log(response);
@@ -114,7 +117,9 @@ export class UserEditComponent implements OnInit {
             console.log(error);
           },
           complete: () => {
-            this.router.navigate(['/home']);
+            this.authService.clearToken().then(() => {
+              this.router.navigate(['/home']);
+            });
           },
         });
       } else {
