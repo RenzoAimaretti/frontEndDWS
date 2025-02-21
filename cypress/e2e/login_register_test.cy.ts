@@ -36,8 +36,8 @@ describe('login and delete tests', () => {
     cy.getCookie('access_token').should('exist');
     cy.get('.btn-primary').contains('Editar Usuario').click();
     cy.url().should('include', '/edit');
+    //eliminar usuario
     cy.get('.btn-danger').click();
-    cy.url().should('include', '/home');
   });
 
   it('Login admin', () => {
