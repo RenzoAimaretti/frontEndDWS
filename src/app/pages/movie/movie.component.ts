@@ -73,7 +73,6 @@ export class MovieComponent {
               this.userServices.userLists(this.userId).subscribe({
                 next: (response) => {
                   this.lists = response;
-                  // Mover el chequeo aquí después de que `this.lists` haya sido actualizado.
                   if (this.lists.length !== 0) {
                     this.showModal = true;
                     console.log('hay listas');

@@ -26,7 +26,7 @@ export class UserEditComponent implements OnInit {
   userLoginOn: boolean = false;
   user?: User;
   id?: number;
-  editForm!: FormGroup; // Usamos FormGroup para gestionar el formulario
+  editForm!: FormGroup;
   email: any;
   name: any;
 
@@ -35,17 +35,17 @@ export class UserEditComponent implements OnInit {
     private userService: UserService,
     private cookieService: CookieService,
     private router: Router,
-    private fb: FormBuilder // Inyectamos FormBuilder para construir el formulario reactivo
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    // Inicializar el formulario
+
     this.editForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
     });
 
-    // Verificar si el usuario está logueado y cargar sus datos
+
     this.authService.getIdFromToken();
     this.authService.isUserLoggedIn().subscribe({
       next: (response) => {
@@ -58,7 +58,7 @@ export class UserEditComponent implements OnInit {
                 this.userService.getUser(this.id).subscribe({
                   next: (response) => {
                     this.user = response;
-                    this.editForm.patchValue(this.user); // Cargar datos en el formulario
+                    this.editForm.patchValue(this.user);
                   },
                   error: (error) => {
                     console.log('Error fetching user:', error);
@@ -80,11 +80,9 @@ export class UserEditComponent implements OnInit {
 
   userUpdate(): void {
     if (this.editForm.valid && this.id !== undefined) {
-      // Crear un objeto User con los valores del formulario
 
       const updatedUser = { id: this.id, ...this.editForm.value };
       console.log(updatedUser);
-      // Llamar al servicio para actualizar el usuario
       this.userService.updateUser(updatedUser).subscribe({
         next: (response) => {
           console.log('User updated successfully');

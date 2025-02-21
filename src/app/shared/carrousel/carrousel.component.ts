@@ -17,9 +17,9 @@ export class CarrouselComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('carousel') carousel!: ElementRef;
   private intervalId: any;
   private scrollStep = 1;
-  private scrollAmount = 180; // Define el valor del desplacamiento de los botones
+  private scrollAmount = 180; 
   private autoScrollInterval: any;
-  private timeoutId: any; // Añadir esta línea para almacenar el identificador del timeout
+  private timeoutId: any; 
 
   constructor(private elementRef: ElementRef) { }
 

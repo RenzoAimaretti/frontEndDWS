@@ -1,11 +1,10 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { UserService } from './services/user.service';
-import { provideHttpClient, withInterceptors } from '@angular/common/http'; // Importa provideHttpClient
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideProtractorTestingSupport } from '@angular/platform-browser';
 import { authInterceptor } from './custom/auth.interceptor';
 
-//import de las rutas que estaban el app.routes.ts. correccion de Middle issues
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MovieComponent } from './pages/movie/movie.component';

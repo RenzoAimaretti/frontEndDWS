@@ -1,8 +1,6 @@
 <div class="container mt-5">
-  <!-- Título de la página -->
   <h2 class="mb-4 text-center">sugerencias</h2>
 
-  <!-- Formulario para agregar sugerencias -->
   <div class="card shadow-lg mb-5">
     <div class="card-header text-white">
       <h5 class="card-title mb-0">
@@ -12,7 +10,6 @@
     <div class="card-body">
       <form [formGroup]="suggestionForm" (ngSubmit)="postSuggestion()">
         <div class="row">
-          <!-- Campo de Título -->
           <div class="form-group mb-3 col-12 col-sm-6 col-md-4">
             <label for="titleSuggestion">Titulo de la sugerencia</label>
             <input
@@ -34,7 +31,6 @@
             </div>
           </div>
 
-          <!-- Campo de Descripción -->
           <div class="form-group mb-3 col-12 col-sm-6 col-md-8">
             <label for="description">Descripcion de la sugerencia</label>
             <textarea
@@ -56,7 +52,6 @@
           </div>
         </div>
 
-        <!-- Botón de envío -->
         <button
           type="submit"
           class="btn btn-primary w-100"
@@ -68,7 +63,6 @@
     </div>
   </div>
 
-  <!-- Listado de sugerencias -->
   <div *ngIf="suggesionsList.length > 0" class="card shadow-lg">
     <div class="card-header text-white">
       <h5 class="card-title mb-0">Sugerencias de los usuarios</h5>
@@ -93,7 +87,6 @@
     </div>
   </div>
 
-  <!-- Mensaje cuando no hay sugerencias -->
   <div
     *ngIf="suggesionsList.length === 0"
     class="alert alert-warning text-center"

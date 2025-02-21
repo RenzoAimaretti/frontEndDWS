@@ -7,7 +7,6 @@
     </div>
   </div>
 
-  <!-- Listado de sugerencias -->
   <div *ngIf="suggestions.length >= 0">
     <div
       *ngFor="let suggestion of suggestions; let i = index"
@@ -20,7 +19,6 @@
         </h5>
         <p class="card-text">{{ suggestion.description }}</p>
 
-        <!-- Botón para mostrar/ocultar el campo de revisión -->
         <button
           (click)="startEditingSuggestion(i)"
           class="btn btn-primary"
@@ -32,7 +30,6 @@
           Revisar
         </button>
 
-        <!-- Campo de texto y botones aceptar/rechazar -->
         <div class="mt-3" *ngIf="suggestionIndex === i">
           <div class="form-group">
             <label>Comentario del Administrador</label>

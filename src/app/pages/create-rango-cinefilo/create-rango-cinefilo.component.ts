@@ -14,7 +14,7 @@ export class CreateRangoCinefiloComponent {
   rangoCinefilo = {
     nameRango: '',
     descriptionRango: '',
-    minReviews: null, // Se inicializa en null para que el usuario lo ingrese
+    minReviews: null,
   };
 
   constructor(
