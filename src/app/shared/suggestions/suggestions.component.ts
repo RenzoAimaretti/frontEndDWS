@@ -6,8 +6,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Suggestion } from '../../interface/suggestion';
-import { SuggestionsService } from '../../services/suggestions.service';
+import { Suggestion } from '../../interface/suggestion.js';
+import { SuggestionsService } from '../../services/suggestions.service.js';
 
 @Component({
   selector: 'app-suggestions',

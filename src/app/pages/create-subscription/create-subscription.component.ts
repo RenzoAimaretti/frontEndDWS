@@ -1,8 +1,7 @@
-
 import { Component } from '@angular/core';
-import { SubscriptionService } from '../../services/subscription.service';
+import { SubscriptionService } from '../../services/subscription.service.js';
 import { FormsModule } from '@angular/forms';
-import { Subscription } from '../../interface/subscription';
+import { Subscription } from '../../interface/subscription.js';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,7 +20,7 @@ export class CreateSubscriptionComponent {
 
   constructor(
     private subscriptionService: SubscriptionService,
-    public router: Router 
+    public router: Router
   ) {}
 
   onSubmit() {
@@ -29,7 +28,7 @@ export class CreateSubscriptionComponent {
       next: (response) => {
         console.log('Subscripción creada:', response);
         alert('¡Suscripción creada con éxito!');
-        this.router.navigate(['/adminDashboard']); 
+        this.router.navigate(['/adminDashboard']);
       },
       error: (error) => {
         console.error('Error al crear la subscripción:', error);
@@ -37,5 +36,4 @@ export class CreateSubscriptionComponent {
       },
     });
   }
-
 }

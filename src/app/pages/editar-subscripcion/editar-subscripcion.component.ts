@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SubscriptionService } from '../../services/subscription.service';
-import { Subscription } from '../../interface/subscription';
+import { SubscriptionService } from '../../services/subscription.service.js';
+import { Subscription } from '../../interface/subscription.js';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   templateUrl: './editar-subscripcion.component.html',
   styleUrls: ['./editar-subscripcion.component.css'],
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule],
 })
 export class EditarSubscripcionComponent implements OnInit {
   subscription!: Subscription;
@@ -26,11 +26,11 @@ export class EditarSubscripcionComponent implements OnInit {
     if (id) {
       this.subscriptionService.getSubscriptionById(id).subscribe(
         (data) => {
-          this.subscription = data; 
+          this.subscription = data;
         },
         (error) => {
           console.error('Error al obtener la subscripción:', error);
-          this.router.navigate(['/search/subscriptions']); 
+          this.router.navigate(['/search/subscriptions']);
         }
       );
     } else {
@@ -40,11 +40,13 @@ export class EditarSubscripcionComponent implements OnInit {
   }
 
   guardarCambios(): void {
-    if (this.subscription && this.subscription.id) { 
-      this.subscriptionService.editSubscription(this.subscription.id, this.subscription).subscribe(() => {
-        alert('subscripcion editada correctamente.'); 
-        this.router.navigate(['/adminDashboard']);  
-      });
+    if (this.subscription && this.subscription.id) {
+      this.subscriptionService
+        .editSubscription(this.subscription.id, this.subscription)
+        .subscribe(() => {
+          alert('subscripcion editada correctamente.');
+          this.router.navigate(['/adminDashboard']);
+        });
     } else {
       console.error('ID de subscripción no disponible');
       this.router.navigate(['/search/subscriptions']);

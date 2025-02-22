@@ -1,5 +1,13 @@
-import { Component, ViewChild, OnInit, OnDestroy, AfterViewInit, Input, ElementRef } from '@angular/core';
-import { Movie } from '../../interface/movie';
+import {
+  Component,
+  ViewChild,
+  OnInit,
+  OnDestroy,
+  AfterViewInit,
+  Input,
+  ElementRef,
+} from '@angular/core';
+import { Movie } from '../../interface/movie.js';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -8,7 +16,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './carrousel.component.html',
-  styleUrls: ['./carrousel.component.css']
+  styleUrls: ['./carrousel.component.css'],
 })
 export class CarrouselComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() movies: Movie[] = [];
@@ -17,11 +25,11 @@ export class CarrouselComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('carousel') carousel!: ElementRef;
   private intervalId: any;
   private scrollStep = 1;
-  private scrollAmount = 180; 
+  private scrollAmount = 180;
   private autoScrollInterval: any;
-  private timeoutId: any; 
+  private timeoutId: any;
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef) {}
 
   ngOnInit(): void {
     if (!this.idCarrusel) {
@@ -38,13 +46,19 @@ export class CarrouselComponent implements OnInit, OnDestroy, AfterViewInit {
       cancelAnimationFrame(this.intervalId);
     }
   }
-  
+
   startAutoScroll(): void {
     const scroll = () => {
-      const carouselElement = this.elementRef.nativeElement.querySelector('.carousel-' + this.idCarrusel);
+      const carouselElement = this.elementRef.nativeElement.querySelector(
+        '.carousel-' + this.idCarrusel
+      );
       if (carouselElement) {
         carouselElement.scrollLeft += this.scrollStep;
-        if (carouselElement.scrollLeft >= carouselElement.scrollWidth - carouselElement.clientWidth || carouselElement.scrollLeft <= 0) {
+        if (
+          carouselElement.scrollLeft >=
+            carouselElement.scrollWidth - carouselElement.clientWidth ||
+          carouselElement.scrollLeft <= 0
+        ) {
           carouselElement.scrollLeft = 0;
         }
       }
@@ -67,10 +81,14 @@ export class CarrouselComponent implements OnInit, OnDestroy, AfterViewInit {
   smoothScroll(carouselElement: HTMLElement): void {
     const scroll = () => {
       carouselElement.scrollLeft += this.scrollStep;
-      if (carouselElement.scrollLeft >= carouselElement.scrollWidth - carouselElement.clientWidth) {
+      if (
+        carouselElement.scrollLeft >=
+        carouselElement.scrollWidth - carouselElement.clientWidth
+      ) {
         carouselElement.scrollLeft = 0;
-      }else if (carouselElement.scrollLeft <= 0) {
-        carouselElement.scrollLeft = carouselElement.scrollWidth - carouselElement.clientWidth;
+      } else if (carouselElement.scrollLeft <= 0) {
+        carouselElement.scrollLeft =
+          carouselElement.scrollWidth - carouselElement.clientWidth;
       }
       this.intervalId = requestAnimationFrame(scroll);
     };
@@ -79,12 +97,20 @@ export class CarrouselComponent implements OnInit, OnDestroy, AfterViewInit {
 
   scrollLeft(): void {
     this.stopAutoScroll();
-    const carouselElement = this.elementRef.nativeElement.querySelector('.carousel-' + this.idCarrusel) as HTMLElement;
+    const carouselElement = this.elementRef.nativeElement.querySelector(
+      '.carousel-' + this.idCarrusel
+    ) as HTMLElement;
     if (carouselElement) {
       if (carouselElement.scrollLeft === 0) {
-        carouselElement.scrollTo({ left: carouselElement.scrollWidth, behavior: 'smooth' });
+        carouselElement.scrollTo({
+          left: carouselElement.scrollWidth,
+          behavior: 'smooth',
+        });
       } else {
-        carouselElement.scrollBy({ left: -this.scrollAmount, behavior: 'smooth' });
+        carouselElement.scrollBy({
+          left: -this.scrollAmount,
+          behavior: 'smooth',
+        });
       }
     }
     if (this.timeoutId) {
@@ -95,12 +121,17 @@ export class CarrouselComponent implements OnInit, OnDestroy, AfterViewInit {
 
   scrollRight(): void {
     this.stopAutoScroll();
-    const carouselElement = this.elementRef.nativeElement.querySelector('.carousel-' + this.idCarrusel) as HTMLElement;
+    const carouselElement = this.elementRef.nativeElement.querySelector(
+      '.carousel-' + this.idCarrusel
+    ) as HTMLElement;
     if (carouselElement) {
       if (carouselElement.scrollLeft === carouselElement.scrollWidth) {
         carouselElement.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
-        carouselElement.scrollBy({ left: this.scrollAmount, behavior: 'smooth' });
+        carouselElement.scrollBy({
+          left: this.scrollAmount,
+          behavior: 'smooth',
+        });
       }
     }
     if (this.timeoutId) {

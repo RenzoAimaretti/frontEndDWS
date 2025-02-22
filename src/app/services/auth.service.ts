@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { LoginRequest } from '../interface/loginRequest';
-import { registerRequest } from '../interface/registerRequest';
+import { LoginRequest } from '../interface/loginRequest.js';
+import { registerRequest } from '../interface/registerRequest.js';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
   catchError,

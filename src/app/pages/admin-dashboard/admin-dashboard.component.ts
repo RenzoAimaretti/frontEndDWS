@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { SearchSubscriptionComponent } from '../search-subscription/search-subscription.component';
-import { AuthService } from '../../services/auth.service';
-import { Admin } from '../../interface/admin';
+import { SearchSubscriptionComponent } from '../search-subscription/search-subscription.component.js';
+import { AuthService } from '../../services/auth.service.js';
+import { Admin } from '../../interface/admin.js';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-admin-dashboard',

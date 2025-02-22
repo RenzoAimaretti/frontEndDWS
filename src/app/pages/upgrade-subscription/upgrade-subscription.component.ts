@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { SubscriptionItemComponent } from '../../shared/subscription-item/subscription-item.component';
+import { SubscriptionItemComponent } from '../../shared/subscription-item/subscription-item.component.js';
 import { CommonModule } from '@angular/common';
-import { SubscriptionService } from '../../services/subscription.service';
-import { Subscription } from '../../interface/subscription';
+import { SubscriptionService } from '../../services/subscription.service.js';
+import { Subscription } from '../../interface/subscription.js';
 
 @Component({
   selector: 'app-upgrade-subscription',

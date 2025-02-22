@@ -1,13 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { MercadoPagoService } from '../../services/mercado-pago.service';
-import MercadoPago from 'mercadopago';
-import { environment } from '../../../environments/environment.js';
-import { Subscription } from '../../interface/subscription';
+import { MercadoPagoService } from '../../services/mercado-pago.service.js';
+import { Subscription } from '../../interface/subscription.js';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../../services/user.service';
-import { AuthService } from '../../services/auth.service';
-import { User } from '../../interface/user';
-import { map } from 'rxjs';
+import { UserService } from '../../services/user.service.js';
+import { AuthService } from '../../services/auth.service.js';
 
 @Component({
   selector: 'app-subscription-item',

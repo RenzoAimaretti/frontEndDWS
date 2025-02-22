@@ -3,9 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../interface/user.js';
 import { AuthService } from '../../services/auth.service.js';
 import { UserService } from '../../services/user.service.js';
-import { RangoCinefiloService } from '../../services/rangoCinefilo.service.js';
-import { RangoCinefilo } from '../../interface/rangoCinefilo.js';
-import { Subscription } from '../../interface/subscription.js';
+
 import {
   FormBuilder,
   FormGroup,
@@ -39,12 +37,10 @@ export class UserEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.editForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
     });
-
 
     this.authService.getIdFromToken();
     this.authService.isUserLoggedIn().subscribe({
@@ -80,7 +76,6 @@ export class UserEditComponent implements OnInit {
 
   userUpdate(): void {
     if (this.editForm.valid && this.id !== undefined) {
-
       const updatedUser = { id: this.id, ...this.editForm.value };
       console.log(updatedUser);
       this.userService.updateUser(updatedUser).subscribe({

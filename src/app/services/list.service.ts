@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { List } from '../interface/list';
+import { List } from '../interface/list.js';
 import { catchError, map } from 'rxjs/operators';
 import { AuthService } from './auth.service.js';
-import { Movie } from '../interface/movie.js';
 import { environment } from '../../environments/environment.js';
 
 @Injectable({

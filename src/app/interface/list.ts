@@ -1,5 +1,5 @@
-import { Movie } from './movie';
-import { User } from './user';
+import { Movie } from './movie.js';
+import { User } from './user.js';
 export interface List {
   id: number;
   nameList: string;

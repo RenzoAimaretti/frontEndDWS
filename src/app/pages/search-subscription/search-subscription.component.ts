@@ -1,7 +1,5 @@
-import { SubscriptionService } from '../../services/subscription.service';
-import { RangoCinefiloService } from '../../services/rangoCinefilo.service';
-import { Subscription } from '../../interface/subscription';
-import { RangoCinefilo } from '../../interface/rangoCinefilo';
+import { SubscriptionService } from '../../services/subscription.service.js';
+import { RangoCinefiloService } from '../../services/rangoCinefilo.service.js';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';

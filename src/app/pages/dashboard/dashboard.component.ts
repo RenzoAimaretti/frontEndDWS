@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { User } from '../../interface/user';
-import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service.js';
+import { User } from '../../interface/user.js';
+import { UserService } from '../../services/user.service.js';
 import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-dashboard',

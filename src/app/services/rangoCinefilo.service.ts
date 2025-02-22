@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { RangoCinefilo } from '../interface/rangoCinefilo';
+import { RangoCinefilo } from '../interface/rangoCinefilo.js';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment.js';
 

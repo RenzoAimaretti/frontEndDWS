@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Review } from '../../interface/review';
-import { ReviewService } from '../../services/review.service';
-import { AuthService } from '../../services/auth.service';
-import{Comment} from '../../interface/comment';
+import { Review } from '../../interface/review.js';
+import { ReviewService } from '../../services/review.service.js';
+import { AuthService } from '../../services/auth.service.js';
+import { Comment } from '../../interface/comment.js';
 @Component({
   selector: 'app-review',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './review.component.html',
-  styleUrl: './review.component.css'
+  styleUrl: './review.component.css',
 })
 export class ReviewComponent {
   @Input() idContent: number = 0;
@@ -22,19 +22,20 @@ export class ReviewComponent {
   currentUserId?: number;
   // Datos para la edicion de una review
   editingReviewIndex: number | null = null; // Índice de la reseña que se está editando
-  editingRating: number = 1;  // Rating que se está editando
-  editingDescription: string = '';  // Descripción que se está editando
-  
+  editingRating: number = 1; // Rating que se está editando
+  editingDescription: string = ''; // Descripción que se está editando
+
   //datos para la edicion de un comentario
   editingCommentIndex: number | null = null;
   editingCommentReviewIndex: number | null = null;
   editingComment?: Comment;
-  constructor(private reviewService: ReviewService, private authService: AuthService) {
-
-  }
+  constructor(
+    private reviewService: ReviewService,
+    private authService: AuthService
+  ) {}
   ngOnInit(): void {
     this.getReviews();
-    this.rating = 1
+    this.rating = 1;
     if (this.authService.currentUserLoginOn.value) {
       this.currentUserId = this.authService.currentUserId.value;
     }
@@ -42,47 +43,46 @@ export class ReviewComponent {
 
   sendReview() {
     if (this.authService.currentUserLoginOn.value) {
-
       let reviewToPost = {
         nameContent: this.nameContent,
         rating: this.rating,
-        description: this.description
-      }
+        description: this.description,
+      };
 
-      this.reviewService.postReview(this.idContent, reviewToPost).subscribe(
-        result => {
-          console.log(result)
+      this.reviewService
+        .postReview(this.idContent, reviewToPost)
+        .subscribe((result) => {
+          console.log(result);
           //obtener la lista de reseñas actualizada
           if (result.message === 'Toxicity detected') {
             this.rating = result.data.rating;
             this.description = result.data.desc;
-          } else{
-          this.getReviews();
-          // Limpiar los campos del formulario
-          this.rating = 1;
-          this.description = '';
-        }
-        }
-      )
-
+          } else {
+            this.getReviews();
+            // Limpiar los campos del formulario
+            this.rating = 1;
+            this.description = '';
+          }
+        });
     } else {
-      window.alert("Tenes que estar logueado para poder reseñar")
+      window.alert('Tenes que estar logueado para poder reseñar');
     }
-  };
+  }
 
   deleteReview() {
-    this.reviewService.deleteReview(this.idContent).subscribe(
-      () => this.getReviews()
-    )
-  };
+    this.reviewService
+      .deleteReview(this.idContent)
+      .subscribe(() => this.getReviews());
+  }
 
   getReviews() {
-    this.reviewService.getReviews(this.idContent).pipe(
-    ).subscribe(
-      result => { this.reviewsToDisplay = result.reverse() }
-    );
-  };
-
+    this.reviewService
+      .getReviews(this.idContent)
+      .pipe()
+      .subscribe((result) => {
+        this.reviewsToDisplay = result.reverse();
+      });
+  }
 
   // Método para habilitar el modo de edición de una reseña
   startEditingReview(index: number) {
@@ -91,10 +91,14 @@ export class ReviewComponent {
     this.editingDescription = this.reviewsToDisplay[index].description;
   }
 
-  startEditingComment(indexComment: number,indexReview:number,comment:Comment) {
+  startEditingComment(
+    indexComment: number,
+    indexReview: number,
+    comment: Comment
+  ) {
     this.editingCommentIndex = indexComment;
     this.editingCommentReviewIndex = indexReview;
-    this.editingComment = comment
+    this.editingComment = comment;
   }
 
   // Método para cancelar la edición
@@ -108,56 +112,62 @@ export class ReviewComponent {
     if (this.editingCommentIndex !== null) {
       const commentToEdit = {
         //provisorio, habria que modificalo para que no este vacio
-        comment: this.editingComment?.comment || ''
+        comment: this.editingComment?.comment || '',
       };
       const commentOwner = this.editingComment?.commentOwner.id;
       const reviewOwner = this.editingComment?.commentReview.reviewOwner;
       if (commentOwner && reviewOwner) {
-        this.reviewService.editComment(this.idContent, reviewOwner.id,commentOwner , commentToEdit).subscribe(
-          result => {
-            console.log(result)
+        this.reviewService
+          .editComment(
+            this.idContent,
+            reviewOwner.id,
+            commentOwner,
+            commentToEdit
+          )
+          .subscribe((result) => {
+            console.log(result);
             //obtener la lista de reseñas actualizada
             this.getReviews();
             // Limpiar los campos del formulario
             this.editingComment = undefined;
             this.editingCommentIndex = null;
-          }
-        );
+          });
       }
     }
   }
 
   deleteComment(commentOwner: number, reviewOwner: number) {
-    this.reviewService.deleteComment(this.idContent, reviewOwner, commentOwner).subscribe(
-      result => {
-        console.log(result)
+    this.reviewService
+      .deleteComment(this.idContent, reviewOwner, commentOwner)
+      .subscribe((result) => {
+        console.log(result);
         //obtener la lista de reseñas actualizada
         this.getReviews();
-      }
-    )
+      });
   }
 
   editReview() {
     if (this.editingReviewIndex !== null) {
       const reviewToEdit = {
         rating: this.editingRating,
-        description: this.editingDescription
+        description: this.editingDescription,
       };
-      this.reviewService.editReview(this.idContent, reviewToEdit).subscribe(
-        result => {
-          console.log(result)
-          if(result.message == "toxicity detected"){
+      this.reviewService
+        .editReview(this.idContent, reviewToEdit)
+        .subscribe((result) => {
+          console.log(result);
+          if (result.message == 'toxicity detected') {
             this.editingRating = result.data.rating;
             this.editingDescription = result.data.desc;
-          }else{
-          //obtener la lista de reseñas actualizada
-          this.getReviews();
-          // Limpiar los campos del formulario
-          this.editingRating = 1;
-          this.editingDescription = '';
-          this.editingReviewIndex = null;}
-        }
-      )
+          } else {
+            //obtener la lista de reseñas actualizada
+            this.getReviews();
+            // Limpiar los campos del formulario
+            this.editingRating = 1;
+            this.editingDescription = '';
+            this.editingReviewIndex = null;
+          }
+        });
     }
   }
 
@@ -166,7 +176,6 @@ export class ReviewComponent {
     this.editingRating = rating;
   }
 
-
   setRating(stars: number) {
     this.rating = stars;
   }
@@ -174,21 +183,18 @@ export class ReviewComponent {
   sendComment(idReviewOwner: number, index: number) {
     if (this.authService.currentUserLoginOn.value && this.idContent) {
       let commentToPost = {
-        comment: this.comments[index] // Obtener el comentario específico del array
+        comment: this.comments[index], // Obtener el comentario específico del array
       };
-      this.reviewService.postComment(this.idContent, idReviewOwner, commentToPost).subscribe(
-        () => {
+      this.reviewService
+        .postComment(this.idContent, idReviewOwner, commentToPost)
+        .subscribe(() => {
           this.getReviews();
           this.comments[index] = ''; // Limpiar el comentario después de enviarlo
-        }
-      );
+        });
     } else {
-      window.alert("Tenes que estar logueado para poder comentar");
+      window.alert('Tenes que estar logueado para poder comentar');
     }
   }
 
-
   //METODOS PARA COMENTAR CUANDO ESTEN DISPONIBLES
-
-};
-
+}

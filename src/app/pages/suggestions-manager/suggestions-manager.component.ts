@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Suggestion } from '../../interface/suggestion';
-import { SuggestionsService } from '../../services/suggestions.service';
-import { AuthService } from '../../services/auth.service';
+import { Suggestion } from '../../interface/suggestion.js';
+import { SuggestionsService } from '../../services/suggestions.service.js';
+import { AuthService } from '../../services/auth.service.js';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Review } from '../interface/review';
+import { Review } from '../interface/review.js';
 import {
   HttpClient,
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth.service.js';
 import { environment } from '../../environments/environment.js';
 import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ListService } from '../../services/list.service';
-import { List } from '../../interface/list';
-import { SearchComponent } from '../search/search.component';
+import { ListService } from '../../services/list.service.js';
+import { List } from '../../interface/list.js';
+import { SearchComponent } from '../search/search.component.js';
 import { TmdbService } from '../../services/tmdb-service.service.js';
 
 @Component({

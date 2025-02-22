@@ -1,6 +1,5 @@
-
 import { Component } from '@angular/core';
-import { RangoCinefiloService } from '../../services/rangoCinefilo.service';
+import { RangoCinefiloService } from '../../services/rangoCinefilo.service.js';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -29,21 +28,28 @@ export class CreateRangoCinefiloComponent {
   ) {}
 
   onSubmit() {
-    if (!this.rangoCinefilo.nameRango.trim() || !this.rangoCinefilo.descriptionRango.trim()) {
+    if (
+      !this.rangoCinefilo.nameRango.trim() ||
+      !this.rangoCinefilo.descriptionRango.trim()
+    ) {
       alert('Por favor, completa todos los campos.');
       return;
     }
 
-    this.rangoCinefiloService.createRangoCinefilo(this.rangoCinefilo).subscribe({
-      next: (response) => {
-        console.log('RangoCinefilo creado:', response);
-        alert('¡Rango cinéfilo creado con éxito!');
-        this.router.navigate(['/adminDashboard']);
-      },
-      error: (error) => {
-        console.error('Error al crear RangoCinefilo:', error);
-        alert('Error al crear el Rango cinéfilo. Inténtalo de nuevo más tarde.');
-      },
-    });
+    this.rangoCinefiloService
+      .createRangoCinefilo(this.rangoCinefilo)
+      .subscribe({
+        next: (response) => {
+          console.log('RangoCinefilo creado:', response);
+          alert('¡Rango cinéfilo creado con éxito!');
+          this.router.navigate(['/adminDashboard']);
+        },
+        error: (error) => {
+          console.error('Error al crear RangoCinefilo:', error);
+          alert(
+            'Error al crear el Rango cinéfilo. Inténtalo de nuevo más tarde.'
+          );
+        },
+      });
   }
 }

@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { CarrouselComponent } from '../../shared/carrousel/carrousel.component';
+import { CarrouselComponent } from '../../shared/carrousel/carrousel.component.js';
 import { Movie } from '../../interface/movie';
-import { TmdbService } from '../../services/tmdb-service.service';
-import { CarrouselSpotlightComponent } from '../../shared/carrousel-spotlight/carrousel-spotlight.component';
-import { SuggestionsComponent } from '../../shared/suggestions/suggestions.component';
+import { TmdbService } from '../../services/tmdb-service.service.js';
+import { CarrouselSpotlightComponent } from '../../shared/carrousel-spotlight/carrousel-spotlight.component.js';
+import { SuggestionsComponent } from '../../shared/suggestions/suggestions.component.js';
 @Component({
   selector: 'app-home',
   standalone: true,

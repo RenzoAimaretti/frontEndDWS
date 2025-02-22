@@ -6,10 +6,10 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../services/user.service.js';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { User } from '../../interface/user';
-import { AuthService } from '../../services/auth.service';
+import { User } from '../../interface/user.js';
+import { AuthService } from '../../services/auth.service.js';
 import { List } from '../../interface/list.js';
 import { TmdbService } from '../../services/tmdb-service.service.js';
 
