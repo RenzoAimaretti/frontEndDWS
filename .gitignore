@@ -42,3 +42,6 @@ testem.log
 Thumbs.db
 src/.env
 src/enviroments/enviroment.ts
+.vercel
+.vercelignore
+vercel.json
