@@ -70,7 +70,15 @@
           </div>
         </div>
       </div>
-      <div class="text-center">
+      
+      <div class="d-flex justify-content-between">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="router.navigate(['/adminDashboard'])"
+        >
+          Cancelar
+        </button>
         <button
           type="submit"
           class="btn btn-success"

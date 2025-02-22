@@ -4,9 +4,8 @@
 />
 <div class="container-fluid">
   <div class="container pt-5">
-    <h2 class="text-center">Crear Nuevo Rango Cinefilo</h2>
+    <h2 class="text-center">Crear Nuevo Rango Cinéfilo</h2>
     <form (ngSubmit)="onSubmit()" #rangoForm="ngForm" class="rango-form">
-     
       <div class="form-group">
         <div class="form-group row">
           <label
@@ -27,7 +26,6 @@
         </div>
       </div>
 
-      
       <div class="form-group">
         <div class="form-group row">
           <label
@@ -48,7 +46,6 @@
         </div>
       </div>
 
-      
       <div class="form-group">
         <div class="form-group row">
           <label
@@ -71,7 +68,14 @@
       </div>
 
       
-      <div class="text-center">
+      <div class="d-flex justify-content-between">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="router.navigate(['/adminDashboard'])"
+        >
+          Cancelar
+        </button>
         <button
           type="submit"
           class="btn btn-success"
