@@ -17,7 +17,7 @@ describe('Register test', () => {
     cy.get('#exampleInputPassword1').type('password1234');
 
     cy.get('.btn-primary').contains('Registrarse').click();
-
+    cy.wait(3000);
     cy.url().should('include', '/login');
 
     //toca borra el usuario creado despues de la prueba
@@ -37,7 +37,12 @@ describe('login and delete tests', () => {
     cy.get('.btn-primary').contains('Editar Usuario').click();
     cy.url().should('include', '/edit');
     //eliminar usuario
-    cy.get('.btn-danger').click();
+    cy.wait(3000);
+    cy.get('.btn-danger').contains('Eliminar cuenta').click();
+    cy.on('window:confirm', (str) => {
+      expect(str).to.equal('¿Estás seguro de que deseas borrar este usuario?');
+      return true;
+    });
   });
 
   it('Login admin', () => {
