@@ -12,6 +12,9 @@
             <p class="card-text" *ngIf="rango.descriptionRango">
               {{ rango.descriptionRango }}
             </p>
+            <p class="card-text" *ngIf="rango.minReviews !== null">
+              Reseñas mínimas: {{ rango.minReviews }}
+            </p>
             <div class="d-flex justify-content-center">
               <button
                 (click)="editarRangoCinefilo(rango)"
