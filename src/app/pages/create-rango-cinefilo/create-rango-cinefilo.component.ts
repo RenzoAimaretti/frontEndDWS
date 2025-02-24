@@ -36,20 +36,21 @@ export class CreateRangoCinefiloComponent {
       return;
     }
 
-    this.rangoCinefiloService
-      .createRangoCinefilo(this.rangoCinefilo)
-      .subscribe({
-        next: (response) => {
-          console.log('RangoCinefilo creado:', response);
-          alert('¡Rango cinéfilo creado con éxito!');
-          this.router.navigate(['/adminDashboard']);
-        },
-        error: (error) => {
-          console.error('Error al crear RangoCinefilo:', error);
-          alert(
-            'Error al crear el Rango cinéfilo. Inténtalo de nuevo más tarde.'
-          );
-        },
-      });
+    this.rangoCinefiloService.createRangoCinefilo(this.rangoCinefilo).subscribe({
+      next: (response) => {
+        console.log('RangoCinefilo creado:', response);
+        alert('¡Rango cinéfilo creado con éxito!');
+        this.router.navigate(['/adminDashboard']);
+      },
+      error: (error) => {
+        console.error('Error al crear RangoCinefilo:', error);
+
+        if (error.status === 400) {
+          alert(error.error.message);
+        } else {
+          alert('Error al crear el Rango cinéfilo. Inténtalo de nuevo más tarde.');
+        }
+      },
+    });
   }
 }
