@@ -38,3 +38,17 @@ pnpm e2e
 - Tener instalado Node.js
 - Tener instalado Angular CLI
 
+## Credenciales MP en cinemateca
+- Mail: test_user_1902302378@testuser.com
+- Password: 12341234
+
+## Credenciales e info de pago para MP
+
+- User MP: TESTUSER1902302378
+- Password MP: fY5YnCVEGU
+- Nro de Tarjeta: 5031 7557 3453 0604
+- Codigo de seguridad: 123
+- Fecha de vencimiento: 11/25
+- Titular: APRO
+- Dni: 12345678
+
